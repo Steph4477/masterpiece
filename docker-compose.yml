@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  front:
+    platform: linux/x86_64
+    restart: always
+    build: ./frontend
+    ports:
+      - "8080:5173"
+    env_file:
+      - ./frontend.env
+    command: "npm run dev -- --host"
+    volumes:
+      - ./frontend/src:/app/src
+  back:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend.env
+    command: "npm run start:dev"
+    volumes:
+      - ./backend/src:/app/src
+
+  postgres_db:
+    container_name: postgres_db
+    image: postgres:latest
+    restart: always
+    env_file:
+      - ./postgres.env
+    ports:
+      - "5433:5432"
+
+  adminer:
+    container_name: adminer_quizz_app
+    image: adminer:latest
+    restart: always
+    ports:
+      - "8180:8080"
+    env_file:
+      - ./adminer.env
+    depends_on:
+      - postgres_db
+
+volumes:
+  postgres-data:     

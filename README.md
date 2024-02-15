@@ -12,7 +12,8 @@ Welcome to the BPIM Application repository!
     Offering features such as real-time inventory monitoring sales tracking:
     - product data management
     - customer data management
-    - ...
+    - order data management
+    ...
 
 ## How It Works
 
