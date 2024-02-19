@@ -32,7 +32,7 @@ services:
       - "5433:5432"
 
   adminer:
-    container_name: adminer_quizz_app
+    container_name: adminer_BPIM
     image: adminer:latest
     restart: always
     ports:

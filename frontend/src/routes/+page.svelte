@@ -1,14 +1,9 @@
 <script lang="ts">
 	import ButtonsFunc from '$lib/components/ButtonsFunc.svelte';
+	import {isUserDiscon} from '$lib/stores/userStore';
 </script>
 
-<!-- <h1>BPIM</h1> -->
-<!-- <p>Stack:</p>
-<h2>Frontend</h2>
-<p>Svelte-kit.js <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<h2>Backend</h2>
-<p>Nest.js <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
-<div class="home">
+<div class="home" class:filter-grayscale={$isUserDiscon}>
 	<p class="title">
 		<span class="b">B</span>
 		<span class="p">P</span>
@@ -32,27 +27,24 @@
 			/>
 		</div>
 		<div>
-			<ButtonsFunc label="Commands" 
-                customColor="#FFDF8C" 
-                icone="fa-solid fa-clipboard-check" 
-            />
-			<ButtonsFunc label="Clients" 
-                customColor="#F8FD00" 
-                icone="fa-solid fa-users" 
-            />
+			<ButtonsFunc label="Commands" customColor="#FFDF8C" icone="fa-solid fa-clipboard-check" />
+			<ButtonsFunc label="Clients" customColor="#F8FD00" icone="fa-solid fa-users" />
 		</div>
 	</div>
 </div>
 
 <style>
-    
-    .home {
-        padding-left: 5vh;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
+	.home {
+		padding-left: 5vh;
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+
+	.filter-grayscale {
+		filter: grayscale(100%);
+	}
 
 	h1 {
 		display: flex;
@@ -99,5 +91,4 @@
 		justify-content: space-around;
 		text-align: center;
 	}
-	
 </style>
