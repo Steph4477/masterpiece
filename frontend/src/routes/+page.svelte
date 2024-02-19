@@ -35,8 +35,8 @@
 
 <style>
 	.home {
-		padding-left: 5vh;
 		width: 100%;
+		height: 0px;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
