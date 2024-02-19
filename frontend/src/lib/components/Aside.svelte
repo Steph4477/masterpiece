@@ -9,15 +9,13 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
-        height: 20vh;
-        width: 2vh;
-        font-size: 20px;
-        margin-top: 450px;
+		height: 20vh;
+		width: 2vh;
+		font-size: 20px;
+		margin-top: 450px;
 	}
 
-    .fa-sliders {
-        rotate: 90deg;
-    }
-	
-    
+	.fa-sliders {
+		rotate: 90deg;
+	}
 </style>
