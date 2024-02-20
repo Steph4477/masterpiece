@@ -35,25 +35,25 @@
 
 <style>
 	.home {
+		height: 20px;
 		width: 100%;
-		height: 0px;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-around;
 	}
-
+	
 	.filter-grayscale {
 		filter: grayscale(100%);
 	}
-
+	
 	h1 {
 		display: flex;
 		justify-content: center;
 	}
-
+	
 	.title {
-		font-size: 5rem;
-		height: 50px;
+		font-size: 4.5rem;
+		margin-top: 0;
+		margin-bottom: 5vh;
 	}
 
 	.b {
@@ -62,6 +62,7 @@
 
 	.p {
 		color: #fd6060;
+		height: 20px;
 	}
 
 	.i {

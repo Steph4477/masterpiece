@@ -39,7 +39,7 @@
 	}
 
 	.icon {
-		font-size: 1.5rem;
+		
 		margin-bottom: 10px; 
 	}
 </style>

@@ -7,9 +7,9 @@
     
 </header>
 
-<main>
+
     <slot />
-</main>
+
 <Aside />
 <style>
     

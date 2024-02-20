@@ -10,9 +10,8 @@
 		flex-direction: column;
 		justify-content: space-around;
 		height: 20vh;
-		width: 2vh;
-		font-size: 20px;
-		margin-top: 450px;
+		position: fixed;
+		top: 600px;
 	}
 
 	.fa-sliders {
