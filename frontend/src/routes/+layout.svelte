@@ -7,12 +7,13 @@
     
 </header>
 
-
+<main>
     <slot />
-
+</main>
 <Aside />
 <style>
     
-
-    
+    main {
+       margin-left: 50px;
+    }
 </style>

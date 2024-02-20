@@ -1,12 +1,13 @@
 <script>
-	import Aside from '$lib/components/Aside.svelte';
+	
 	let formData = {
-		nom: '',
-		prenom: '',
+		lastName: '',
+		firstName: '',
 		email: '',
-		motDePasse: '',
-		confirmationMotDePasse: '',
-		siret: ''
+		password: '',
+		confirmPassword: '',
+		siret: '',
+		headQuarter: ''
 	};
 
 	const postForm = () => {
@@ -29,30 +30,32 @@
 </script>
 
 <div class="container">
-	<Aside />
 	<form on:submit|preventDefault={postForm}>
-		<label for="nom">Nom :</label>
-		<input type="text" id="nom" bind:value={formData.nom} required />
+		<label for="lastName">Nom :</label>
+		<input type="text" id="lastName" bind:value={formData.lastName} required />
 
-		<label for="prenom">Prénom :</label>
-		<input type="text" id="prenom" bind:value={formData.prenom} required />
+		<label for="firstName">Prénom :</label>
+		<input type="text" id="firstName" bind:value={formData.firstName} required />
 
 		<label for="email">Email :</label>
 		<input type="email" id="email" bind:value={formData.email} required />
 
-		<label for="motDePasse">Mot de passe :</label>
-		<input type="password" id="motDePasse" bind:value={formData.motDePasse} required />
+		<label for="password">Mot de passe :</label>
+		<input type="password" id="password" bind:value={formData.password} required />
 
-		<label for="confirmationMotDePasse">Confirmer le mot de passe :</label>
+		<label for="confirmPassword">Confirmer le mot de passe :</label>
 		<input
 			type="password"
-			id="confirmationMotDePasse"
-			bind:value={formData.confirmationMotDePasse}
+			id="confirmPassword"
+			bind:value={formData.confirmPassword}
 			required
 		/>
 
 		<label for="siret">SIRET :</label>
 		<input type="text" id="siret" bind:value={formData.siret} required />
+
+		<label for="headQuarter">Adresse du siège social :</label>
+		<input type="text" id="headQuarter" bind:value={formData.headQuarter} required />
 
 		<button type="submit">Soumettre</button>
 		
