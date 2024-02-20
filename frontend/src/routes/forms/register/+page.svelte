@@ -9,14 +9,28 @@
 		siret: ''
 	};
 
-	function handleSubmit() {
-		console.log('Formulaire de données:', formData);
-	}
+	const postForm = () => {
+        fetch("http://localhost:3000/merchant", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Réponse du backend:", data);
+            })
+            .catch((error) => {
+                console.error("Erreur lors de la requête POST:", error);
+            });
+    };
+
 </script>
 
 <div class="container">
 	<Aside />
-	<form on:submit|preventDefault={handleSubmit}>
+	<form on:submit|preventDefault={postForm}>
 		<label for="nom">Nom :</label>
 		<input type="text" id="nom" bind:value={formData.nom} required />
 
@@ -41,6 +55,7 @@
 		<input type="text" id="siret" bind:value={formData.siret} required />
 
 		<button type="submit">Soumettre</button>
+		
 	</form>
 </div>
 
