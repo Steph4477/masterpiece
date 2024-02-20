@@ -1,11 +1,13 @@
+// app.module.ts
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Merchant } from './Merchant/merchant.entity';
+import { MerchantModule } from './Merchant/merchant.module';
 
 @Module({
   imports: [
+    MerchantModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -13,13 +15,12 @@ import { Merchant } from './Merchant/merchant.entity';
       database: 'Database',
       username: 'useradmin',
       password: 'password',
-      entities: [Merchant],
+      entities: [__dirname + '/**/*.entity.ts'],
       synchronize: true,
       autoLoadEntities: true,
     }),
-    TypeOrmModule.forFeature([Merchant]),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
