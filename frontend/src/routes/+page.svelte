@@ -30,15 +30,18 @@
 			<ButtonsFunc label="Commands" customColor="#FFDF8C" icone="fa-solid fa-clipboard-check" />
 			<ButtonsFunc label="Clients" customColor="#F8FD00" icone="fa-solid fa-users" />
 		</div>
+		<div class="login">
+			<a href="/forms/login"><p> Déjà un compte ? </p></a>
+		</div>
 	</div>
 </div>
 
 <style>
 	.home {
-		height: 20px;
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
+		margin-left: 5vh;
 	}
 	
 	.filter-grayscale {
@@ -92,4 +95,9 @@
 		justify-content: space-around;
 		text-align: center;
 	}
+	.login {
+		width: 100%;
+		height: 15px;
+	}
+	
 </style>

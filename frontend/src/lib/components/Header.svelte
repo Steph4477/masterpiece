@@ -27,8 +27,8 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
-		margin-top: 5vh;
-		margin-bottom: 5vh;
+		margin-top: 1vh;
+		margin-bottom: 2vh;
 	}
 
 	.fa-magnifying-glass {
