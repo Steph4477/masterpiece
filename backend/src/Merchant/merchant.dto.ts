@@ -3,7 +3,6 @@ export class MerchantDto {
     firstName: string;
     email: string;
     password: string;
-    confirmPassword: string;
     siret: string;
     headQuarter: string;
 }

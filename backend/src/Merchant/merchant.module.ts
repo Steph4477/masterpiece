@@ -9,6 +9,6 @@ import { MerchantService } from './merchant.service';
     imports: [TypeOrmModule.forFeature([Merchant])],
     controllers: [MerchantController],
     providers: [MerchantService],
-    exports: [MerchantService], // Si vous prévoyez d'exporter le service
+    exports: [MerchantService], 
 })
 export class MerchantModule {}
