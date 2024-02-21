@@ -1,4 +1,3 @@
-// merchant.controller.ts
 import { Controller, Post, Body } from '@nestjs/common';
 import { MerchantService } from './merchant.service';
 import { Merchant } from './merchant.entity';

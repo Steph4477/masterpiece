@@ -1,6 +1,4 @@
-<!-- src/routes/Login.svelte -->
-
-<script context="module">
+<script lang="ts">
   export let email = '';
   export let password = '';
   import { writable } from 'svelte/store';
