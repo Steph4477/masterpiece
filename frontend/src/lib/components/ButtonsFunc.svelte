@@ -21,12 +21,13 @@
 <style>
 	button {
 		border: none;
-		border-radius: 50px;
+		border-radius: 20px;
 		color: black;
 		cursor: pointer;
 		font-size: 16px;
-		height: 140px;
-		width: 140px;
+		height: 100px;
+		margin: 1rem;
+		width: 100px;
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 		display: flex;
 		flex-direction: column;

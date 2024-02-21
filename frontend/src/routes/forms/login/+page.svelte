@@ -22,6 +22,9 @@
 
 		<div class="submit">
 			<button type="submit">Se connecter</button>
+			<a href="/forms/register">
+				<p>Pas encore inscrit ?</p>
+			</a>
 		</div>
 	</form>
 </main>

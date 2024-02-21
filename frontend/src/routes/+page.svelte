@@ -38,10 +38,8 @@
 
 <style>
 	.home {
-		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
-		margin-left: 5vh;
 	}
 	
 	.filter-grayscale {
@@ -50,13 +48,15 @@
 	
 	h1 {
 		display: flex;
+		font-size: 1.5rem;
 		justify-content: center;
 	}
 	
 	.title {
-		font-size: 4.5rem;
+		font-size: 4rem;
 		margin-top: 0;
 		margin-bottom: 5vh;
+		width: 100%;
 	}
 
 	.b {
@@ -90,12 +90,11 @@
 
 	div {
 		display: flex;
-		width: 80%;
-		height: 180px;
 		justify-content: space-around;
 		text-align: center;
 	}
 	.login {
+		margin-top: 5vh;
 		width: 100%;
 		height: 15px;
 	}
