@@ -69,9 +69,9 @@ The diagram is created using the [Entity Relationship Diagrams de mermaid](https
 
 erDiagram
     %% exactly one to exactly one
-    accompte ||--|| merchant : creates
+    auth ||--|| merchant : creates
     %% exactly one to exactly one
-    accompte ||--|| customer : creates
+    auth ||--|| customer : creates
     %% exactly one to one or more
     merchant ||--|{ product : contains
     %% exactly one to exactly one
@@ -87,7 +87,7 @@ erDiagram
     %% exactly one to one or more
     commandItem ||--|{ product : has
 
-accompte {
+auth {
    UUID id
    String email
    String password  
@@ -95,14 +95,14 @@ accompte {
 
 merchant {
    UUID id
-   UUID id_accompte
+   UUID id_auth
    String siret
    String headquarter
 }
 
 customer {
    UUID id
-   UUID id_accompte
+   UUID id_auth
    String surname
    int total_purchase
    int average_purchase
