@@ -25,6 +25,6 @@ export class Merchant {
     @Column({ length: 100 })
     headQuarter: string;
 
-     @Column()
-    salt: string;
+    // @Column()
+    // salt: string;
 }

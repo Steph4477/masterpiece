@@ -3,10 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MerchantModule } from './Merchant/merchant.module';
+import { AuthModule } from './Auth/auth.module';
 
 @Module({
   imports: [
-    MerchantModule,
+    MerchantModule,AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
