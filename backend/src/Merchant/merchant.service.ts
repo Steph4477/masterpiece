@@ -44,9 +44,9 @@ export class MerchantService {
             // const hashedPassword = this.generateHash(password, user.salt);
             // if (hashedPassword === user.password) {
             // Uncomment the line below to compare passwords directly
-            // if (password === user.password) {
-            //     return user;
-            // }
+            if (password === user.password) {
+                return user;
+            }
         }
 
         return null;

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	let formData = {
 		lastName: '',
 		firstName: '',
@@ -25,6 +27,11 @@
 
 			const data = await response.json();
 			console.log('Réponse du backend:', data);
+
+			 // Si inscription réussie, redirige vers la page de login/success
+			 if (response.ok) {
+        		goto('/forms/login/success');
+      }
 		} catch (error) {
 			console.error('Erreur lors de la requête POST:', error);
 		}

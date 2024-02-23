@@ -25,7 +25,7 @@ export class AuthService {
 
         if (!merchant) {
             console.log('Merchant not found.');
-            return false; // L'utilisateur n'est pas enregistré en tant que marchand
+            return false;
         }
 
         console.log('Merchant found. Comparing passwords...');
@@ -37,11 +37,15 @@ export class AuthService {
 
         console.log('Password comparison result:', isPasswordValid);
 
-        // Utilisation de HttpStatus.SEE_OTHER pour une redirection
-        throw new HttpException({
-            status: HttpStatus.SEE_OTHER,
-            redirect: '/login/success',
-        }, HttpStatus.SEE_OTHER);
+        if (isPasswordValid) {
+            return {
+                success: true,
+                redirect: '/login/success',
+            };
+        } else {
+            return false;
+        }
+       
     }
 
     // Commenting out the password hashing function for illustration purposes

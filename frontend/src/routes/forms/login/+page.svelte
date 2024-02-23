@@ -18,11 +18,16 @@
       });
 
       if (response.ok) {
-        console.log('Login success!');
+        const responseData = await response.json();
         success.set(true);
 
-        // Rediriger vers la page de succès
-        goto('/login/success');
+        // Vérifier si la redirection explicite est nécessaire (code 303)
+        if (response.status === 303 && responseData.redirect) {
+          goto(responseData.redirect);
+        } else {
+          // Rediriger vers la page de succès si aucune redirection explicite n'est fournie
+          goto('/');
+        }
       } else {
         console.log('Login failed:', response.status);
         const responseData = await response.json();
@@ -33,12 +38,13 @@
       error.set("Erreur lors de la connexion au serveur");
     }
   };
+
 </script>
 
 {#if $error}
   <p style="color: red">{ $error }</p>
 {:else if $success}
-  {goto('/forms/login/success')}
+  {goto('/')}
 {/if}
 
 <main>
