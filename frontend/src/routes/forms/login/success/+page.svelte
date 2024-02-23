@@ -1,1 +1,61 @@
-<h1>Votre compte à été crée avec succés</h1>
+<script lang="ts">
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		setTimeout(() => {
+			window.location.href = '/';
+		}, 2000);
+	});
+</script>
+
+<main>
+	<div>
+		<i class="fa-solid fa-user"></i>
+	</div>
+	<h1>Connecté avec Succès!</h1>
+	<p>Merci de patienter</p>
+	<span>...</span>
+	<p>Vous êtes redirigé vers la page d’accueil</p>
+	<span>...</span>
+</main>
+
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 5vh;
+		cursor: pointer;
+		color: #00c2ff;
+		margin-left: 2vh;
+	}
+
+	div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 90px;
+		width: 90px;
+
+		border-radius: 50%;
+		margin-top: 10vh;
+		margin-bottom: 10vh;
+
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	}
+
+	i {
+		font-size: 37px;
+	}
+
+	h1 {
+		font-size: 2em;
+		font-weight: bold;
+	}
+
+	p,
+	span {
+		font-size: 1.5em;
+	}
+</style>

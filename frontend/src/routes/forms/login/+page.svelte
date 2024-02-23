@@ -20,6 +20,7 @@
       if (response.ok) {
         const responseData = await response.json();
         success.set(true);
+        console.log('Login successful:', responseData);
 
         // Vérifier si la redirection explicite est nécessaire (code 303)
         if (response.status === 303 && responseData.redirect) {
