@@ -1,21 +1,22 @@
-import { Controller, Post, Body, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Get, Body, HttpException, HttpStatus, HttpCode, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { authToken } from './auth.token';
+import { AuthDto } from './dto/auth.dto';
+
 
 @Controller('/auth')
 export class AuthController {
-    constructor(private readonly authService: AuthService) { }
+    constructor(private authService: AuthService) { }
 
+    @HttpCode(HttpStatus.OK)
     @Post('/login')
-    async login(@Body() formData: { email: string, password: string }): Promise<{ success: boolean }> {
-        console.log('Received login request:', formData);
+    signIn(@Body() loginDto: AuthDto) {
+        return this.authService.signIn(loginDto.email, loginDto.password);
+    }
 
-        const isMerchantCredentialsValid = await this.authService.compareMerchantCredentials(formData.email, formData.password);
-
-        if (!isMerchantCredentialsValid) {
-            throw new HttpException('Informations d\'authentification invalides', HttpStatus.UNAUTHORIZED);
-        }
-
-        // Si tout est correct, retournez un succès
-        return { success: true };
+    @UseGuards(authToken)
+    @Get('profile')
+    getProfile(@Request() req) {
+        return req.user;
     }
 }

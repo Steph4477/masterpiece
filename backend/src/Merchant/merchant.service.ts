@@ -1,54 +1,50 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Merchant } from './merchant.entity';
-//import * as crypto from 'crypto';
+import { MerchantDto } from './dto/merchant.dto';
+import { merchantHash } from '../Auth/auth.hash';
 
 @Injectable()
 export class MerchantService {
     constructor(
         @InjectRepository(Merchant)
-        private readonly merchantRepository: Repository<Merchant>,
+        private merchantRepository: Repository<Merchant>,
     ) { }
 
-    // private generateHash(password: string, salt: string): string {
-    //     const hashedPassword = crypto
-    //         .pbkdf2Sync(password, salt, 10000, 64, 'sha512')
-    //         .toString('hex');
-    //     return hashedPassword;
-    // }
+    async register(merchant: MerchantDto) {
+        // Check if a merchant with the provided email already exists
+        const merchantExist = await this.merchantRepository.findOne({ where: { email: merchant.email } });
 
-    async createMerchant(formData: Merchant) {
-        // create salt for crypt password
-        //const salt = crypto.randomBytes(16).toString('hex');
-
-        // generate password hash
-        // const hashedPassword = this.generateHash(formData.password, salt);
-
-        // inside the merchant object, we add the password and the salt
-        const merchant: Merchant = {
-            ...formData,
-            // password: hashedPassword,
-            //salt: salt,
-        };
-
-        // save the merchant in the database
-        return await this.merchantRepository.save(merchant);
-    }
-
-    async findByEmailAndPassword(email: string, password: string) {
-        const user = await this.merchantRepository.findOne({ where: { email } });
-
-        if (user) {
-            // check user password with the hashed password stored in the database
-            // const hashedPassword = this.generateHash(password, user.salt);
-            // if (hashedPassword === user.password) {
-            // Uncomment the line below to compare passwords directly
-            if (password === user.password) {
-                return user;
-            }
+        if (merchantExist) {
+            console.log('Merchant with this email already exists');
+            throw new BadRequestException('Merchant with this email already exists');
         }
 
-        return null;
+        //Check if the password matches the password confirmation
+        if (merchant.password !== merchant.passwordValidation) {
+            console.log('Passwords do not match');
+            throw new BadRequestException('Passwords do not match');
+        }
+        
+        // Create a new Merchant object
+        const newMerchant = new Merchant();
+        newMerchant.lastName = merchant.lastName;
+        newMerchant.firstName = merchant.firstName;
+        newMerchant.email = merchant.email;
+        newMerchant.password = merchant.password;
+        newMerchant.passwordValidation = merchant.passwordValidation;
+        newMerchant.siret = merchant.siret;
+        newMerchant.headQuarter = merchant.headQuarter;
+        
+        // Hash the password and assign it to the "key" property
+        newMerchant.key = merchantHash.hashPassword(merchant.password);
+
+        // Save the new Merchant object to the database
+        return await this.merchantRepository.save(newMerchant);
+    }
+
+    findOneById(id: any) {
+        return this.merchantRepository.findOne({ where: { id: id } });
     }
 }
