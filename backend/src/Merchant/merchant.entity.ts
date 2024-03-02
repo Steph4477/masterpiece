@@ -1,7 +1,8 @@
 import { UUID } from 'crypto';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Auth } from '../Auth/auth.entity';
 
-@Entity()
+@Entity('merchant')
 export class Merchant {
 
     @PrimaryGeneratedColumn('uuid')
@@ -19,12 +20,20 @@ export class Merchant {
     @Column({ length: 100 })
     password: string;
 
+    @Column({ length: 100, nullable: false})
+    passwordValidation: string;
+
+    @Column({ type: 'varchar', length: 500, nullable: false })
+    key: string;
+
     @Column({ length: 100 })
     siret: string;
 
     @Column({ length: 100 })
     headQuarter: string;
 
-    // @Column()
-    // salt: string;
+    @OneToOne(type => Auth)
+    @JoinColumn()
+    auth: Auth;
+
 }

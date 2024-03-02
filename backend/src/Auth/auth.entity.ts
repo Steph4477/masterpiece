@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import { Merchant } from '../Merchant/merchant.entity';
 
 @Entity('auth')
 export class Auth {
@@ -11,7 +12,7 @@ export class Auth {
   @Column()
   password: string;
 
-  //   @Column()
-  //   salt: string;
+  @OneToOne(() => Merchant, merchant => merchant.auth)
+  merchant: Merchant;
 
 }
