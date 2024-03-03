@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Merchant } from '../Merchant/merchant.entity';
 import { JwtService } from '@nestjs/jwt';
+import { MerchantHash } from '../Auth/auth.hash';
 
 @Injectable()
 export class AuthService {
@@ -10,12 +11,36 @@ export class AuthService {
     @InjectRepository(Merchant)
     private userRepository: Repository<Merchant>,
     private jwtService: JwtService,
-  ) { }
+  ) {}
 
   async signIn(email: string, password: string): Promise<any> {
-    const tableMerchant = await this.userRepository.find();
-    const merchant = await tableMerchant.find(
-      (tableUsers) => tableUsers.email === email,
-    );
+    try {
+      const merchant = await this.userRepository.findOne({ where: { email: email } });
+
+      if (!merchant) {
+        // Handle case when user is not found
+        return null;
+      }
+
+      // Verify password
+      const isPasswordValid = MerchantHash.verifyPassword(password, merchant.password);
+
+      if (!isPasswordValid) {
+        // Handle case when password is not valid
+        throw new UnauthorizedException('Invalid credentials');
+      }
+
+      // If password is valid, generate and return JWT token
+      const payload = { email: merchant.email, sub: merchant.id };
+      const accessToken = this.jwtService.sign(payload);
+
+      // Log the generated token
+      console.log('Generated JWT token:', accessToken);
+
+      return { accessToken };
+    } catch (error) {
+      // Handle database or other errors
+      throw error;
+    }
   }
 }

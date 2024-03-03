@@ -6,7 +6,7 @@
 		firstName: '',
 		email: '',
 		password: '',
-		confirmPassword: '',
+		passwordValidation: '',
 		siret: '',
 		headQuarter: ''
 	};
@@ -28,14 +28,23 @@
 			const data = await response.json();
 			console.log('Réponse du backend:', data);
 
-			 // Si inscription réussie, redirige vers la page de login/success
-			 if (response.ok) {
-        		goto('/forms/login/success');
-      }
+			// If registration is successful, redirects to login/success page
+			if (response.ok) {
+				goto('/forms/login/success');
+			}
 		} catch (error) {
 			console.error('Erreur lors de la requête POST:', error);
 		}
 	};
+
+	// Function to toggle password visibility
+	const togglePasswordVisibility = () => {
+		const passwordInput = document.getElementById('password') as HTMLInputElement;
+		const showPasswordCheckbox = document.getElementById('showPassword') as HTMLInputElement;
+
+		passwordInput.type = showPasswordCheckbox.checked ? 'text' : 'password';
+	};
+
 </script>
 
 <div class="container">
@@ -51,9 +60,13 @@
 
 		<label for="password">Mot de passe :</label>
 		<input type="password" id="password" bind:value={formData.password} required />
+		<label for="showPassword">
+			<input type="checkbox" id="showPassword" on:change={togglePasswordVisibility} />
+			Afficher le mot de passe
+		</label>
 
-		<label for="confirmPassword">Confirmer le mot de passe :</label>
-		<input type="password" id="confirmPassword" bind:value={formData.confirmPassword} required />
+		<label for="passwordValidation">Confirmer le mot de passe :</label>
+		<input type="password" id="passwordValidation" bind:value={formData.passwordValidation} required />
 
 		<label for="siret">SIRET :</label>
 		<input type="text" id="siret" bind:value={formData.siret} required />

@@ -9,6 +9,6 @@ import { Auth } from '../Auth/auth.entity';
     imports: [TypeOrmModule.forFeature([Merchant, Auth])],
     controllers: [MerchantController],
     providers: [MerchantService],
-    exports: [MerchantService], 
+    exports: [MerchantService],
 })
-export class MerchantModule {}
+export class MerchantModule { }
