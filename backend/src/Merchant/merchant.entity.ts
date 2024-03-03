@@ -17,14 +17,11 @@ export class Merchant {
     @Column({ length: 100 })
     email: string;
 
-    @Column({ length: 100 })
+    @Column({ length: 1000 })
     password: string;
 
-    @Column({ length: 100, nullable: false})
+    @Column({ length: 1000 })
     passwordValidation: string;
-
-    @Column({ type: 'varchar', length: 500, nullable: false })
-    key: string;
 
     @Column({ length: 100 })
     siret: string;

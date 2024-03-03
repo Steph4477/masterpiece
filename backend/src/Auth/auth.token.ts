@@ -4,8 +4,8 @@ import { jwtKey } from './auth.jwt';
 import { Request } from 'express';
 
 @Injectable()
-export class authToken implements CanActivate {
-    constructor(private jwtService: JwtService) {}
+export class AuthToken implements CanActivate {
+    constructor(private jwtService: JwtService) { }
     async canActivate(context: ExecutionContext): Promise<boolean> {
         const request = context.switchToHttp().getRequest();
         const token = this.extractTokenFromHeader(request);
