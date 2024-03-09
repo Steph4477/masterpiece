@@ -3,7 +3,7 @@ import { MerchantService } from './merchant.service';
 import { Merchant } from './merchant.entity';
 import { MerchantDto } from './dto/merchant.dto';
 
-@Controller('/merchant')
+@Controller('/register')
 export class MerchantController {
     constructor(private readonly merchantService: MerchantService) { }
 
