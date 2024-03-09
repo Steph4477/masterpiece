@@ -5,14 +5,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Auth } from './auth.entity';
 import { Merchant } from '../Merchant/merchant.entity';
 import { JwtModule } from '@nestjs/jwt';
-import { jwtKey } from './auth.jwt';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Merchant, Auth]),
     JwtModule.register({
       global: true,
-      secret: jwtKey.secret,
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '60d' },
     }),
   ],

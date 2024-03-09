@@ -19,7 +19,7 @@ export class AuthService {
 
       if (!merchant) {
         // Handle case when user is not found
-        return null;
+        throw new UnauthorizedException('password ou email incorrect.');
       }
 
       // Verify password
@@ -27,7 +27,7 @@ export class AuthService {
 
       if (!isPasswordValid) {
         // Handle case when password is not valid
-        throw new UnauthorizedException('Invalid credentials');
+        throw new UnauthorizedException('password ou email incorrect.');
       }
 
       // If password is valid, generate and return JWT token
@@ -37,7 +37,7 @@ export class AuthService {
       // Log the generated token
       console.log('Generated JWT token:', accessToken);
 
-      return { accessToken };
+      return { message: 'Vous êtes connecté !', accessToken };
     } catch (error) {
       // Handle database or other errors
       throw error;
