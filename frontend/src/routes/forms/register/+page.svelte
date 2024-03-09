@@ -1,16 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	let formData = {
-		lastName: '',
-		firstName: '',
-		email: '',
-		password: '',
-		passwordValidation: '',
-		siret: '',
-		headQuarter: ''
-	};
-
 	const postForm = async () => {
 		try {
 			const response = await fetch('http://localhost:3000/register', {
@@ -36,14 +26,35 @@
 			console.error('Erreur lors de la requête POST:', error);
 		}
 	};
-
+	
 	// Function to toggle password visibility
 	const togglePasswordVisibility = () => {
+		passwordVisible = !passwordVisible;
 		const passwordInput = document.getElementById('password') as HTMLInputElement;
-		const showPasswordCheckbox = document.getElementById('showPassword') as HTMLInputElement;
-
-		passwordInput.type = showPasswordCheckbox.checked ? 'text' : 'password';
+		passwordInput.type = passwordVisible ? 'text' : 'password';
 	};
+
+	// Function to toggle password validation visibility
+	const togglePasswordValidationVisibility = () => {
+		passwordValidationVisible = !passwordValidationVisible;
+		const passwordValidationInput = document.getElementById(
+			'passwordValidation'
+		) as HTMLInputElement;
+		passwordValidationInput.type = passwordValidationVisible ? 'text' : 'password';
+	};
+	
+	let formData = {
+		lastName: '',
+		firstName: '',
+		email: '',
+		password: '',
+		passwordValidation: '',
+		siret: '',
+		headQuarter: ''
+	};
+
+	let passwordVisible = false;
+	let passwordValidationVisible = false;
 
 </script>
 
@@ -57,16 +68,33 @@
 
 		<label for="email">Email :</label>
 		<input type="email" id="email" bind:value={formData.email} required />
-
 		<label for="password">Mot de passe :</label>
-		<input type="password" id="password" bind:value={formData.password} required />
-		<label for="showPassword">
-			<input type="checkbox" id="showPassword" on:change={togglePasswordVisibility} />
-			Afficher le mot de passe
-		</label>
-
+		<div class="password">
+			<input type="password" id="password" bind:value={formData.password} required />
+			<button class="eye" on:click={togglePasswordVisibility}>
+				{#if passwordVisible}
+					<i class="fa-solid fa-eye"></i>
+				{:else}
+					<i class="fa-solid fa-eye-slash"></i>
+				{/if}
+			</button>
+		</div>
 		<label for="passwordValidation">Confirmer le mot de passe :</label>
-		<input type="password" id="passwordValidation" bind:value={formData.passwordValidation} required />
+		<div class="password">
+			<input
+				type="password"
+				id="passwordValidation"
+				bind:value={formData.passwordValidation}
+				required
+			/>
+			<button class="eye" on:click={togglePasswordValidationVisibility}>
+				{#if passwordValidationVisible}
+					<i class="fa-solid fa-eye"></i>
+				{:else}
+					<i class="fa-solid fa-eye-slash"></i>
+				{/if}
+			</button>
+		</div>
 
 		<label for="siret">SIRET :</label>
 		<input type="text" id="siret" bind:value={formData.siret} required />
@@ -98,12 +126,21 @@
 
 	input {
 		width: 100%;
-		padding: 8px;
+		padding: 10px;
 		margin-bottom: 16px;
 	}
 
+	.eye {
+		display: flex;
+		text-align: center;
+		border: none;
+		cursor: pointer;
+		background: white;
+		color: black;
+	}
+
 	button {
-		padding: 8px 16px;
+		padding: 10px;
 		background-color: #4caf50;
 		color: white;
 		border: none;
@@ -113,6 +150,10 @@
 
 	button:hover {
 		background-color: #45a049;
+	}
+
+	.password {
+		display: flex;
 	}
 
 	.login {
