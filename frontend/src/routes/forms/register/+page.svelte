@@ -26,7 +26,20 @@
 			console.error('Erreur lors de la requête POST:', error);
 		}
 	};
-	
+
+	let formData = {
+		lastName: '',
+		firstName: '',
+		email: '',
+		password: '',
+		passwordValidation: '',
+		siret: '',
+		headQuarter: ''
+	};
+
+	let passwordVisible = false;
+	let passwordValidationVisible = false;
+
 	// Function to toggle password visibility
 	const togglePasswordVisibility = () => {
 		passwordVisible = !passwordVisible;
@@ -42,20 +55,6 @@
 		) as HTMLInputElement;
 		passwordValidationInput.type = passwordValidationVisible ? 'text' : 'password';
 	};
-	
-	let formData = {
-		lastName: '',
-		firstName: '',
-		email: '',
-		password: '',
-		passwordValidation: '',
-		siret: '',
-		headQuarter: ''
-	};
-
-	let passwordVisible = false;
-	let passwordValidationVisible = false;
-
 </script>
 
 <div class="container">
@@ -68,7 +67,9 @@
 
 		<label for="email">Email :</label>
 		<input type="email" id="email" bind:value={formData.email} required />
+
 		<label for="password">Mot de passe :</label>
+
 		<div class="password">
 			<input type="password" id="password" bind:value={formData.password} required />
 			<button class="eye" on:click={togglePasswordVisibility}>
@@ -79,7 +80,9 @@
 				{/if}
 			</button>
 		</div>
+
 		<label for="passwordValidation">Confirmer le mot de passe :</label>
+
 		<div class="password">
 			<input
 				type="password"
@@ -135,6 +138,10 @@
 		text-align: center;
 		border: none;
 		cursor: pointer;
+		background: white;
+		color: black;
+	}
+	.eye:hover {
 		background: white;
 		color: black;
 	}
