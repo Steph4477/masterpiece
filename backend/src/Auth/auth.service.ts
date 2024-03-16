@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Merchant } from '../Merchant/merchant.entity';
 import { JwtService } from '@nestjs/jwt';
 import { MerchantHash } from '../Auth/auth.hash';
+import { Response } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signIn(email: string, password: string): Promise<any> {
+  async signIn(email: string, password: string, response: Response): Promise<any> {
     try {
       const merchant = await this.userRepository.findOne({ where: { email: email } });
 

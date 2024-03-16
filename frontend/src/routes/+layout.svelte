@@ -1,25 +1,25 @@
 <script lang="ts">
-    import Header from '$lib/components/Header.svelte';
-    import Aside from '$lib/components/Aside.svelte';  
+	import Header from '$lib/components/Header.svelte';
+	import Aside from '$lib/components/Aside.svelte';
 </script>
+
 <header>
-    <Header />
+	<Header />
 </header>
 
-    <slot />
+<slot />
 
 <aside>
-    <Aside />
+	<Aside />
 </aside>
 
 <style>
-    header {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        height: 20px;
-        margin-top: 0;
-        margin-bottom: 10vh;
-    }
-    
+	header {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		height: 20px;
+		margin-top: 0;
+		margin-bottom: 10vh;
+	}
 </style>

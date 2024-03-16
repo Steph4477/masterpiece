@@ -27,6 +27,6 @@
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 	.fa-sliders {
-		transform: rotate(90deg); /* Correction du nom de la propriété et de la syntaxe */
+		transform: rotate(90deg); 
 	}
 </style>

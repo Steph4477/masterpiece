@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
+	// Function to handle form submission
 	const postForm = async () => {
 		try {
 			const response = await fetch('http://localhost:3000/register', {
@@ -16,17 +17,18 @@
 			}
 
 			const data = await response.json();
-			console.log('Réponse du backend:', data);
+			console.log('Backend Response:', data);
 
 			// If registration is successful, redirects to login/success page
 			if (response.ok) {
 				goto('/forms/login/success');
 			}
 		} catch (error) {
-			console.error('Erreur lors de la requête POST:', error);
+			console.error('Error during POST request:', error);
 		}
 	};
 
+	// Form data object
 	let formData = {
 		lastName: '',
 		firstName: '',
@@ -37,6 +39,7 @@
 		headQuarter: ''
 	};
 
+	// Variables to control password visibility
 	let passwordVisible = false;
 	let passwordValidationVisible = false;
 
@@ -59,55 +62,75 @@
 
 <div class="container">
 	<form on:submit|preventDefault={postForm}>
-		<label for="lastName">Nom :</label>
-		<input type="text" id="lastName" bind:value={formData.lastName} required />
+		<label for="lastName"
+			>Prénom :
+			<input type="text" id="lastName" bind:value={formData.lastName} required />
+		</label>
 
-		<label for="firstName">Prénom :</label>
-		<input type="text" id="firstName" bind:value={formData.firstName} required />
+		<label for="firstName"
+			>Nom :
+			<input type="text" id="firstName" bind:value={formData.firstName} required />
+		</label>
 
-		<label for="email">Email :</label>
-		<input type="email" id="email" bind:value={formData.email} required />
+		<label for="email"
+			>Email :
+			<input type="email" id="email" bind:value={formData.email} required />
+		</label>
 
-		<label for="password">Mot de passe :</label>
+		<label for="password">
+			Mot de passe :
 
-		<div class="password">
-			<input type="password" id="password" bind:value={formData.password} required />
-			<button class="eye" on:click={togglePasswordVisibility}>
-				{#if passwordVisible}
-					<i class="fa-solid fa-eye"></i>
-				{:else}
-					<i class="fa-solid fa-eye-slash"></i>
-				{/if}
-			</button>
-		</div>
+			<div class="password">
+				<input type="password" id="password" bind:value={formData.password} required />
+				<button
+					class="eye"
+					aria-label="Toggle password visibility"
+					on:click={togglePasswordVisibility}
+				>
+					{#if passwordVisible}
+						<i class="fa-solid fa-eye"></i>
+					{:else}
+						<i class="fa-solid fa-eye-slash"></i>
+					{/if}
+				</button>
+			</div>
+		</label>
 
-		<label for="passwordValidation">Confirmer le mot de passe :</label>
+		<label for="passwordValidation"
+			>Confirmation mot de passe :
 
-		<div class="password">
-			<input
-				type="password"
-				id="passwordValidation"
-				bind:value={formData.passwordValidation}
-				required
-			/>
-			<button class="eye" on:click={togglePasswordValidationVisibility}>
-				{#if passwordValidationVisible}
-					<i class="fa-solid fa-eye"></i>
-				{:else}
-					<i class="fa-solid fa-eye-slash"></i>
-				{/if}
-			</button>
-		</div>
+			<div class="password">
+				<input
+					type="password"
+					id="passwordValidation"
+					bind:value={formData.passwordValidation}
+					required
+				/>
+				<button
+					class="eye"
+					aria-label="Toggle password visibility"
+					on:click={togglePasswordValidationVisibility}
+				>
+					{#if passwordValidationVisible}
+						<i class="fa-solid fa-eye"></i>
+					{:else}
+						<i class="fa-solid fa-eye-slash"></i>
+					{/if}
+				</button>
+			</div>
+		</label>
 
-		<label for="siret">SIRET :</label>
+		<label for="siret"> N° de SIRET :</label>
 		<input type="text" id="siret" bind:value={formData.siret} required />
 
-		<label for="headQuarter">Adresse du siège social :</label>
+		<label for="headQuarter">Adresse :</label>
 		<input type="text" id="headQuarter" bind:value={formData.headQuarter} required />
 
-		<button type="submit">Soumettre</button>
+		<button class="submit" type="submit">
+			<a class="submit" href="/forms/login">Soumettre</a>
+		</button>
 		<div class="login">
-			<a href="/forms/login"><p>Déjà un compte ?</p></a>
+			<a href="/forms/login"><p>Vous avez déjà un compte?</p></a>
 		</div>
 	</form>
 </div>
@@ -124,7 +147,7 @@
 
 	label {
 		display: block;
-		margin-bottom: 8px;
+		margin-bottom: 2vh;
 	}
 
 	input {
@@ -141,6 +164,14 @@
 		background: white;
 		color: black;
 	}
+
+	.fa-eye,
+	.fa-eye-slash {
+		font-size: 1rem;
+		margin-left: -2rem;
+		cursor: pointer;
+	}
+
 	.eye:hover {
 		background: white;
 		color: black;
@@ -149,10 +180,12 @@
 	button {
 		padding: 10px;
 		background-color: #4caf50;
-		color: white;
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
+	}
+	.submit {
+		color: white;
 	}
 
 	button:hover {
