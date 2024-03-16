@@ -1,8 +1,21 @@
 <script lang="ts">
-	import { isUserDiscon } from '$lib/stores/userStore';
-	let toggleUserIconColor = () => {
-		$isUserDiscon = !$isUserDiscon;
-	};
+	import { writable } from 'svelte/store';
+
+	// Create a custom reactive store linked to local storage, initialized to false if no account:
+	// local storage is initialized from null to false
+	function createIsLoggedInStore() {
+		// If the code is running in a browser, retrieve the value from local storage, otherwise set to null
+		const isLoggedIn = typeof window !== 'undefined' ? localStorage.getItem('is_logged_in') : null;
+		// Create a reactive store with the retrieved value
+		const store = writable(isLoggedIn !== null ? isLoggedIn === 'true' : false);
+		// Subscribe to this store to update local storage
+		if (typeof window !== 'undefined') {
+			store.subscribe((value) => localStorage.setItem('is_logged_in', value ? 'true' : 'false'));
+		}
+		return store;
+	}
+	//ZA
+	const isLoggedIn = createIsLoggedInStore();
 </script>
 
 <header>
@@ -13,11 +26,8 @@
 		<i class="fa-solid fa-magnifying-glass"></i>
 		<input type="text" placeholder="Search" class="input" />
 		<a href="/forms/register">
-			<button
-				class="fa-solid fa-user"
-				on:click={toggleUserIconColor}
-				style="color: {$isUserDiscon ? 'red' : 'green'}"
-			></button>
+			<!-- Direct usage of the store to set the color of the icon -->
+			<button class="fa-solid fa-user" style="color: {$isLoggedIn ? 'green' : 'red'}"></button>
 		</a>
 	</div>
 </header>
@@ -31,9 +41,11 @@
 		margin-bottom: 3vh;
 		width: 100%;
 	}
+
 	.fa-house {
 		margin-right: 1rem;
 	}
+
 	.fa-magnifying-glass {
 		width: 30px;
 		margin-right: 1rem;
@@ -60,6 +72,4 @@
 		background-color: white;
 		font-size: 20px;
 	}
-
-	
 </style>

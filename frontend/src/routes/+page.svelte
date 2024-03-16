@@ -93,10 +93,12 @@
 		justify-content: space-around;
 		text-align: center;
 	}
+
 	.login {
 		margin-top: 5vh;
 		width: 100%;
 		height: 15px;
 	}
+	
 	
 </style>

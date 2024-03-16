@@ -2,6 +2,7 @@ import { Controller, Post, Get, Body, HttpStatus, HttpCode, Request, UseGuards }
 import { AuthService } from './auth.service';
 import { AuthToken } from './auth.token';
 import { AuthDto } from './dto/auth.dto';
+import { response } from 'express';
 
 @Controller('/auth')
 export class AuthController {
@@ -10,7 +11,7 @@ export class AuthController {
     @HttpCode(HttpStatus.OK)
     @Post('/login')
     signIn(@Body() loginDto: AuthDto) {
-        return this.authService.signIn(loginDto.email, loginDto.password);
+        return this.authService.signIn(loginDto.email, loginDto.password, response);
     }
 
     @UseGuards(AuthToken)
