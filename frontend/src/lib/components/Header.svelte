@@ -14,7 +14,6 @@
 		}
 		return store;
 	}
-	//ZA
 	const isLoggedIn = createIsLoggedInStore();
 </script>
 

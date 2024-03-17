@@ -127,7 +127,7 @@
 		<input type="text" id="headQuarter" bind:value={formData.headQuarter} required />
 
 		<button class="submit" type="submit">
-			<a class="submit" href="/forms/login">Soumettre</a>
+			Soumettre
 		</button>
 		<div class="login">
 			<a href="/forms/login"><p>Vous avez déjà un compte?</p></a>
