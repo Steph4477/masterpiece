@@ -1,66 +1,83 @@
 <script lang="ts">
 	import ButtonsFunc from '$lib/components/ButtonsFunc.svelte';
 	import { onMount } from 'svelte';
+	import Aside from '$lib/components/Aside.svelte';
+	import Header from '$lib/components/Header.svelte';
 	let isLoggedIn = false;
 
 	onMount(() => {
 		isLoggedIn = localStorage.getItem('is_logged_in') === 'true';
 	});
-
 </script>
 
-<div class="home" class:filter-grayscale={!isLoggedIn}>
-	<p class="title">
-		<span class="b">B</span>
-		<span class="p">P</span>
-		<span class="i">I</span>
-		<span class="m">M</span>
-	</p>
-	<h1>Gérer votre business ?!</h1>
-	<div class="buttons">
-		<div>
-			<ButtonsFunc
-				label="Stats"
-				customColor="#00C2FF"
-				color="white"
-				icone="fa-solid fa-chart-simple"
-			/>
-			<ButtonsFunc
-				label="Products"
-				customColor="#FD6060"
-				color="white"
-				icone="fa-solid fa-boxes-packing"
-			/>
-		</div>
-		<div>
-			<ButtonsFunc label="Commands" customColor="#FFDF8C" icone="fa-solid fa-clipboard-check" />
-			<ButtonsFunc label="Clients" customColor="#F8FD00" icone="fa-solid fa-users" />
-		</div>
-		<div class="login">
-			<a href="/forms/login"><p> Déjà un compte ? </p></a>
+<Header />
+<div class="main">
+	<div class="aside-container">
+		<Aside />
+	</div>
+	<div class="home" class:filter-grayscale={!isLoggedIn}>
+		<p class="title">
+			<span class="b">B</span>
+			<span class="p">P</span>
+			<span class="i">I</span>
+			<span class="m">M</span>
+		</p>
+		<h1>Gérer votre business ?!</h1>
+		<div class="buttons">
+			<div>
+				<ButtonsFunc
+					label="Stats"
+					customColor="#00C2FF"
+					color="white"
+					icone="fa-solid fa-chart-simple"
+				/>
+				<ButtonsFunc
+					label="Products"
+					customColor="#FD6060"
+					color="white"
+					icone="fa-solid fa-boxes-packing"
+				/>
+			</div>
+			<div>
+				<ButtonsFunc label="Commands" customColor="#FFDF8C" icone="fa-solid fa-clipboard-check" />
+				<ButtonsFunc label="Clients" customColor="#F8FD00" icone="fa-solid fa-users" />
+			</div>
+			<div class="login">
+				<a href="/forms/login"><p>Déjà un compte ?</p></a>
+			</div>
 		</div>
 	</div>
 </div>
 
 <style>
+	.main {
+		display: flex;
+	}
+
+	.aside-container {
+		margin-top: 350px;
+		margin-left: 20px;
+	}
+
 	.home {
 		display: flex;
 		flex-wrap: wrap;
+		
 	}
-	
+
 	.filter-grayscale {
 		filter: grayscale(100%);
 	}
-	
+
 	h1 {
 		display: flex;
 		font-size: 1.5rem;
 		justify-content: center;
 	}
-	
+
 	.title {
 		font-size: 4rem;
-		margin-top: 0;
+		margin-top: 5vh;
 		margin-bottom: 5vh;
 		width: 100%;
 	}
@@ -105,6 +122,4 @@
 		width: 100%;
 		height: 15px;
 	}
-	
-	
 </style>

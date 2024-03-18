@@ -23,7 +23,6 @@
 				console.log('Login successful:', responseData);
 
 				// Send the JWT token in local storage
-				localStorage.setItem('access_token', responseData.accessToken);
 				localStorage.setItem('is_logged_in', 'true');
 
 				// Verify the token in console
@@ -69,10 +68,10 @@
 
 			<div class="password">
 				<input type="password" id="password" bind:value={password} required />
-        <!-- The type="button" attribute ensures that clicking this button does not submit 
+				<!-- The type="button" attribute ensures that clicking this button does not submit 
           the form -->
 				<button
-          type="button"
+					type="button"
 					class="eye"
 					on:click={togglepasswordVisible}
 					aria-label="Toggle password visibility"
@@ -87,8 +86,7 @@
 		</label>
 
 		<div class="submit">
-			<button type="submit">
-        Se connecter</button>
+			<button type="submit"> Se connecter</button>
 			<a href="/forms/register">
 				<p>Pas encore inscrit ?</p>
 			</a>
@@ -105,7 +103,7 @@
 		text-align: center;
 	}
 
-  .eye {
+	.eye {
 		display: flex;
 		text-align: center;
 		border: none;
@@ -134,9 +132,8 @@
 	}
 
 	label {
-		
 		display: block;
-    margin-bottom: 5vh;
+		margin-bottom: 5vh;
 	}
 
 	span {
@@ -166,7 +163,7 @@
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
-    color : white;
+		color: white;
 	}
 
 	button:hover {
