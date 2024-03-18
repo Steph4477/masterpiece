@@ -1,19 +1,25 @@
+<script lang="ts">
+    import { onMount } from 'svelte';
+    let isLoggedIn = false;
+
+    onMount(() => {
+        isLoggedIn = localStorage.getItem('is_logged_in') === 'true';	
+    });
+</script>
+
 <div class="aside">
-	
-		<i class="fa-solid fa-sliders"></i>
-		<i class="fa-regular fa-bell"></i>
-		<i class="fa-solid fa-door-open"></i>
-	
+    <i class="fa-solid fa-sliders"></i>
+    <i class="fa-regular fa-bell"></i>
+    <i class="fa-solid fa-door-open" style="display: {isLoggedIn ? 'block' : 'none'}"></i>
+    <i class="fa-solid fa-door-closed" style="display: {isLoggedIn ? 'none' : 'block'}"></i>
 </div>
+
 
 <style>
 	.aside {
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-end;
 		position: fixed;
-		bottom: 100px;
 	}
 	
 	i {
@@ -23,9 +29,11 @@
 		margin-bottom: 5vh;
 		cursor: pointer;	
 	}
+
 	i:hover {
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
+
 	.fa-sliders {
 		transform: rotate(90deg); 
 	}
