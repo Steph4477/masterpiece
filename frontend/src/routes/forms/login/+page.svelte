@@ -1,11 +1,10 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import Aside from '$lib/components/Aside.svelte';
+	import Header from '$lib/components/Header.svelte';
+
 	export let email = '';
 	export let password = '';
-	import { writable } from 'svelte/store';
-	import { goto } from '$app/navigation';
-
-	export const error = writable('');
-	export const success = writable(false);
 
 	const handleLogin = async () => {
 		try {
@@ -19,14 +18,10 @@
 
 			if (response.ok) {
 				const responseData = await response.json();
-				success.set(true);
 				console.log('Login successful:', responseData);
 
-				// Send the JWT token in local storage
+				// Send if connected in local storage
 				localStorage.setItem('is_logged_in', 'true');
-
-				// Verify the token in console
-				console.log('Stored JWT token:', localStorage.getItem('access_token'));
 
 				// Check if explicit redirection is necessary (status code 303)
 				if (response.status === 303 && responseData.redirect) {
@@ -36,13 +31,12 @@
 					goto('/');
 				}
 			} else {
-				console.log('Login failed:', response.status);
-				const responseData = await response.json();
-				error.set(responseData.error || "Erreur d'authentification");
+				alert('Echec de connection:' + response.status);
+				console.log('Login failed :', response.status);
 			}
 		} catch (err) {
-			console.error('Erreur lors de la requête POST:', err);
-			error.set('Erreur lors de la connexion au serveur');
+			alert('Erreur lors de la requête :' + err);
+			console.error('Erreur lors de la requête POST :', err);
 		}
 	};
 
@@ -56,20 +50,36 @@
 	};
 </script>
 
-<main>
-	<form on:submit|preventDefault={handleLogin} class="formulary">
-		<label for="email">
-			<span>Email :</span>
-			<input type="email" bind:value={email} required />
-		</label>
+<Header />
+<div class="main">
+	<div class="aside-container">
+		<Aside />
+	</div>
+	<div class="form-container">
+		<form on:submit|preventDefault={handleLogin} class="formulary">
+			<label for="email"> Email :</label>
+			<input
+				type="email"
+				id="email"
+				name="email"
+				autocomplete="email"
+				bind:value={email}
+				required
+			/>
 
-		<label for="password">
-			<span>Mot de passe :</span>
+			<label for="password"> Mot de passe : </label>
 
 			<div class="password">
-				<input type="password" id="password" bind:value={password} required />
+				<input
+					type="password"
+					id="password"
+					name="password"
+					autocomplete="current-password"
+					bind:value={password}
+					required
+				/>
 				<!-- The type="button" attribute ensures that clicking this button does not submit 
-          the form -->
+         		the form -->
 				<button
 					type="button"
 					class="eye"
@@ -83,19 +93,28 @@
 					{/if}
 				</button>
 			</div>
-		</label>
 
-		<div class="submit">
-			<button type="submit"> Se connecter</button>
-			<a href="/forms/register">
-				<p>Pas encore inscrit ?</p>
-			</a>
-		</div>
-	</form>
-</main>
+			<div class="submit">
+				<button type="submit"> Se connecter</button>
+				<a href="/forms/register">
+					<p>Pas encore inscrit ?</p>
+				</a>
+			</div>
+		</form>
+	</div>
+</div>
 
 <style>
-	main {
+	.main {
+		display: flex;
+	}
+
+	.aside-container {
+		margin-top: 150px;
+		margin-left: 10px;
+	}
+
+	.form-container {
 		display: flex;
 		width: 100%;
 		flex-direction: column;
@@ -133,13 +152,8 @@
 
 	label {
 		display: block;
-		margin-bottom: 5vh;
-	}
-
-	span {
 		font-weight: bold;
-		display: block;
-		margin-bottom: 0.5rem;
+		margin-top: 5vh;
 	}
 
 	input {
@@ -154,7 +168,7 @@
 	}
 
 	.submit {
-		margin-top: 1rem;
+		margin-top: 5vh;
 	}
 
 	button {

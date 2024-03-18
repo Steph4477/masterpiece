@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import Aside from '$lib/components/Aside.svelte';
 	import Header from '$lib/components/Header.svelte';
+	
 	let isLoggedIn = false;
 
 	onMount(() => {
@@ -56,7 +57,7 @@
 
 	.aside-container {
 		margin-top: 350px;
-		margin-left: 20px;
+		margin-left: 10px;
 	}
 
 	.home {
