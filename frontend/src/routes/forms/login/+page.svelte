@@ -23,13 +23,8 @@
 				// Send if connected in local storage
 				localStorage.setItem('is_logged_in', 'true');
 
-				// Check if explicit redirection is necessary (status code 303)
-				if (response.status === 303 && responseData.redirect) {
-					goto(responseData.redirect);
-				} else {
-					// Redirect to home page if no explicit redirection is provided
-					goto('/');
-				}
+				// Redirect to success page
+				goto('/success');
 			} else {
 				alert('Echec de connection:' + response.status);
 				console.log('Login failed :', response.status);
