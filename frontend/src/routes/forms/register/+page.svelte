@@ -13,6 +13,7 @@
 				},
 				body: JSON.stringify(formData)
 			});
+			console.log('Response status:', response.status);
 
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);
@@ -23,7 +24,8 @@
 
 			// If registration is successful, redirects to login/success page
 			if (response.ok) {
-				goto('/forms/login/success');
+				console.log('Redirecting to /success');
+				goto('/success');
 			}
 		} catch (error) {
 			console.error('Error during POST request:', error);
