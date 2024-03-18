@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import Aside from '$lib/components/Aside.svelte';
+	import Header from '$lib/components/Header.svelte';
 
 	// Function to handle form submission
 	const postForm = async () => {
@@ -60,25 +62,23 @@
 	};
 </script>
 
-<div class="container">
-	<form on:submit|preventDefault={postForm}>
-		<label for="lastName"
-			>Prénom :
+<Header />
+<div class="main">
+	<div class="aside-container">
+		<Aside />
+	</div>
+	<div class="form-container">
+		<form on:submit|preventDefault={postForm}>
+			<label for="lastName">Prénom :</label>
 			<input type="text" id="lastName" bind:value={formData.lastName} required />
-		</label>
 
-		<label for="firstName"
-			>Nom :
+			<label for="firstName">Nom :</label>
 			<input type="text" id="firstName" bind:value={formData.firstName} required />
-		</label>
 
-		<label for="email"
-			>Email :
+			<label for="email">Email :</label>
 			<input type="email" id="email" bind:value={formData.email} required />
-		</label>
 
-		<label for="password">
-			Mot de passe :
+			<label for="password"> Mot de passe :</label>
 
 			<div class="password">
 				<input type="password" id="password" bind:value={formData.password} required />
@@ -94,11 +94,8 @@
 					{/if}
 				</button>
 			</div>
-		</label>
 
-		<label for="passwordValidation"
-			>Confirmation mot de passe :
-
+			<label for="passwordValidation">Confirmation mot de passe :</label>
 			<div class="password">
 				<input
 					type="password"
@@ -118,26 +115,37 @@
 					{/if}
 				</button>
 			</div>
-		</label>
 
-		<label for="siret"> N° de SIRET :</label>
-		<input type="text" id="siret" bind:value={formData.siret} required />
+			<label for="siret"> N° de SIRET :</label>
+			<input type="text" id="siret" bind:value={formData.siret} required />
 
-		<label for="headQuarter">Adresse :</label>
-		<input type="text" id="headQuarter" bind:value={formData.headQuarter} required />
+			<label for="headQuarter">Adresse siège social:</label>
+			<input type="text" id="headQuarter" bind:value={formData.headQuarter} required />
 
-		<button class="submit" type="submit">
-			Soumettre
-		</button>
-		<div class="login">
-			<a href="/forms/login"><p>Vous avez déjà un compte?</p></a>
-		</div>
-	</form>
+			<button class="submit" type="submit"> Soumettre </button>
+			<div class="login">
+				<a href="/forms/login"><p>Vous avez déjà un compte?</p></a>
+			</div>
+		</form>
+	</div>
 </div>
 
 <style>
-	.container {
+	.main {
 		display: flex;
+	}
+
+	.aside-container {
+		margin-left: 10px;
+		margin-top: 500px;
+	}
+
+	.form-container {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
 	}
 
 	form {
@@ -148,6 +156,7 @@
 	label {
 		display: block;
 		margin-bottom: 2vh;
+		font-weight: bold;
 	}
 
 	input {
@@ -194,6 +203,7 @@
 
 	.password {
 		display: flex;
+		width: 100%;
 	}
 
 	.login {
