@@ -1,9 +1,15 @@
 <script lang="ts">
 	import ButtonsFunc from '$lib/components/ButtonsFunc.svelte';
-	import {isUserDiscon} from '$lib/stores/userStore';
+	import { onMount } from 'svelte';
+	let isLoggedIn = false;
+
+	onMount(() => {
+		isLoggedIn = localStorage.getItem('is_logged_in') === 'true';
+	});
+
 </script>
 
-<div class="home" class:filter-grayscale={$isUserDiscon}>
+<div class="home" class:filter-grayscale={!isLoggedIn}>
 	<p class="title">
 		<span class="b">B</span>
 		<span class="p">P</span>

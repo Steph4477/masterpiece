@@ -1,34 +1,23 @@
 <script lang="ts">
-	import { writable } from 'svelte/store';
+    import { onMount } from 'svelte';
+    let isLoggedIn = false;
 
-	// Create a custom reactive store linked to local storage, initialized to false if no account:
-	// local storage is initialized from null to false
-	function createIsLoggedInStore() {
-		// If the code is running in a browser, retrieve the value from local storage, otherwise set to null
-		const isLoggedIn = typeof window !== 'undefined' ? localStorage.getItem('is_logged_in') : null;
-		// Create a reactive store with the retrieved value
-		const store = writable(isLoggedIn !== null ? isLoggedIn === 'true' : false);
-		// Subscribe to this store to update local storage
-		if (typeof window !== 'undefined') {
-			store.subscribe((value) => localStorage.setItem('is_logged_in', value ? 'true' : 'false'));
-		}
-		return store;
-	}
-	const isLoggedIn = createIsLoggedInStore();
+    onMount(() => {
+        isLoggedIn = localStorage.getItem('is_logged_in') === 'true';	
+    });
 </script>
 
 <header>
-	<div class="search">
-		<a href="/">
-			<button class="fa-solid fa-house"></button>
-		</a>
-		<i class="fa-solid fa-magnifying-glass"></i>
-		<input type="text" placeholder="Search" class="input" />
-		<a href="/forms/register">
-			<!-- Direct usage of the store to set the color of the icon -->
-			<button class="fa-solid fa-user" style="color: {$isLoggedIn ? 'green' : 'red'}"></button>
-		</a>
-	</div>
+    <div class="search">
+        <a href="/">
+            <button class="fa-solid fa-house"></button>
+        </a>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search" class="input" />
+        <a href="/forms/register">
+            <button class="fa-solid fa-user" style="color: {isLoggedIn ? 'green' : 'red'}"></button>
+        </a>
+    </div>
 </header>
 
 <style>
