@@ -1,18 +1,18 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Merchant } from './merchant.entity';
 import { MerchantDto } from './dto/merchant.dto';
+import { AuthDto } from 'src/Auth/dto/auth.dto';
 import { MerchantHash } from '../Auth/auth.hash';
-import { Auth } from '../Auth/auth.entity';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class MerchantService {
     constructor(
         @InjectRepository(Merchant)
         private merchantRepository: Repository<Merchant>,
-        @InjectRepository(Auth)
-        private authRepository: Repository<Auth>,
+        private jwtService: JwtService,
     ) { }
 
     async register(merchant: MerchantDto) {
@@ -36,29 +36,45 @@ export class MerchantService {
         // Use the generated salt to hash the password
         const hashedPassword = MerchantHash.hashPassword(merchant.password, salt);
 
-        // Create a new Auth object
-        const newAuthInstance = new Auth();
-        newAuthInstance.email = merchant.email;
-        newAuthInstance.password = hashedPassword;
-
-        // Save the new Auth object to the database
-        const savedAuth = await this.authRepository.save(newAuthInstance);
-
         // Create a new Merchant object
         const newMerchant = new Merchant();
-        newMerchant.lastName = merchant.lastName;
-        newMerchant.firstName = merchant.firstName;
         newMerchant.email = merchant.email;
         newMerchant.password = hashedPassword;
-        newMerchant.passwordValidation = hashedPassword;
         newMerchant.siret = merchant.siret;
-        newMerchant.headQuarter = merchant.headQuarter;
-
-        // Set the Auth property with the saved Auth instance
-        newMerchant.auth = savedAuth;
 
         // Save the new Merchant object to the database
         return await this.merchantRepository.save(newMerchant);
+    }
+
+    async signIn(authDto: AuthDto): Promise<any> {
+        try {
+            const merchant = await this.merchantRepository.findOne({ where: { email: authDto.email } });
+    
+            if (!merchant) {
+                // Handle case when user is not found
+                throw new UnauthorizedException('password ou email incorrect.');
+            }
+    
+            // Verify password
+            const isPasswordValid = MerchantHash.verifyPassword(authDto.password, merchant.password);
+    
+            if (!isPasswordValid) {
+                // Handle case when password is not valid
+                throw new UnauthorizedException('password ou email incorrect.');
+            }
+    
+            // If password is valid, generate and return JWT token
+            const payload = { email: merchant.email, sub: merchant.id };
+            const accessToken = this.jwtService.sign(payload);
+    
+            // Log the generated token
+            console.log('Generated JWT token:', accessToken);
+    
+            return { message: 'Vous êtes connecté !', accessToken };
+        } catch (error) {
+            // Handle database or other errors
+            throw error;
+        }
     }
 
     findOneById(id: any) {
