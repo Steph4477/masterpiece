@@ -1,5 +1,5 @@
 import { UUID } from 'crypto';
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
 
 @Entity('merchant')
 export class Merchant {
@@ -15,6 +15,4 @@ export class Merchant {
 
     @Column({ length: 1000 })
     password: string;
-
-
 }

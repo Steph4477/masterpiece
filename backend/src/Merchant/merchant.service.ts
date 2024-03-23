@@ -46,7 +46,7 @@ export class MerchantService {
         return await this.merchantRepository.save(newMerchant);
     }
 
-    async signIn(authDto: AuthDto): Promise<any> {
+    async signIn(authDto: AuthDto) {
         try {
             const merchant = await this.merchantRepository.findOne({ where: { email: authDto.email } });
     
