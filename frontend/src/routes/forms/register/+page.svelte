@@ -25,6 +25,10 @@
 			// If registration is successful, redirects to login/success page
 			if (response.ok) {
 				console.log('Redirecting to /success');
+				// Send if connected in local storage
+				localStorage.setItem('is_logged_in', 'true');
+
+				// Redirect to success page
 				goto('/success');
 			}
 		} catch (error) {
