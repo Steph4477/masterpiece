@@ -1,15 +1,23 @@
-import { Controller, Post, Body, HttpCode, ValidationPipe } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode} from '@nestjs/common';
 import { MerchantService } from './merchant.service';
-import { Merchant } from './merchant.entity';
 import { MerchantDto } from './dto/merchant.dto';
+import { AuthDto } from 'src/Auth/dto/auth.dto';
 
-@Controller('/register')
+
+@Controller()
 export class MerchantController {
     constructor(private readonly merchantService: MerchantService) { }
 
-    @Post()
+    @Post('/register')
     @HttpCode(201)
-    async register(@Body(new ValidationPipe()) merchant: MerchantDto): Promise<Merchant | { statusCode: number }> {
+    register(@Body() merchant: MerchantDto) {
         return this.merchantService.register(merchant);
     }
+
+    @Post('/login')
+    @HttpCode(201)
+    signIn(@Body() merchant: AuthDto) {
+        return this.merchantService.signIn(merchant);
+    }
 }
+
