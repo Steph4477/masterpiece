@@ -54,7 +54,6 @@ export class MerchantService {
                 // Handle case when user is not found
                 throw new UnauthorizedException('password ou email incorrect.');
             }
-    
             // Verify password
             const isPasswordValid = MerchantHash.verifyPassword(authDto.password, merchant.password);
     
@@ -71,6 +70,7 @@ export class MerchantService {
             console.log('Generated JWT token:', accessToken);
     
             return { message: 'Vous êtes connecté !', accessToken };
+
         } catch (error) {
             // Handle database or other errors
             throw error;

@@ -3,20 +3,24 @@
 	export let customColor = '';
 	export let color = '';
 	export let icone = '';
+	export let href = '';
 </script>
 
-<button
-	style="background-color: {customColor};
+<a {href}>
+	<button
+		style="background-color: {customColor};
   color: {color};"
-	on:click={() => console.log('Bouton cliqué')}
->
-	{#if icone}
-		<div class="icon">
-			<i class={icone}></i>
-		</div>
-	{/if}
-	{label}
-</button>
+		on:click={() => console.log('Bouton cliqué')}
+	>
+		{#if icone}
+			<div class="icon">
+				<i class={icone}></i>
+			</div>
+		{/if}
+		{label}
+	</button>
+</a>
+
 
 <style>
 	button {

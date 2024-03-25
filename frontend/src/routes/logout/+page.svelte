@@ -12,7 +12,7 @@
 	<div>
 		<i class="fa-solid fa-user"></i>
 	</div>
-	<h1>Vous êtes deconnécté</h1>
+	<h1>Vous êtes déconnecté</h1>
     <p>Merci de votre visite</p>
 	<p>Merci de patienter</p>
 	<span>...</span>
@@ -38,11 +38,9 @@
 		justify-content: center;
 		height: 90px;
 		width: 90px;
-
 		border-radius: 50%;
 		margin-top: 10vh;
 		margin-bottom: 10vh;
-
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 
