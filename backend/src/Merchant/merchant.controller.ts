@@ -16,8 +16,10 @@ export class MerchantController {
 
     @Post('/login')
     @HttpCode(201)
-    signIn(@Body() merchant: AuthDto) {
-        return this.merchantService.signIn(merchant);
+    signIn(@Body() merchant: AuthDto, @Res({ passthrough: true }) response: Response) {
+        const { message, accessToken } = this.merchantService.signIn(merchant);
+        response.cookie('auth', accessToken, { maxAge: 60 * 60 * 24, httpOnly: true });
+        return { message };
     }
 }
 
