@@ -89,6 +89,7 @@
 			<div class="password">
 				<input type="password" id="password" bind:value={formData.password} required />
 				<button
+					type="button"
 					class="eye"
 					aria-label="Toggle password visibility"
 					on:click={togglePasswordVisibility}
@@ -110,6 +111,7 @@
 					required
 				/>
 				<button
+					type="button"
 					class="eye"
 					aria-label="Toggle password visibility"
 					on:click={togglePasswordValidationVisibility}

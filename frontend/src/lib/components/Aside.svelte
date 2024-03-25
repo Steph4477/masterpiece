@@ -5,12 +5,17 @@
     onMount(() => {
         isLoggedIn = localStorage.getItem('is_logged_in') === 'true';	
     });
+
+	function logout() {
+		localStorage.setItem('is_logged_in', 'false');
+	}
+	
 </script>
 
 <div class="aside">
     <i class="fa-solid fa-sliders"></i>
     <i class="fa-regular fa-bell"></i>
-    <i class="fa-solid fa-door-open" style="display: {isLoggedIn ? 'block' : 'none'}"></i>
+	<a href="/logout" class="fa-solid fa-door-open" style="display: {isLoggedIn ? 'block' : 'none'}" on:click={logout} aria-label="Logout" ></a>
     <i class="fa-solid fa-door-closed" style="display: {isLoggedIn ? 'none' : 'block'}"></i>
 </div>
 
