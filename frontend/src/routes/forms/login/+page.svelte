@@ -2,36 +2,23 @@
 	import { goto } from '$app/navigation';
 	import Aside from '$lib/components/Aside.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import { fetchData } from '$lib/utils';
 
 	export let email = '';
 	export let password = '';
 
 	const handleLogin = async () => {
 		try {
-			const response = await fetch(`http://localhost:3000/login`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ email, password })
-			});
+			const responseData = await fetchData('/login', 'POST', { email, password });
+			console.log('Login successful:', responseData);
 
-			if (response.ok) {
-				const responseData = await response.json();
-				console.log('Login successful:', responseData);
+			// Send if connected in local storage
+			localStorage.setItem('is_logged_in', 'true');
 
-				// Send if connected in local storage
-				localStorage.setItem('is_logged_in', 'true');
-
-				// Redirect to success page
-				goto('/success');
-			} else {
-				alert('Echec de connection:' + response.status);
-				console.log('Login failed :', response.status);
-			}
-		} catch (err) {
-			alert('Erreur lors de la requête :' + err);
-			console.error('Erreur lors de la requête POST :', err);
+			// Redirect to success page
+			goto('/success');
+		} catch (error) {
+			console.error('Error:', error);
 		}
 	};
 
@@ -73,8 +60,7 @@
 					bind:value={password}
 					required
 				/>
-				<!-- The type="button" attribute ensures that clicking this button does not submit 
-         		the form -->
+
 				<button
 					type="button"
 					class="eye"
