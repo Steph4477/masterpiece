@@ -31,12 +31,14 @@
 					customColor="#00C2FF"
 					color="white"
 					icone="fa-solid fa-chart-simple"
+					href="/forms/products"
 				/>
 				<ButtonsFunc
 					label="Products"
 					customColor="#FD6060"
 					color="white"
 					icone="fa-solid fa-boxes-packing"
+					href="/forms/products"
 				/>
 			</div>
 			<div>

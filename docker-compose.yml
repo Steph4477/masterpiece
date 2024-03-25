@@ -30,6 +30,8 @@ services:
       - ./postgres.env
     ports:
       - "5433:5432"
+    volumes:
+      - database:/var/lib/postgresql/data 
 
   adminer:
     container_name: adminer_BPIM
@@ -43,4 +45,4 @@ services:
       - postgres_db
 
 volumes:
-  postgres-data:     
+  database:   
