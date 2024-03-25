@@ -2,39 +2,25 @@
 	import { goto } from '$app/navigation';
 	import Aside from '$lib/components/Aside.svelte';
 	import Header from '$lib/components/Header.svelte';
-
+	import { fetchData } from '$lib/utils';
+	
 	// Function to handle form submission
 	const postForm = async () => {
 		try {
-			const response = await fetch('http://localhost:3000/register', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(formData)
-			});
-			console.log('Response status:', response.status);
+            const data = await fetchData('/register', 'POST', formData);
+            console.log('Backend Response:', data);
 
-			if (!response.ok) {
-				throw new Error(`HTTP error! Status: ${response.status}`);
-			}
+            // If registration is successful, redirects to login/success page
+            console.log('Redirecting to /success');
+            // Send if connected in local storage
+            localStorage.setItem('is_logged_in', 'true');
 
-			const data = await response.json();
-			console.log('Backend Response:', data);
-
-			// If registration is successful, redirects to login/success page
-			if (response.ok) {
-				console.log('Redirecting to /success');
-				// Send if connected in local storage
-				localStorage.setItem('is_logged_in', 'true');
-
-				// Redirect to success page
-				goto('/success');
-			}
-		} catch (error) {
-			console.error('Error during POST request:', error);
-		}
-	};
+            // Redirect to success page
+            goto('/success');
+        } catch (error) {
+            console.error('Error during POST request:', error);
+        }
+    };
 
 	// Form data object
 	let formData = {
