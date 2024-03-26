@@ -3,24 +3,27 @@
 	import Aside from '$lib/components/Aside.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import { fetchData } from '$lib/utils';
-	
+
+	let errorMessages: any = [];
+
 	// Function to handle form submission
 	const postForm = async () => {
 		try {
-            const data = await fetchData('/register', 'POST', formData);
-            console.log('Backend Response:', data);
+			const data = await fetchData('/register', 'POST', formData);
+			console.log('Backend Response:', data);
 
-            // If registration is successful, redirects to login/success page
-            console.log('Redirecting to /success');
-            // Send if connected in local storage
-            localStorage.setItem('is_logged_in', 'true');
+			// If registration is successful, redirects to login/success page
+			console.log('Redirecting to /success');
+			// Send if connected in local storage
+			localStorage.setItem('is_logged_in', 'true');
 
-            // Redirect to success page
-            goto('/success');
-        } catch (error) {
-            console.error('Error during POST request:', error);
-        }
-    };
+			// Redirect to success page
+			goto('/success');
+		} catch (error) {
+			console.error('Error during POST request:', error);
+			errorMessages = [(error as any).message];
+		}
+	};
 
 	// Form data object
 	let formData = {
@@ -115,11 +118,16 @@
 
 			<label for="headQuarter">Adresse siège social:</label>
 			<input type="text" id="headQuarter" bind:value={formData.headQuarter} required />
-
+			
+			{#each errorMessages as message (message)}
+				<p class="error">{message}</p>
+			{/each}
+			
 			<button class="submit" type="submit"> Soumettre </button>
 			<div class="login">
 				<a href="/forms/login"><p>Vous avez déjà un compte?</p></a>
 			</div>
+
 		</form>
 	</div>
 </div>
@@ -158,7 +166,9 @@
 		padding: 10px;
 		margin-bottom: 16px;
 	}
-
+	.error {
+		color: red;
+	}
 	.eye {
 		display: flex;
 		text-align: center;

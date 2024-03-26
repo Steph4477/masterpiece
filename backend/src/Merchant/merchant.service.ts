@@ -21,13 +21,13 @@ export class MerchantService {
 
         if (merchantExist) {
             console.log('Merchant with this email already exists');
-            throw new BadRequestException('Merchant with this email already exists');
+            throw new BadRequestException('Un compte avec cet email existe déjà.');
         }
 
         // Check if password and passwordValidation match
         if (merchant.password !== merchant.passwordValidation) {
             console.log('Passwords do not match');
-            throw new BadRequestException('Passwords do not match');
+            throw new BadRequestException('Les mots de passe ne correspondent pas.');
         }
 
         // Generate a new salt for each user

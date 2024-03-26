@@ -11,6 +11,7 @@ export async function fetchData(endpoint: string, method: string, body: any) {
     if (response.ok) {
         return response.json();
     } else {
-        throw new Error('Error: ' + response.status);
+        const errorData = await response.json(); // Read the response body
+        throw new Error(errorData.message); // Throw an error with the server error message
     }
 }
