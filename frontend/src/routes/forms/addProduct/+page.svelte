@@ -2,7 +2,6 @@
 	import Header from '$lib/components/Header.svelte';
 	import Aside from '$lib/components/Aside.svelte';
 	import { fetchData } from '$lib/utils';
-	//import { imageUrl } from '$lib/stores/imageStore';
 
 	// Form data object
 	let formData = {
@@ -13,17 +12,19 @@
 		price: ''
 	};
 
-	// Subscribe to imageUrl store
+	// manage event when file is selected
 	const handleFileChange = (event: any) => {
+		// File reader is api Web for to read the file content
 		const reader = new FileReader();
+		// When the file is read, the event is triggered
 		reader.onload = (event) => {
-			// if (event.target && event.target.result) {
-			// 	imageUrl.set(event.target.result as string);
-			// }
+			// If the event target and the result are not null, we assign the result
+			// to the image property of the formData object
 			if (event.target && event.target.result) {
 				formData.image = event.target.result as string;
 			}
 		};
+		// Read the file as a data URL
 		reader.readAsDataURL(event.target.files[0]);
 	};
 
