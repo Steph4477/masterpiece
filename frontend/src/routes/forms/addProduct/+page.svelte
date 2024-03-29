@@ -9,6 +9,7 @@
 		name: '',
 		description: '',
 		category: '',
+		stock:'',
 		price: ''
 	};
 
@@ -39,7 +40,8 @@
 			// Convert price to number before sending to the server
 			const data = await fetchData('/product', 'POST', {
 				...formData,
-				price: Number(formData.price)
+				price: Number(formData.price),
+				stock: Number(formData.stock)
 			});
 			console.log('Backend Response:', data);
 		} catch (error) {
@@ -73,13 +75,21 @@
 				<option value="autre">Autre</option>
 			</select>
 
+			<label for="price">Stock :</label>
+			<input type="number" id="stock" placeholder="Quantité de stock" bind:value={formData.stock} />
+
 			<label for="price">Prix :</label>
 			<input type="number" id="price" placeholder="Prix en €" bind:value={formData.price} />
 
 			<button type="submit">Ajouter le produit</button>
+			
+			<button>
+				<a href="/products">Retourner à la page précedente</a>
+			</button>
 		</form>
 	</div>
 </div>
+
 
 <style>
 	.main {
@@ -101,7 +111,7 @@
 
 	form {
 		max-width: 400px;
-		margin: auto;
+		margin-top: 5vh;
 	}
 
 	label {
@@ -125,6 +135,12 @@
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
+		color: white;
+		margin-top: 5vh;
+	}
+
+	a {
+		color: white;
 	}
 
 	button:hover {

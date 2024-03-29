@@ -17,12 +17,17 @@ export class ProductService {
         newProduct.name = product.name;
         newProduct.description = product.description;
         newProduct.category = product.category;
+        newProduct.stock = product.stock;
         newProduct.price = product.price;
 
         return await this.productRepository.save(newProduct);
     }
+
     async findAll() {
         return await this.productRepository.find();
     }
 
+    async deleteProduct(id: string) {
+        return await this.productRepository.delete(id);
+    }
 }

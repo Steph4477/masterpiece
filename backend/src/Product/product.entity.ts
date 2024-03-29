@@ -1,5 +1,5 @@
 import { UUID } from 'crypto';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
 
 @Entity('product')
 export class Product {
@@ -16,9 +16,14 @@ export class Product {
     @Column({ length: 100 })
     description: string;
 
-    @Column({ length: 100 })
+    @Column({ length: 100, nullable: true})
     category: string;
 
     @Column( {default: 0})
+    stock: number;
+
+    @Column( {default: 0})
     price: number;
+
+
 }   

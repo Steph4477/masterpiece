@@ -22,12 +22,11 @@
 
 <style>
 	header {
-		display: flex;
-		justify-content: space-between;
-		height: 40px;
-		margin-bottom: 3vh;
-		width: 100%;
-	}
+        display: flex;
+        justify-content: space-around;
+		position: fixed;
+        top: 20px;
+    }
 
 	.fa-house {
 		margin-right: 1rem;
@@ -41,7 +40,6 @@
 	.search {
 		display: flex;
 		align-items: center;
-		flex: 1;
 	}
 
 	.input {
@@ -49,6 +47,7 @@
 		border: gray 1px solid;
 		border-radius: 0.5rem;
 		margin-right: 2rem;
+		width: 300px;
 		flex-grow: 1;
 	}
 
@@ -58,5 +57,11 @@
 		border: none;
 		background-color: white;
 		font-size: 20px;
+	}
+
+	@media (max-width: 576px) {
+		.input {
+			width: 200px;
+		}
 	}
 </style>

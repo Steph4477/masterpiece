@@ -1,4 +1,4 @@
-import { Injectable, Controller, Post, Get, Body, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Delete, Post, Get, Body, HttpCode, Param } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
 
@@ -17,4 +17,11 @@ export class ProductController {
     async getAllProducts() {
         return await this.productService.findAll();
     }
+
+    @Delete('/product/:id')
+    @HttpCode(200)
+    async deleteProduct(@Param('id') id: string) {
+        return await this.productService.deleteProduct(id);
+    }
+
 }

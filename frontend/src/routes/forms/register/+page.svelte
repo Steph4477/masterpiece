@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import Aside from '$lib/components/Aside.svelte';
-	import Header from '$lib/components/Header.svelte';
 	import { fetchData } from '$lib/utils';
 
 	let errorMessages: any = [];
@@ -57,11 +56,7 @@
 	};
 </script>
 
-<Header />
 <div class="main">
-	<div class="aside-container">
-		<Aside />
-	</div>
 	<div class="form-container">
 		<form on:submit|preventDefault={postForm}>
 			<label for="lastName">Prénom :</label>
