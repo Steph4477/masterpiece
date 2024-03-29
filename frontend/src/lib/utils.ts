@@ -32,3 +32,20 @@ export async function fetchAllProducts() {
         throw new Error(errorData.message); // Throw an error with the server error message
     }
 }
+
+export async function fetchDeleteProduct(id: string) {
+    const URL = import.meta.env.VITE_SERVER_URL;
+    const response = await fetch(`${URL}/product/${id}`, { 
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (response.ok) {
+        return response.json();
+    } else {
+        const errorData = await response.json(); // Read the response body
+        throw new Error(errorData.message); // Throw an error with the server error message
+    }
+}
