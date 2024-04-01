@@ -1,29 +1,29 @@
 <script lang="ts">
-    import { onMount} from 'svelte';
-    import Header from '$lib/components/Header.svelte';
-    import Aside from '$lib/components/Aside.svelte';
-    import ButtonDelete from '$lib/components/ButtonDelete.svelte';
-    import { fetchAllProducts } from '$lib/utils';
+	import { onMount } from 'svelte';
+	import Header from '$lib/components/Header.svelte';
+	import Aside from '$lib/components/Aside.svelte';
+	import ButtonDelete from '$lib/components/ButtonDelete.svelte';
+	import { fetchAllProducts } from '$lib/utils';
 
-    let products: any = [];
-    let error: string | null = null;
-	
+	let products: any = [];
+	let error: string | null = null;
+
 	onMount(async () => {
-        loadProducts();
-    });
+		loadProducts();
+	});
 
-    async function loadProducts() {
-        try {
-            products = await fetchAllProducts();
-        } catch (err) {
-            error = (err as Error).message;
-        }
-    }
+	async function loadProducts() {
+		try {
+			products = await fetchAllProducts();
+		} catch (err) {
+			error = (err as Error).message;
+		}
+	}
 
 	// reload products after deletion
 	function handleProductDeleted() {
-        loadProducts(); 
-    }
+		loadProducts();
+	}
 </script>
 
 <Header />
@@ -36,26 +36,27 @@
 	{:else}
 		<div class="container">
 			<div class="button-container">
-				<button>
-					<a href="/forms/addProduct">ajouter un produit</a>
-				</button>
+				<a href="/forms/addProduct" class="add">ajouter un produit</a>
 			</div>
 			<div class="list-container">
-				<span class="title"> Liste des produits </span>
+				<h1 class="title">Liste des produits</h1>
 				<ul>
 					{#each products as product (product.id)}
 						<div class="button-container">
 							<div class="card-product">
-								<img src={product.image} alt={product.name} />
-								<h2>{product.name}</h2>
-								<p>Description : {product.description}</p>
-								<p>Categorie : {product.category}</p>
-								<div class="product-button">
-									<p>Stock : {product.stock}</p>
-									<p class="product-button-price">Prix : {product.price + ' €'}</p>
-								</div>
+								<a href="/products/{product.id}" class="productId">
+									<img src={product.image} alt={product.name} />
+									<span class="click">Cliquez pour Modifier</span>
+									<h2 class="name">{product.name}</h2>
+									<p>Description : {product.description}</p>
+									<p>Categorie : {product.category}</p>
+									<div class="product-button">
+										<p>Stock : {product.stock}</p>
+										<p class="product-button-price">Prix : {product.price + ' €'}</p>
+									</div>
+								</a>
 							</div>
-							<ButtonDelete id={product.id}  on:productDeleted={handleProductDeleted} />
+							<ButtonDelete id={product.id} on:productDeleted={handleProductDeleted} />
 						</div>
 					{/each}
 				</ul>
@@ -99,14 +100,18 @@
 		box-shadow: none;
 	}
 
+	.productId {
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: black;
+	}
 	.product-button {
 		font-weight: bold;
 		text-align: right;
 		padding: 1rem;
 		background-color: #fd6060;
-		border-radius: 20px;
+		border-radius: 10px;
 		color: white;
-		border: solid 1px black;
 	}
 
 	.list-container {
@@ -117,13 +122,17 @@
 		margin-top: 5vh;
 	}
 
+	.name {
+		font-weight: bold;
+	}
+
 	.button-container {
 		display: flex;
 		width: 100%;
 		justify-content: center;
 	}
 
-	button {
+	.add {
 		padding: 10px;
 		width: 200px;
 		background-color: #fd6060;
@@ -133,13 +142,20 @@
 		border-radius: 4px;
 		cursor: pointer;
 		margin-top: 5vh;
+		text-align: center;
+		margin-top: 10vh;
+	}
+
+	.click {
+		color: #fd6060;
+		text-decoration: underline;
 	}
 
 	a {
 		color: white;
 	}
 
-	button:hover {
+	.add:hover {
 		box-shadow: none;
 	}
 

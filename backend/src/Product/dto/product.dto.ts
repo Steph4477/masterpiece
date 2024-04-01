@@ -2,7 +2,7 @@ import { IsNotEmpty, Length } from 'class-validator';
 
 export class ProductDto {
     image: string;
-   
+  
     @IsNotEmpty({ message: 'Le nom du produit à vendre est obligatoire ' })
     name: string;
 

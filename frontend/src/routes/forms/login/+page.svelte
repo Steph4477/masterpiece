@@ -39,24 +39,25 @@
 	</div>
 	<div class="form-container">
 		<form on:submit|preventDefault={handleLogin} class="formulary">
-			<label for="email"> Email :</label>
+			<label for="email">Email :</label>
 			<input
 				type="email"
 				id="email"
 				name="email"
 				autocomplete="email"
+				aria-label="Email"
 				bind:value={email}
 				required
 			/>
 
-			<label for="password"> Mot de passe : </label>
-
+			<label for="password">Mot de passe :</label>
 			<div class="password">
 				<input
 					type="password"
 					id="password"
 					name="password"
 					autocomplete="current-password"
+					aria-label="Mot de passe"
 					bind:value={password}
 					required
 				/>
@@ -75,12 +76,7 @@
 				</button>
 			</div>
 
-			<div class="submit">
-				<button type="submit"> Se connecter</button>
-				<a href="/forms/register">
-					<p>Pas encore inscrit ?</p>
-				</a>
-			</div>
+			<button type="submit" class="submit" aria-label="Se connecter">Se connecter</button>
 		</form>
 	</div>
 </div>

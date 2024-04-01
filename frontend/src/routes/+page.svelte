@@ -86,23 +86,28 @@
 	}
 
 	.b {
+		font-size: 60px;
 		color: #00c2ff;
 	}
 
 	.p {
+		font-size: 60px;
 		color: #fd6060;
 		height: 20px;
 	}
 
 	.i {
+		font-size: 60px;
 		color: #ffdf8c;
 	}
 
 	.m {
+		font-size: 60px;
 		color: #f8fd00;
 	}
 
 	p {
+		
 		font-weight: bold;
 		text-align: center;
 	}
