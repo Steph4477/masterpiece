@@ -15,5 +15,5 @@ export class MerchantDto {
     @IsNotEmpty({ message: 'La confirmation du mot de passe est obligatoire pour l\'inscription.' })
     @Length(8, 20, { message: 'La confirmation du mot de passe doit être compris entre 8 et 20 caractères.' })
     passwordValidation: string;
-
+    
 }

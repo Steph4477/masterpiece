@@ -9,7 +9,7 @@
 		name: '',
 		description: '',
 		category: '',
-		stock:'',
+		stock: '',
 		price: ''
 	};
 
@@ -58,16 +58,21 @@
 	<div class="form-container">
 		<form on:submit|preventDefault={postForm}>
 			<label for="image">Image :</label>
-			<input type="file" id="image" on:change={handleFileChange} accept=".png, .jpg, .jpeg" />
+			<input
+				type="file"
+				id="image"
+				aria-label="ajouter une image"
+				on:change={handleFileChange}
+				accept=".png, .jpg, .jpeg"
+			/>
 
 			<label for="name">Nom :</label>
-			<input type="text" id="name" bind:value={formData.name} />
-
+			<input type="text" id="name" aria-label="Nom" bind:value={formData.name} required />
 			<label for="description">Description :</label>
-			<textarea id="description" bind:value={formData.description} />
+			<textarea id="description" aria-label="Description" bind:value={formData.description} />
 
 			<label for="category">Catégorie :</label>
-			<select id="category" bind:value={formData.category}>
+			<select id="category" aria-label="Catégorie" bind:value={formData.category}>
 				<option value="">Choisir une catégorie :</option>
 				<option value="electronique">Electronique</option>
 				<option value="vetement">Vêtement</option>
@@ -75,21 +80,29 @@
 				<option value="autre">Autre</option>
 			</select>
 
-			<label for="price">Stock :</label>
-			<input type="number" id="stock" placeholder="Quantité de stock" bind:value={formData.stock} />
+			<label for="stock">Stock :</label>
+			<input
+				type="number"
+				id="stock"
+				aria-label="Stock"
+				placeholder="Quantité de stock"
+				bind:value={formData.stock}
+			/>
 
 			<label for="price">Prix :</label>
-			<input type="number" id="price" placeholder="Prix en €" bind:value={formData.price} />
+			<input
+				type="number"
+				id="price"
+				aria-label="Prix"
+				placeholder="Prix en €"
+				bind:value={formData.price}
+			/>
 
-			<button type="submit">Ajouter le produit</button>
-			
-			<button>
-				<a href="/products">Retourner à la page précedente</a>
-			</button>
+			<button type="submit" aria-label="Ajouter le produit">Ajouter le produit</button>
+			<a href="/products" class="return">Retour</a>
 		</form>
 	</div>
 </div>
-
 
 <style>
 	.main {
@@ -107,11 +120,12 @@
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
+		margin-top: 5vh;
 	}
 
 	form {
 		max-width: 400px;
-		margin-top: 5vh;
+		margin: auto;
 	}
 
 	label {
@@ -120,13 +134,20 @@
 		font-weight: bold;
 	}
 
-	input {
+	input,
+	select,
+	textarea {
 		width: 100%;
 		padding: 10px;
 		margin-bottom: 16px;
 	}
 
-	button {
+	textarea {
+		height: 100px;
+	}
+	button,
+	a,
+	.return {
 		padding: 10px;
 		width: 200px;
 		background-color: #fd6060;
@@ -135,15 +156,17 @@
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
-		color: white;
 		margin-top: 5vh;
+		color: white;
+		font-size: 16px;
 	}
 
 	a {
 		color: white;
 	}
 
-	button:hover {
+	button:hover,
+	.return:hover {
 		box-shadow: none;
 	}
 </style>

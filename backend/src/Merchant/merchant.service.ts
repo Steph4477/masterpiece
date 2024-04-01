@@ -41,7 +41,7 @@ export class MerchantService {
         newMerchant.email = merchant.email;
         newMerchant.password = hashedPassword;
         newMerchant.siret = merchant.siret;
-
+        
         // Save the new Merchant object to the database
         return await this.merchantRepository.save(newMerchant);
     }

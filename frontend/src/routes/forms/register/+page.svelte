@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import Aside from '$lib/components/Aside.svelte';
 	import { fetchData } from '$lib/utils';
+	import Header from '$lib/components/Header.svelte';
 
 	let errorMessages: any = [];
 
@@ -56,7 +57,11 @@
 	};
 </script>
 
+<Header />
 <div class="main">
+	<div class="aside-container">
+		<Aside />
+	</div>
 	<div class="form-container">
 		<form on:submit|preventDefault={postForm}>
 			<label for="lastName">Prénom :</label>
@@ -113,16 +118,15 @@
 
 			<label for="headQuarter">Adresse siège social:</label>
 			<input type="text" id="headQuarter" bind:value={formData.headQuarter} required />
-			
+
 			{#each errorMessages as message (message)}
 				<p class="error">{message}</p>
 			{/each}
-			
+
 			<button class="submit" type="submit"> Soumettre </button>
 			<div class="login">
 				<a href="/forms/login"><p>Vous avez déjà un compte?</p></a>
 			</div>
-
 		</form>
 	</div>
 </div>
@@ -139,6 +143,7 @@
 
 	.form-container {
 		display: flex;
+		margin-top: 5vh;
 		width: 100%;
 		flex-direction: column;
 		align-items: center;
