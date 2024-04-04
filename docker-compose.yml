@@ -31,7 +31,8 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - database:/var/lib/postgresql/data 
+      - ./database/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      # - database:/var/lib/postgresql/data 
 
   adminer:
     container_name: adminer_BPIM
@@ -44,5 +45,4 @@ services:
     depends_on:
       - postgres_db
 
-volumes:
-  database:   
+
