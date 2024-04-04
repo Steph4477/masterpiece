@@ -87,22 +87,5 @@ export async function updateProduct(id:string, updatedProduct: any) {
     return response.json();
 }
 
-export async function uploadImage(imageFile: File) {
-    const URL = import.meta.env.VITE_SERVER_URL;
-    const formData = new FormData();
-    formData.append('image', imageFile);
-    const response = await fetch(`${URL}/product/upload`, {
-        method: 'POST',
-        body: formData
-    });
-
-    if (response.ok) {
-        const data = await response.json();
-        return data.imageUrl;
-    } else {
-        const errorData = await response.json(); // Read the response body
-        throw new Error(errorData.message); // Throw an error with the server error message
-    }
-}
 
 

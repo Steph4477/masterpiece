@@ -16,7 +16,7 @@ export class AuthToken implements CanActivate {
                 secret: process.env.JWT_SECRET,
 
             });
-            request['merchant'] = payload;
+            request['merchants'] = payload;
         } catch {
             throw new UnauthorizedException();
         }

@@ -1,29 +1,26 @@
-import { UUID } from 'crypto';
 import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
 
-@Entity('product')
+@Entity('products')
 export class Product {
 
-    @PrimaryGeneratedColumn('uuid')
-    id: UUID;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-    @Column({ nullable: true })
+    @Column()
     image: string;
 
-    @Column({ length: 100 })
+    @Column()
     name: string;
 
-    @Column({ length: 100 })
+    @Column()
     description: string;
 
-    @Column({ length: 100, nullable: true})
+    @Column()
     category: string;
 
-    @Column( {default: 0})
+    @Column()
     stock: number;
 
-    @Column( {default: 0})
+    @Column()
     price: number;
-
-
 }   
