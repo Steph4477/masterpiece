@@ -17,9 +17,9 @@
 		event.preventDefault();
 		const formData = new FormData(event.target);
 		const updatedProduct = {
+			reference: formData.get('reference'),
 			name: formData.get('name'),
 			description: formData.get('description'),
-			category: formData.get('category'),
 			stock: formData.get('stock'),
 			price: formData.get('price')
 		};
@@ -42,6 +42,10 @@
 			<h1>Modifier</h1>
 			<form on:submit={handleProductUpdate}>
 				<label>
+					Référence :
+					<input type="text" aria-label="référence de l'article" name="reference" value={product.reference} />
+				</label>
+				<label>
 					Nom :
 					<input type="text" aria-label="nom de l'article" name="name" value={product.name} />
 				</label>
@@ -50,13 +54,6 @@
 					<textarea id="description" aria-label="Description" name="description" value={product.description} />
 				</label>
 				<label for="category">Catégorie :</label>
-				<select id="category" aria-label="Catégorie" bind:value={product.category} name="category">
-					<option value="">Choisir une catégorie :</option>
-					<option value="electronique">Electronique</option>
-					<option value="vetement">Vêtement</option>
-					<option value="livre">Livre</option>
-					<option value="autre">Autre</option>
-				</select>
 				<label>
 					Stock :
 					<input type="number" aria-label="stock de l'article" name="stock" value={product.stock} />

@@ -13,10 +13,9 @@ export class ProductService {
 
     async createProduct(product: ProductDto) {
         const newProduct = new Product();
-        newProduct.image = product.image;
+        newProduct.reference = product.reference;
         newProduct.name = product.name;
         newProduct.description = product.description;
-        newProduct.category = product.category;
         newProduct.stock = product.stock;
         newProduct.price = product.price;
 
@@ -38,9 +37,9 @@ export class ProductService {
         }
 
         const updatedProduct = {
+            reference: product.reference,
             name: product.name,
             description: product.description,
-            category: product.category,
             stock: product.stock,
             price: product.price,
         };

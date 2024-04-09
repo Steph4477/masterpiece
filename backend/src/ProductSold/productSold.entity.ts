@@ -1,23 +1,26 @@
 import { Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
 
-@Entity('products')
-export class Product {
+@Entity()
+export class ProductSold {
 
     @PrimaryGeneratedColumn()
     id: number;
+
+    // @Column()
+    // image: string;
 
     @Column()
     reference: string;
 
     @Column()
-    name: string;
+    merchantId: number;
 
     @Column()
-    description: string;
-
-    @Column()
-    stock: number;
+    product_id: number;
 
     @Column()
     price: number;
+
+    @Column()
+    stock: number;
 }   

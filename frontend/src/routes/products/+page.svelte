@@ -15,11 +15,15 @@
 	async function loadProducts() {
 		try {
 			products = await fetchAllProducts();
+			if (products.length === 0) {
+				error = 'Aucun produit trouvé.';
+			} else {
+				error = null;
+			}
 		} catch (err) {
 			error = (err as Error).message;
 		}
 	}
-
 	// reload products after deletion
 	function handleProductDeleted() {
 		loadProducts();
@@ -31,25 +35,24 @@
 	<div class="aside-container">
 		<Aside />
 	</div>
-	{#if error}
-		<p>{error}</p>
-	{:else}
-		<div class="container">
-			<div class="button-container">
-				<a href="/forms/addProduct" class="add">ajouter un produit</a>
-			</div>
-			<div class="list-container">
-				<h1 class="title">Liste des produits</h1>
+	<div class="container">
+		<div class="button-container">
+			<a href="/forms/addProduct" class="add">ajouter un produit</a>
+		</div>
+		<div class="list-container">
+			<h1 class="title">Liste des produits</h1>
+			{#if error}
+				<p>{error}</p>
+			{/if}
 				<ul>
 					{#each products as product (product.id)}
 						<div class="button-container">
 							<div class="card-product">
 								<a href="/products/{product.id}" class="productId">
-									<img src={product.image} alt={product.name} />
 									<span class="click">Cliquez pour Modifier</span>
 									<h2 class="name">{product.name}</h2>
+									<p>Référence : {product.reference}</p>
 									<p>Description : {product.description}</p>
-									<p>Categorie : {product.category}</p>
 									<div class="product-button">
 										<p>Stock : {product.stock}</p>
 										<p class="product-button-price">Prix : {product.price + ' €'}</p>
@@ -62,7 +65,7 @@
 				</ul>
 			</div>
 		</div>
-	{/if}
+	
 </div>
 
 <style>
