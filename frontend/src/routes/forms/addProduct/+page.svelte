@@ -5,29 +5,28 @@
 
 	// Form data object
 	let formData = {
-		image: '',
+		reference: '',
 		name: '',
 		description: '',
-		category: '',
 		stock: '',
 		price: ''
 	};
 
-	// manage event when file is selected
-	const handleFileChange = (event: any) => {
-		// File reader is api Web for to read the file content
-		const reader = new FileReader();
-		// When the file is read, the event is triggered
-		reader.onload = (event) => {
-			// If the event target and the result are not null, we assign the result
-			// to the image property of the formData object
-			if (event.target && event.target.result) {
-				formData.image = event.target.result as string;
-			}
-		};
-		// Read the file as a data URL
-		reader.readAsDataURL(event.target.files[0]);
-	};
+	// // manage event when file is selected
+	// const handleFileChange = (event: any) => {
+	// 	// File reader is api Web for to read the file content
+	// 	const reader = new FileReader();
+	// 	// When the file is read, the event is triggered
+	// 	reader.onload = (event) => {
+	// 		// If the event target and the result are not null, we assign the result
+	// 		// to the image property of the formData object
+	// 		if (event.target && event.target.result) {
+	// 			formData.image = event.target.result as string;
+	// 		}
+	// 	};
+	// 	// Read the file as a data URL
+	// 	reader.readAsDataURL(event.target.files[0]);
+	// };
 
 	// Function to handle form submission
 	const postForm = async () => {
@@ -57,29 +56,13 @@
 	</div>
 	<div class="form-container">
 		<form on:submit|preventDefault={postForm}>
-			<label for="image">Image :</label>
-			<input
-				type="file"
-				id="image"
-				aria-label="ajouter une image"
-				on:change={handleFileChange}
-				accept=".png, .jpg, .jpeg"
-			/>
-
+			<h1>Ajouter un produit</h1>
+			<label for="reference">Référence</label>
+			<input type="text" id="reference" aria-label="Reference" bind:value={formData.reference} required />
 			<label for="name">Nom :</label>
 			<input type="text" id="name" aria-label="Nom" bind:value={formData.name} required />
 			<label for="description">Description :</label>
-			<textarea id="description" aria-label="Description" bind:value={formData.description} />
-
-			<label for="category">Catégorie :</label>
-			<select id="category" aria-label="Catégorie" bind:value={formData.category}>
-				<option value="">Choisir une catégorie :</option>
-				<option value="electronique">Electronique</option>
-				<option value="vetement">Vêtement</option>
-				<option value="livre">Livre</option>
-				<option value="autre">Autre</option>
-			</select>
-
+			<textarea id="description" aria-label="Description" bind:value={formData.description} required />
 			<label for="stock">Stock :</label>
 			<input
 				type="number"
@@ -96,7 +79,7 @@
 				aria-label="Prix"
 				placeholder="Prix en €"
 				bind:value={formData.price}
-			/>
+			/> 
 
 			<button type="submit" aria-label="Ajouter le produit">Ajouter le produit</button>
 			<a href="/products" class="return">Retour</a>

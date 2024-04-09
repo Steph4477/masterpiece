@@ -7,16 +7,13 @@ export class Product {
     id: number;
 
     @Column()
-    image: string;
+    reference: string;
 
     @Column()
     name: string;
 
     @Column()
     description: string;
-
-    @Column()
-    category: string;
 
     @Column()
     stock: number;
