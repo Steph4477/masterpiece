@@ -5,27 +5,17 @@ import { ProductDto } from './dto/product.dto';
 @Controller('product')
 export class ProductController {
     constructor(private readonly productService: ProductService) { }
-
-    @Post()
-    @HttpCode(201)
-    async createProduct(@Body() product: ProductDto) {
-        return await this.productService.createProduct(product);
-    }
     
     @Post('/merchant_id/:id')
     @HttpCode(201)
     async createProductByMerchantId(@Param('id') id: number, @Body() product: ProductDto) {
         return await this.productService.createProductByMerchantId(id, product);
     }
-    // @Get()
-    // @HttpCode(200)
-    // async getAllProducts() {
-    //     return await this.productService.findAll();
-    // }
+   
 
     @Get('/merchant_id/:id')
     @HttpCode(200)
-    async getSoldProducts(@Param('id') id: number){
+    async getProductsByMerchantId(@Param('id') id: number){
         return await this.productService.getProductsByMerchantId(id);
     }
 
