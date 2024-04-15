@@ -3,7 +3,7 @@
 
 	onMount(() => {
 		setTimeout(() => {
-			window.location.href = '/';
+			window.location.href = '/forms/login';
 		}, 2000);
 	});
 </script>
@@ -15,7 +15,7 @@
 	<h1>Connecté avec Succès!</h1>
 	<p>Merci de patienter</p>
 	<span>...</span>
-	<p>Vous êtes redirigé vers la page d’accueil</p>
+	<p>Vous êtes redirigé vers la page de connection</p>
 	<span>...</span>
 </main>
 

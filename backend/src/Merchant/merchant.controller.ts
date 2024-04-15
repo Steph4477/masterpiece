@@ -17,10 +17,14 @@ export class MerchantController {
 
     @Post('/login')
     @HttpCode(201)
-    async signIn(@Body() merchant: AuthDto, @Res({ passthrough: true }) response: Response) {
-        const { message, accessToken }: { message: string, accessToken: string } = await this.merchantService.signIn(merchant);
-        response.cookie('auth', accessToken, { maxAge: 60 * 60 * 24, httpOnly: true });
-        return { message };
+    // async signIn(@Body() merchant: AuthDto, @Res({ passthrough: true }) response: Response) {
+    //     const { message, accessToken }: { message: string, accessToken: string } = await this.merchantService.signIn(merchant);
+    //     response.cookie('auth', accessToken, { maxAge: 60 * 60 * 24, httpOnly: true });
+    //     return { message };
+    // }
+    async signIn(@Body() merchant: AuthDto) {
+        const { accessToken } = await this.merchantService.signIn(merchant);
+        return { accessToken };
     }
 }
 

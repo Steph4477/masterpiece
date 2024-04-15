@@ -1,42 +1,48 @@
-import { Controller, Delete, Post, Get, Put, Patch, Body, HttpCode, Param } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, Req, Get, Delete, Put, Param, Patch, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
 
-@Controller()
+@Controller('product')
 export class ProductController {
     constructor(private readonly productService: ProductService) { }
 
-    @Post('/product')
+    @Post()
     @HttpCode(201)
     async createProduct(@Body() product: ProductDto) {
         return await this.productService.createProduct(product);
     }
+    
+    @Post('/merchant_id/:id')
+    @HttpCode(201)
+    async createProductByMerchantId(@Param('id') id: number, @Body() product: ProductDto) {
+        return await this.productService.createProductByMerchantId(id, product);
+    }
+    // @Get()
+    // @HttpCode(200)
+    // async getAllProducts() {
+    //     return await this.productService.findAll();
+    // }
 
-    @Get('/product')
+    @Get('/merchant_id/:id')
     @HttpCode(200)
-    async getAllProducts() {
-        return await this.productService.findAll();
+    async getSoldProducts(@Param('id') id: number){
+        return await this.productService.getProductsByMerchantId(id);
     }
 
-    @Get('/product/:id')
-    @HttpCode(200)
-    async getProduct(@Param('id') id: string) {
-        return await this.productService.findById(id);
-    }
 
-    @Delete('/product/:id')
+    @Delete('/:id')
     @HttpCode(200)
     async deleteProduct(@Param('id') id: string) {
         return await this.productService.deleteProduct(id);
     }
 
-    @Put('/product/:id')
+    @Put('/:id')
     @HttpCode(200)
     async updateProduct(@Param('id') id: string, @Body() product: ProductDto) {
         return await this.productService.updateProduct(id, product);
     }
 
-    @Patch('/product/:id')
+    @Patch('/:id')
     @HttpCode(200)
     async partialUpdateProduct(@Param('id') id: string, @Body() product: ProductDto) {
         return await this.productService.updateProduct(id, product);

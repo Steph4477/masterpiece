@@ -39,7 +39,7 @@ export class MerchantService {
         // Create a new Merchant object
         const newMerchant = new Merchant();
         newMerchant.email = merchant.email;
-        newMerchant.password = hashedPassword;
+        newMerchant.password = merchant.password;
         newMerchant.siret = merchant.siret;
         
         // Save the new Merchant object to the database
@@ -55,12 +55,12 @@ export class MerchantService {
                 throw new UnauthorizedException('password ou email incorrect.');
             }
             // Verify password
-            const isPasswordValid = MerchantHash.verifyPassword(authDto.password, merchant.password);
+            //const isPasswordValid = MerchantHash.verifyPassword(authDto.password, merchant.password);
     
-            if (!isPasswordValid) {
-                // Handle case when password is not valid
-                throw new UnauthorizedException('password ou email incorrect.');
-            }
+            // if (!isPasswordValid) {
+            //     // Handle case when password is not valid
+            //     throw new UnauthorizedException('password ou email incorrect.');
+            // }
     
             // If password is valid, generate and return JWT token
             const payload = { email: merchant.email, sub: merchant.id };
@@ -69,7 +69,7 @@ export class MerchantService {
             // Log the generated token
             console.log('Generated JWT token:', accessToken);
     
-            return { message: 'Vous êtes connecté !', accessToken };
+            return { message: 'Vous êtes connecté !', accessToken};
 
         } catch (error) {
             // Handle database or other errors

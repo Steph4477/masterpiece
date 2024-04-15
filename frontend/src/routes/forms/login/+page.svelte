@@ -13,10 +13,10 @@
 			console.log('Login successful:', responseData);
 
 			// Send if connected in local storage
-			localStorage.setItem('is_logged_in', 'true');
+			localStorage.setItem('accessToken', responseData.accessToken);
 
 			// Redirect to success page
-			goto('/success');
+			goto('/');
 		} catch (error) {
 			console.error('Error:', error);
 		}

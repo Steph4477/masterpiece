@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
 	import Aside from '$lib/components/Aside.svelte';
-	import { fetchData } from '$lib/utils';
+	import { fetchDataWithMerchantId } from '$lib/utils';
 
 	// Form data object
 	let formData = {
@@ -29,15 +29,18 @@
 	// };
 
 	// Function to handle form submission
+	// Function to handle form submission
 	const postForm = async () => {
-		if (localStorage.getItem('is_logged_in') !== 'true') {
-			console.error('User is not logged in');
+		const token = localStorage.getItem('accessToken');
+		if (!token) {
+			console.error('No token found');
+			// Gérer ici le cas où l'utilisateur n'est pas connecté, par exemple, rediriger vers la page de connexion.
 			return;
 		}
 
 		try {
 			// Convert price to number before sending to the server
-			const data = await fetchData('/product', 'POST', {
+			const data = await fetchDataWithMerchantId({
 				...formData,
 				price: Number(formData.price),
 				stock: Number(formData.stock)
@@ -58,11 +61,22 @@
 		<form on:submit|preventDefault={postForm}>
 			<h1>Ajouter un produit</h1>
 			<label for="reference">Référence</label>
-			<input type="text" id="reference" aria-label="Reference" bind:value={formData.reference} required />
+			<input
+				type="text"
+				id="reference"
+				aria-label="Reference"
+				bind:value={formData.reference}
+				required
+			/>
 			<label for="name">Nom :</label>
 			<input type="text" id="name" aria-label="Nom" bind:value={formData.name} required />
 			<label for="description">Description :</label>
-			<textarea id="description" aria-label="Description" bind:value={formData.description} required />
+			<textarea
+				id="description"
+				aria-label="Description"
+				bind:value={formData.description}
+				required
+			/>
 			<label for="stock">Stock :</label>
 			<input
 				type="number"
@@ -79,8 +93,7 @@
 				aria-label="Prix"
 				placeholder="Prix en €"
 				bind:value={formData.price}
-			/> 
-
+			/>
 			<button type="submit" aria-label="Ajouter le produit">Ajouter le produit</button>
 			<a href="/products" class="return">Retour</a>
 		</form>

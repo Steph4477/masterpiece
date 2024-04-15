@@ -9,20 +9,18 @@
 	let error: string | null = null;
 
 	onMount(async () => {
-		loadProducts();
+		products = await loadProducts();
 	});
 
 	async function loadProducts() {
 		try {
-			products = await fetchAllProducts();
-			if (products.length === 0) {
-				error = 'Aucun produit trouvé.';
-			} else {
-				error = null;
-			}
-		} catch (err) {
-			error = (err as Error).message;
+			const products = await fetchAllProducts();
+			console.log(products);
+			return products;
+		} catch (error) {
+			console.error('Erreur lors de la récupération des produits :', error);
 		}
+		
 	}
 	// reload products after deletion
 	function handleProductDeleted() {
@@ -44,8 +42,9 @@
 			{#if error}
 				<p>{error}</p>
 			{/if}
-				<ul>
-					{#each products as product (product.id)}
+			<ul>
+				{#each products as product}
+					<li>
 						<div class="button-container">
 							<div class="card-product">
 								<a href="/products/{product.id}" class="productId">
@@ -61,11 +60,11 @@
 							</div>
 							<ButtonDelete id={product.id} on:productDeleted={handleProductDeleted} />
 						</div>
-					{/each}
-				</ul>
-			</div>
+					</li>
+				{/each}
+			</ul>
 		</div>
-	
+	</div>
 </div>
 
 <style>
@@ -164,13 +163,5 @@
 
 	ul {
 		list-style-type: none;
-	}
-
-	img {
-		width: 100%;
-		height: 200px;
-		object-fit: cover;
-		border-radius: 10px;
-		border: solid 1px black;
 	}
 </style>
