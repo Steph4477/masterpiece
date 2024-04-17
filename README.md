@@ -1,3 +1,35 @@
+🏁 Getting Started
+---
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+Prerequisites
+What things you need to install the software and how to install them.
+
+- ide like vsc
+- Docker
+- Node.js
+- github
+
+1.Clone this repository :
+````
+git clone https://github.com/Steph4477/masterpiece
+````
+2.Install NPM packages
+````
+npm install
+npm install @nestjs/core
+````
+
+3.Run Docker compose
+````
+docker compose build or docker-compose build
+docker compose up or docker-compose up
+
+// for stop the container
+docker compose down or docker-compose down
+````
+---
+🧐 Here's the project detail of this application :
 
 
 # BPIM Management Commerce  Application 

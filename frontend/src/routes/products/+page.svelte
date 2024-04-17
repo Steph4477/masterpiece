@@ -9,23 +9,29 @@
 	let error: string | null = null;
 
 	onMount(async () => {
-		products = await loadProducts();
+		 loadProducts();
 	});
 
 	async function loadProducts() {
 		try {
-			const products = await fetchAllProducts();
-			console.log(products);
-			return products;
-		} catch (error) {
+			products = await fetchAllProducts();
+			if (products.length === 0) {
+				error = 'Aucun produit trouvé.';
+			} else {
+				error = null;
+			}
+		} catch (err) {
+			error = (err as Error).message;
 			console.error('Erreur lors de la récupération des produits :', error);
-		}
 		
+		}
 	}
+
 	// reload products after deletion
 	function handleProductDeleted() {
 		loadProducts();
 	}
+	
 </script>
 
 <Header />

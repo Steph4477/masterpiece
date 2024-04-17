@@ -53,7 +53,7 @@
 					Description :
 					<textarea id="description" aria-label="Description" name="description" value={product.description} />
 				</label>
-				<label for="category">Catégorie :</label>
+				
 				<label>
 					Stock :
 					<input type="number" aria-label="stock de l'article" name="stock" value={product.stock} />
@@ -106,7 +106,7 @@
 		font-weight: bold;
 	}
 
-	input, select, textarea {
+	input, textarea {
 		width: 100%;
 		padding: 10px;
 		margin-bottom: 16px;

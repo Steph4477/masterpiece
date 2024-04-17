@@ -4,7 +4,7 @@
 	onMount(() => {
 		setTimeout(() => {
 			window.location.href = '/forms/login';
-		}, 2000);
+		}, 800);
 	});
 </script>
 
