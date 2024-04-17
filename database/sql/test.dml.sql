@@ -24,5 +24,4 @@ insert into products (reference, name, description) values
     ('CD890123', 'Jeans - Levis 501', 'Jeans emblématiques de Levis avec un ajustement classique et confortable'),
     ('CD901234', 'Fruits de saison - Pommes Granny Smith', 'Délicieuses pommes croquantes et juteuses pour une collation saine'),
     ('CD012345', 'Montre - Rolex Submariner', 'Montre de plongée de luxe avec un design emblématique et des caractéristiques exceptionnelles');
-   
-insert into products_sold (mer)
+

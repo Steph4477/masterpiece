@@ -12,23 +12,6 @@
 		price: ''
 	};
 
-	// // manage event when file is selected
-	// const handleFileChange = (event: any) => {
-	// 	// File reader is api Web for to read the file content
-	// 	const reader = new FileReader();
-	// 	// When the file is read, the event is triggered
-	// 	reader.onload = (event) => {
-	// 		// If the event target and the result are not null, we assign the result
-	// 		// to the image property of the formData object
-	// 		if (event.target && event.target.result) {
-	// 			formData.image = event.target.result as string;
-	// 		}
-	// 	};
-	// 	// Read the file as a data URL
-	// 	reader.readAsDataURL(event.target.files[0]);
-	// };
-
-	// Function to handle form submission
 	// Function to handle form submission
 	const postForm = async () => {
 		const token = localStorage.getItem('accessToken');
@@ -131,7 +114,7 @@
 	}
 
 	input,
-	select,
+	
 	textarea {
 		width: 100%;
 		padding: 10px;

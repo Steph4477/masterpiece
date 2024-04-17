@@ -9,8 +9,8 @@ import { MerchantService } from 'src/Merchant/merchant.service';
     TypeOrmModule.forFeature([Merchant]),
     JwtModule.register({
       global: true,
-      secret: '4ab59554-8833-46a0-8cfa-fe47a99add80-125c87a1-ec49-439b-98ed-d5463b0e1ae8',
-      signOptions: { expiresIn: '60d' },
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '1h' },
     }),
   ],
   providers: [MerchantService],

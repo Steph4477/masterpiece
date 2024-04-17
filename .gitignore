@@ -36,11 +36,11 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # dotenv environment variable files
-frontend.env
-backend.env
-adminer.env
-posgres.env
-*.env
+#frontend.env
+#backend.env
+#adminer.env
+#posgres.env
+#*.env
 .env.development.local
 .env.test.local
 .env.production.local

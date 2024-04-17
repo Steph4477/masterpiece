@@ -33,7 +33,6 @@
 		password: '',
 		passwordValidation: '',
 		siret: '',
-		headQuarter: ''
 	};
 
 	// Variables to control password visibility
@@ -115,9 +114,6 @@
 
 			<label for="siret"> N° de SIRET :</label>
 			<input type="text" id="siret" bind:value={formData.siret} required />
-
-			<label for="headQuarter">Adresse siège social:</label>
-			<input type="text" id="headQuarter" bind:value={formData.headQuarter} required />
 
 			{#each errorMessages as message (message)}
 				<p class="error">{message}</p>

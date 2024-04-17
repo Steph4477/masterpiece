@@ -12,29 +12,29 @@ export class ProductController {
         return await this.productService.createProductByMerchantId(id, product);
     }
    
-
     @Get('/merchant_id/:id')
     @HttpCode(200)
     async getProductsByMerchantId(@Param('id') id: number){
         return await this.productService.getProductsByMerchantId(id);
     }
 
+    @Get('/:id')
+    @HttpCode(200)
+    async getProduct(@Param('id') id: number) {
+        return await this.productService.getProduct(id);
+    }
 
     @Delete('/:id')
     @HttpCode(200)
-    async deleteProduct(@Param('id') id: string) {
+    async deleteProduct(@Param('id') id: number) {
         return await this.productService.deleteProduct(id);
     }
 
     @Put('/:id')
     @HttpCode(200)
-    async updateProduct(@Param('id') id: string, @Body() product: ProductDto) {
+    async updateProduct(@Param('id') id: number, @Body() product: ProductDto) {
         return await this.productService.updateProduct(id, product);
     }
 
-    @Patch('/:id')
-    @HttpCode(200)
-    async partialUpdateProduct(@Param('id') id: string, @Body() product: ProductDto) {
-        return await this.productService.updateProduct(id, product);
-    }
+
 }

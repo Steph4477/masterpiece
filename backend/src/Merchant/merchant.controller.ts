@@ -2,8 +2,6 @@ import { Controller, Res, Post, Body, HttpCode} from '@nestjs/common';
 import { MerchantService } from './merchant.service';
 import { MerchantDto } from './dto/merchant.dto';
 import { AuthDto } from 'src/Auth/dto/auth.dto';
-import { Response } from 'express';
-
 
 @Controller()
 export class MerchantController {
@@ -22,8 +20,8 @@ export class MerchantController {
     //     response.cookie('auth', accessToken, { maxAge: 60 * 60 * 24, httpOnly: true });
     //     return { message };
     // }
-    async signIn(@Body() merchant: AuthDto) {
-        const { accessToken } = await this.merchantService.signIn(merchant);
+    async login(@Body() merchant: AuthDto) {
+        const { accessToken } = await this.merchantService.login(merchant);
         return { accessToken };
     }
 }

@@ -39,14 +39,14 @@ export class MerchantService {
         // Create a new Merchant object
         const newMerchant = new Merchant();
         newMerchant.email = merchant.email;
-        newMerchant.password = merchant.password;
+        newMerchant.password = hashedPassword;
         newMerchant.siret = merchant.siret;
         
         // Save the new Merchant object to the database
         return await this.merchantRepository.save(newMerchant);
     }
 
-    async signIn(authDto: AuthDto) {
+    async login(authDto: AuthDto) {
         try {
             const merchant = await this.merchantRepository.findOne({ where: { email: authDto.email } });
     
@@ -55,12 +55,12 @@ export class MerchantService {
                 throw new UnauthorizedException('password ou email incorrect.');
             }
             // Verify password
-            //const isPasswordValid = MerchantHash.verifyPassword(authDto.password, merchant.password);
+            const isPasswordValid = MerchantHash.verifyPassword(authDto.password, merchant.password);
     
-            // if (!isPasswordValid) {
-            //     // Handle case when password is not valid
-            //     throw new UnauthorizedException('password ou email incorrect.');
-            // }
+            if (!isPasswordValid) {
+                // Handle case when password is not valid
+                throw new UnauthorizedException('password ou email incorrect.');
+            }
     
             // If password is valid, generate and return JWT token
             const payload = { email: merchant.email, sub: merchant.id };
@@ -75,9 +75,5 @@ export class MerchantService {
             // Handle database or other errors
             throw error;
         }
-    }
-
-    findOneById(id: any) {
-        return this.merchantRepository.findOne({ where: { id: id } });
     }
 }
