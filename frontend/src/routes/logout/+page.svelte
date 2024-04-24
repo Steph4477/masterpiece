@@ -28,7 +28,7 @@
 		justify-content: center;
 		margin-bottom: 5vh;
 		cursor: pointer;
-		color: #FD6060;
+		color: #ff004c;
 		margin-left: 2vh;
 	}
 
@@ -38,9 +38,11 @@
 		justify-content: center;
 		height: 90px;
 		width: 90px;
+
 		border-radius: 50%;
 		margin-top: 10vh;
 		margin-bottom: 10vh;
+
 		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 	}
 
