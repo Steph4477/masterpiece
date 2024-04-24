@@ -1,4 +1,4 @@
-import { Controller, Res, Post, Body, HttpCode} from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, BadRequestException } from '@nestjs/common';
 import { MerchantService } from './merchant.service';
 import { MerchantDto } from './dto/merchant.dto';
 import { AuthDto } from 'src/Auth/dto/auth.dto';
@@ -9,20 +9,33 @@ export class MerchantController {
 
     @Post('/register')
     @HttpCode(201)
-    register(@Body() merchant: MerchantDto) {
-        return this.merchantService.register(merchant);
+    async register(@Body() merchant: MerchantDto) {
+        try {
+            await this.merchantService.register(merchant);
+            return { message: 'Compte créé avec succès' };
+        } catch (error) {
+            // Vérifiez le type d'erreur et renvoyez un message approprié
+            if (error instanceof BadRequestException) {
+                throw new BadRequestException(error.message);
+            } else {
+                throw new BadRequestException('Une erreur est survenue lors de la création du compte');
+            }
+        }
     }
 
     @Post('/login')
     @HttpCode(201)
-    // async signIn(@Body() merchant: AuthDto, @Res({ passthrough: true }) response: Response) {
-    //     const { message, accessToken }: { message: string, accessToken: string } = await this.merchantService.signIn(merchant);
-    //     response.cookie('auth', accessToken, { maxAge: 60 * 60 * 24, httpOnly: true });
-    //     return { message };
-    // }
     async login(@Body() merchant: AuthDto) {
-        const { accessToken } = await this.merchantService.login(merchant);
-        return { accessToken };
+        try {
+            const { accessToken } = await this.merchantService.login(merchant);
+            return { accessToken };
+        } catch (error) {
+            // Vérifiez le type d'erreur et renvoyez un message approprié
+            if (error instanceof BadRequestException) {
+                throw new BadRequestException(error.message);
+            } else {
+                throw new BadRequestException('Une erreur est survenue lors de la connexion');
+            }
+        }
     }
 }
-

@@ -6,19 +6,35 @@
 
 	export let email = '';
 	export let password = '';
+	let errorMessages: string[] = [];
 
 	const handleLogin = async () => {
+		// Reset error messages
+		errorMessages = [];
+
 		try {
 			const responseData = await fetchData('/login', 'POST', { email, password });
 			console.log('Login successful:', responseData);
 
 			// Send if connected in local storage
 			localStorage.setItem('accessToken', responseData.accessToken);
-
+			localStorage.setItem('is_logged_in', 'true');
 			// Redirect to success page
-			goto('/');
+			goto('/success');
 		} catch (error) {
-			console.error('Error:', error);
+			console.error('Error during POST request:', error);
+
+			if (
+				(error as any).response &&
+				(error as any).response.data &&
+				(error as any).response.data.errors
+			) {
+				// Backend returned error messages
+				errorMessages = (error as any).response.data.errors;
+			} else {
+				// Default error message
+				errorMessages.push("Une erreur s'est produite lors du traitement de la demande.");
+			}
 		}
 	};
 
@@ -47,7 +63,7 @@
 				autocomplete="email"
 				aria-label="Email"
 				bind:value={email}
-				required
+				
 			/>
 
 			<label for="password">Mot de passe :</label>
@@ -75,6 +91,14 @@
 					{/if}
 				</button>
 			</div>
+
+			{#if errorMessages.length > 0}
+				<div class="error-container">
+					{#each errorMessages as message (message)}
+						<p class="error">{message}</p>
+					{/each}
+				</div>
+			{/if}
 
 			<button type="submit" class="submit" aria-label="Se connecter">Se connecter</button>
 		</form>
@@ -146,9 +170,6 @@
 
 	.submit {
 		margin-top: 5vh;
-	}
-
-	button {
 		padding: 10px;
 		background-color: #4caf50;
 		border: none;
@@ -157,7 +178,15 @@
 		color: white;
 	}
 
-	button:hover {
+	.submit:hover {
 		background-color: #45a049;
+	}
+
+	.error-container {
+		margin-top: 10px;
+	}
+
+	.error {
+		color: red;
 	}
 </style>

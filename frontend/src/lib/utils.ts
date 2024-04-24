@@ -22,12 +22,7 @@ export async function fetchData(endpoint: string, method: string, body?: any) {
     if (response.ok) {
         return response.json();
     } else {
-        try {
-            const errorData = await response.json();
-            throw new Error(errorData.message);
-        } catch (error) {
-            throw new Error('Erreur lors de la requête');
-        }
+        throw new Error('Erreur lors de la requête');
     }
 }
 
