@@ -6,35 +6,28 @@
 
 	export let email = '';
 	export let password = '';
-	let errorMessages: string[] = [];
+
+	//Regex patterns for validation as strings
+	const emailPattern = '^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$';
+	const passwordPattern = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$';
+
+	let errorMessages: any = [];
 
 	const handleLogin = async () => {
-		// Reset error messages
-		errorMessages = [];
-
+		// Check if any of the fields are invalid
+		if (!new RegExp(emailPattern).test(email) || !new RegExp(passwordPattern).test(password)) {
+			errorMessages = ["Veuillez vérifier l'email ou le mot de passe."];
+			return errorMessages;
+		}
 		try {
 			const responseData = await fetchData('/login', 'POST', { email, password });
-			console.log('Login successful:', responseData);
-
 			// Send if connected in local storage
 			localStorage.setItem('accessToken', responseData.accessToken);
 			localStorage.setItem('is_logged_in', 'true');
 			// Redirect to success page
 			goto('/success');
 		} catch (error) {
-			console.error('Error during POST request:', error);
-
-			if (
-				(error as any).response &&
-				(error as any).response.data &&
-				(error as any).response.data.errors
-			) {
-				// Backend returned error messages
-				errorMessages = (error as any).response.data.errors;
-			} else {
-				// Default error message
-				errorMessages.push("Une erreur s'est produite lors du traitement de la demande.");
-			}
+			errorMessages = ["Mot de passe ou email invalides."];
 		}
 	};
 
@@ -46,6 +39,11 @@
 		const passwordInput = document.getElementById('password') as HTMLInputElement;
 		passwordInput.type = passwordVisible ? 'text' : 'password';
 	};
+
+	// Function to determine if a class should be added based on the validation pattern and value of the input
+	function selectedClass(pattern: string, value: string) {
+		return value !== '' && !new RegExp(pattern).test(value) ? 'invalid' : '';
+	}
 </script>
 
 <Header />
@@ -59,11 +57,9 @@
 			<input
 				type="email"
 				id="email"
-				name="email"
-				autocomplete="email"
-				aria-label="Email"
 				bind:value={email}
-				
+				pattern={emailPattern}
+				class={selectedClass(emailPattern, email)}
 			/>
 
 			<label for="password">Mot de passe :</label>
@@ -71,11 +67,9 @@
 				<input
 					type="password"
 					id="password"
-					name="password"
-					autocomplete="current-password"
-					aria-label="Mot de passe"
 					bind:value={password}
-					required
+					pattern={passwordPattern}
+					class={selectedClass(passwordPattern, password)}			
 				/>
 
 				<button
@@ -91,11 +85,10 @@
 					{/if}
 				</button>
 			</div>
-
 			{#if errorMessages.length > 0}
-				<div class="error-container">
-					{#each errorMessages as message (message)}
-						<p class="error">{message}</p>
+				<div>
+					{#each errorMessages as errorMessage}
+						<p class="error">{errorMessage}</p>
 					{/each}
 				</div>
 			{/if}
@@ -113,6 +106,14 @@
 	.aside-container {
 		margin-top: 150px;
 		margin-left: 10px;
+	}
+
+	input:focus {
+		outline: none;
+	}
+
+	.invalid {
+		border: 1px solid red;
 	}
 
 	.form-container {
@@ -162,6 +163,11 @@
 		padding: 10px;
 	}
 
+	.error{
+		color: red;
+		margin-top: 5vh;
+	}
+
 	.password {
 		display: flex;
 		align-items: center;
@@ -170,6 +176,9 @@
 
 	.submit {
 		margin-top: 5vh;
+	}
+
+	button {
 		padding: 10px;
 		background-color: #4caf50;
 		border: none;
@@ -178,15 +187,7 @@
 		color: white;
 	}
 
-	.submit:hover {
+	button:hover {
 		background-color: #45a049;
-	}
-
-	.error-container {
-		margin-top: 10px;
-	}
-
-	.error {
-		color: red;
 	}
 </style>
