@@ -4,13 +4,14 @@
 	export let color = '';
 	export let icone = '';
 	export let href = '';
+
+	let isLoggedIn = typeof window !== 'undefined' && window.localStorage.getItem('is_logged_in') === 'true';
+    href = isLoggedIn ? href : '';
 </script>
 
 <a {href}>
 	<button
-		style="background-color: {customColor};
-  color: {color};"
-		on:click={() => console.log('Bouton cliqué')}
+		style="background-color: {customColor}; color: {color};"
 	>
 		{#if icone}
 			<div class="icon">
@@ -20,7 +21,6 @@
 		{label}
 	</button>
 </a>
-
 
 <style>
 	button {
