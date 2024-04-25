@@ -117,6 +117,7 @@
 		flex-wrap: wrap;
 		margin-top: 5vh;
 		width: 100%;
+		
 	}
 
 	div {
