@@ -10,6 +10,9 @@ export class Product {
     reference: string;
 
     @Column()
+    image: string;
+
+    @Column()
     name: string;
 
     @Column()

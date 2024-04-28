@@ -25,6 +25,7 @@ export class ProductService {
     
         const newProduct = new Product();
         newProduct.reference = product.reference;
+        newProduct.image = product.image;
         newProduct.name = product.name;
         newProduct.description = product.description;
         newProduct.stock = product.stock;

@@ -34,7 +34,6 @@
 			localStorage.setItem('is_logged_in', 'true');
 			// Redirect to login page
 			goto('/forms/login');
-
 		} catch (error) {
 			showErrors = true;
 			errorMessages.push('Un compte avec le même SIRET ou email existe déjà.');

@@ -55,6 +55,7 @@
 							<div class="card-product">
 								<a href="/products/{product.id}" class="productId">
 									<span class="click">Cliquez pour Modifier</span>
+									<img src={product.image} alt={product.name} class="image" />
 									<h2 class="name">{product.name}</h2>
 									<p>Référence : {product.reference}</p>
 									<p>Description : {product.description}</p>
@@ -112,6 +113,13 @@
 		font-size: 1.5rem;
 		font-weight: bold;
 		color: black;
+	}
+	.image {
+		width: 200px;
+		height: auto;
+		margin-top: 5vh;
+		object-fit: cover;
+		border-radius: 20px;
 	}
 	.product-button {
 		font-weight: bold;
