@@ -4,7 +4,7 @@ CREATE TABLE merchants (
     id SERIAL,
     siret VARCHAR(14) NOT NULL,
     email VARCHAR(60) NOT NULL,
-    password VARCHAR NOT NULL,
+    password CHAR(161) NOT NULL,
     CONSTRAINT merchants_pk PRIMARY KEY (id),
     CONSTRAINT merchants_siret UNIQUE (siret)
 );
@@ -12,6 +12,7 @@ CREATE TABLE merchants (
 CREATE TABLE products (
     id SERIAL,
     reference VARCHAR(8) NOT NULL,
+    image VARCHAR,
     name VARCHAR NOT NULL,
     description TEXT NOT NULL,
     price INT NOT NULL DEFAULT 0,

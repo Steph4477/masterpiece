@@ -2,15 +2,32 @@
 	import Header from '$lib/components/Header.svelte';
 	import Aside from '$lib/components/Aside.svelte';
 	import { fetchDataWithMerchantId } from '$lib/utils';
-
+	import { goto } from '$app/navigation';
 	// Form data object
 	let formData = {
 		reference: '',
 		name: '',
 		description: '',
 		stock: '',
-		price: ''
+		price: '',
+		image: ''
 	};
+	// manage event when file is selected
+	const handleFileChange = (event: any) => {
+		// File reader is api Web for to read the file content
+		const reader = new FileReader();
+		// When the file is read, the event is triggered
+		reader.onload = (event) => {
+			// If the event target and the result are not null, we assign the result
+			// to the image property of the formData object
+			if (event.target && event.target.result) {
+				formData.image = event.target.result as string;
+			}
+		};
+		// Read the file as a data URL
+		reader.readAsDataURL(event.target.files[0]);
+	};
+
 
 	// Function to handle form submission
 	const postForm = async () => {
@@ -29,6 +46,7 @@
 				stock: Number(formData.stock)
 			});
 			console.log('Backend Response:', data);
+			goto('/products');
 		} catch (error) {
 			console.error('Error during POST request:', error);
 		}
@@ -50,6 +68,14 @@
 				aria-label="Reference"
 				bind:value={formData.reference}
 				required
+			/>
+			<label for="image">Image :</label>
+			<input
+				type="file"
+				id="image"
+				aria-label="ajouter une image"
+				on:change={handleFileChange}
+				accept=".png, .jpg, .jpeg"
 			/>
 			<label for="name">Nom :</label>
 			<input type="text" id="name" aria-label="Nom" bind:value={formData.name} required />
@@ -114,7 +140,6 @@
 	}
 
 	input,
-	
 	textarea {
 		width: 100%;
 		padding: 10px;

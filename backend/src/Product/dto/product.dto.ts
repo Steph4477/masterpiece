@@ -3,6 +3,8 @@ import { IsNotEmpty } from 'class-validator';
 export class ProductDto {
     @IsNotEmpty({ message: 'La référence du produit est obligatoire' })
     reference: string;
+
+    image: string;
     
     @IsNotEmpty({ message: 'Le nom du produit à vendre est obligatoire ' })
     name: string;
