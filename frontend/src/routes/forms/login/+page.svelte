@@ -23,11 +23,10 @@
 			const responseData = await fetchData('/login', 'POST', { email, password });
 			// Send if connected in local storage
 			localStorage.setItem('accessToken', responseData.accessToken);
-			localStorage.setItem('is_logged_in', 'true');
 			// Redirect to success page
 			goto('/success');
 		} catch (error) {
-			errorMessages = ["Mot de passe ou email invalides."];
+			errorMessages = ['Mot de passe ou email invalides.'];
 		}
 	};
 
@@ -69,7 +68,7 @@
 					id="password"
 					bind:value={password}
 					pattern={passwordPattern}
-					class={selectedClass(passwordPattern, password)}			
+					class={selectedClass(passwordPattern, password)}
 				/>
 
 				<button
@@ -104,8 +103,8 @@
 	}
 
 	.aside-container {
-		margin-top: 150px;
 		margin-left: 10px;
+		margin-top: 150px;
 	}
 
 	input:focus {
@@ -118,64 +117,72 @@
 
 	.form-container {
 		display: flex;
-		width: 100%;
+		width: 90%;
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
 	}
 
-	.eye {
+	label {
+		display: block;
+		margin-bottom: 2vh;
+		font-weight: bold;
+		margin-top: 5vh;
+	}
+
+	input {
+		padding: 10px;
+		
+	}
+
+	.error {
+		color: red;
+		
+	}
+
+	.passwordPattern {
+		position: relative;
 		display: flex;
-		text-align: center;
+		
+	}
+
+	.eye {
+		position: absolute;
+		right: 41%;
 		border: none;
 		cursor: pointer;
-		background: white;
+		background: none;
 		color: black;
 	}
 
 	.fa-eye,
 	.fa-eye-slash {
 		font-size: 1rem;
-		margin-left: -2rem;
+		margin-left: -3rem;
 		cursor: pointer;
 	}
 
 	.eye:hover {
-		background: white;
+		background: none;
 		color: black;
 	}
 
 	.formulary {
-		max-width: 400px;
 		margin: 2rem;
 		padding: 2rem;
 		border-radius: 8px;
-	}
-
-	label {
-		display: block;
-		font-weight: bold;
-		margin-top: 5vh;
-	}
-
-	input {
-		width: 100%;
-		padding: 10px;
-	}
-
-	.error{
-		color: red;
-		margin-top: 5vh;
 	}
 
 	.password {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		margin-bottom: 5vh;
 	}
 
 	.submit {
-		margin-top: 5vh;
+		color: white;
+		width: 80%;
 	}
 
 	button {
@@ -184,10 +191,15 @@
 		border: none;
 		border-radius: 4px;
 		cursor: pointer;
-		color: white;
 	}
 
 	button:hover {
 		background-color: #45a049;
+	}
+	
+	@media (max-width: 576px) {
+		.eye{
+			right: 20%;
+		}
 	}
 </style>

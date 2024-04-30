@@ -31,7 +31,7 @@
 		try {
 			const data = await fetchData('/register', 'POST', formData);
 			// Send if connected in local storage for icon display
-			localStorage.setItem('is_logged_in', 'true');
+			
 			// Redirect to login page
 			goto('/forms/login');
 		} catch (error) {
@@ -203,7 +203,7 @@
 
 	.aside-container {
 		margin-left: 10px;
-		margin-top: 500px;
+		margin-top: 400px;
 	}
 
 	input:focus {
@@ -217,15 +217,10 @@
 	.form-container {
 		display: flex;
 		margin-top: 5vh;
-		width: 100%;
+		width: 90%;
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-	}
-
-	form {
-		max-width: 400px;
-		margin: auto;
 	}
 
 	label {
@@ -235,9 +230,9 @@
 	}
 
 	input {
-		width: 100%;
 		padding: 10px;
 		margin-bottom: 16px;
+		
 	}
 
 	.error {
@@ -249,18 +244,17 @@
 		margin-top: 10px;
 	}
 	.eye {
-		display: flex;
-		text-align: center;
+		position: absolute;
 		border: none;
 		cursor: pointer;
-		background: white;
+		background: none;
 		color: black;
 	}
 
 	.fa-eye,
 	.fa-eye-slash {
 		font-size: 1rem;
-		margin-left: -2rem;
+		margin-left: -3rem;
 		cursor: pointer;
 	}
 
@@ -277,6 +271,7 @@
 		cursor: pointer;
 	}
 	.submit {
+		width: 80%;
 		color: white;
 	}
 
@@ -284,9 +279,8 @@
 		background-color: #45a049;
 	}
 
-	.password {
-		display: flex;
-		width: 100%;
+	.passwordPattern {
+		position: relative;
 	}
 
 	.login {

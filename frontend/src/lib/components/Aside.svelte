@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	let isLoggedIn = false;
+	let isLoggedIn: string | null = null;
 
 	onMount(() => {
-		isLoggedIn = localStorage.getItem('is_logged_in') === 'true';
+		isLoggedIn = localStorage.getItem('accessToken');
 	});
 
-	function logout() {
-		localStorage.setItem('is_logged_in', 'false');
+	function deleteToken() {
+		localStorage.removeItem('accessToken');
 	}
 </script>
 
@@ -18,10 +18,15 @@
 		href="/logout"
 		class="fa-solid fa-door-open"
 		style="display: {isLoggedIn ? 'block' : 'none'}"
-		on:click={logout}
+		on:click={deleteToken}
 		aria-label="Logout"
 	></a>
-	<i class="fa-solid fa-door-closed" style="display: {isLoggedIn ? 'none' : 'block'}"></i>
+	<a 
+		href="/forms/login"
+		class="fa-solid fa-door-closed" 
+		style="display: {isLoggedIn ? 'none' : 'block'}" 
+		aria-label="Logout" 
+	></a>
 </div>
 
 <style>
@@ -29,6 +34,7 @@
 		display: flex;
 		flex-direction: column;
 		position: fixed;
+		margin-left: -5vh;
 	}
 
 	i {
