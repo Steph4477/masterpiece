@@ -27,17 +27,10 @@
 		// Read the file as a data URL
 		reader.readAsDataURL(event.target.files[0]);
 	};
-
+	let errorMessages: any = [];
 
 	// Function to handle form submission
 	const postForm = async () => {
-		const token = localStorage.getItem('accessToken');
-		if (!token) {
-			console.error('No token found');
-			// Gérer ici le cas où l'utilisateur n'est pas connecté, par exemple, rediriger vers la page de connexion.
-			return;
-		}
-
 		try {
 			// Convert price to number before sending to the server
 			const data = await fetchDataWithMerchantId({
@@ -48,7 +41,7 @@
 			console.log('Backend Response:', data);
 			goto('/products');
 		} catch (error) {
-			console.error('Error during POST request:', error);
+			errorMessages = ['La reférence du produit existe déjà.'];
 		}
 	};
 </script>
@@ -103,6 +96,13 @@
 				placeholder="Prix en €"
 				bind:value={formData.price}
 			/>
+			{#if errorMessages.length > 0}
+				<div>
+					{#each errorMessages as errorMessage}
+						<p class="error">{errorMessage}</p>
+					{/each}
+				</div>
+			{/if}
 			<button type="submit" aria-label="Ajouter le produit">Ajouter le produit</button>
 			<a href="/products" class="return">Retour</a>
 		</form>
@@ -139,6 +139,11 @@
 		font-weight: bold;
 	}
 
+	.error {
+		color: red;
+		
+	}
+
 	input,
 	textarea {
 		width: 100%;
@@ -149,6 +154,7 @@
 	textarea {
 		height: 100px;
 	}
+	
 	button,
 	a,
 	.return {

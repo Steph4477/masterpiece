@@ -4,10 +4,10 @@
 	import Aside from '$lib/components/Aside.svelte';
 	import Header from '$lib/components/Header.svelte';
 	
-	let isLoggedIn = false;
+	let isLoggedIn: string | null = null;
 
 	onMount(() => {
-		isLoggedIn = localStorage.getItem('is_logged_in') === 'true';
+		isLoggedIn = localStorage.getItem('accessToken');
 	});
 </script>
 
@@ -59,7 +59,7 @@
 
 	.aside-container {
 		margin-top: 350px;
-		margin-left: 10px;
+		
 	}
 
 	.home {
@@ -130,5 +130,28 @@
 		margin-top: 5vh;
 		width: 100%;
 		height: 15px;
+	}
+
+	@media (max-width: 576px) {
+		.title {
+			font-size: 2rem;
+		}
+
+		.b {
+			font-size: 50px;
+		}
+
+		.p {
+			font-size: 50px;
+		}
+
+		.i {
+			font-size: 50px;
+		}
+
+		.m {
+			font-size: 50px;
+		}
+
 	}
 </style>

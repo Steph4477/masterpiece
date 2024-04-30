@@ -5,7 +5,7 @@
 	export let icone = '';
 	export let href = '';
 
-	let isLoggedIn = typeof window !== 'undefined' && window.localStorage.getItem('is_logged_in') === 'true';
+	let isLoggedIn = typeof window !== 'undefined' && window.localStorage.getItem('accessToken');
     href = isLoggedIn ? href : '';
 </script>
 
@@ -46,4 +46,6 @@
 	.icon {
 		margin-bottom: 10px;
 	}
+
+	
 </style>

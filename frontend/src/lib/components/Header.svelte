@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    let isLoggedIn = false;
+    let isLoggedIn: string | null = null;
 
     onMount(() => {
-        isLoggedIn = localStorage.getItem('is_logged_in') === 'true';	
+        isLoggedIn = localStorage.getItem('accessToken');	
     });
 </script>
 
@@ -23,9 +23,10 @@
 <style>
 	header {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
 		position: fixed;
         top: 20px;
+		margin-left: -5vh;
     }
 
 	.fa-house {
@@ -40,6 +41,7 @@
 	.search {
 		display: flex;
 		align-items: center;
+		width: 100%;
 	}
 
 	.input {
@@ -47,7 +49,7 @@
 		border: gray 1px solid;
 		border-radius: 0.5rem;
 		margin-right: 2rem;
-		width: 300px;
+		width: 350px;
 		flex-grow: 1;
 	}
 
@@ -57,11 +59,16 @@
 		border: none;
 		background-color: white;
 		font-size: 20px;
+		margin-right: 1vh;
 	}
 
 	@media (max-width: 576px) {
+		header {
+			width: 100%;
+		}
+		
 		.input {
-			width: 200px;
+			margin-right: 3rem;
 		}
 	}
 </style>
