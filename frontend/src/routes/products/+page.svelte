@@ -61,7 +61,7 @@
 									<p>Description : {product.description}</p>
 									<div class="product-button">
 										<p>Stock : {product.stock}</p>
-										<p class="product-button-price">Prix : {product.price + ' €'}</p>
+										<p>Prix : {product.price + ' €'}</p>
 									</div>
 								</a>
 							</div>
@@ -78,16 +78,18 @@
 	.main {
 		display: flex;
 	}
-
+	
 	.container {
 		display: flex;
-		flex-direction: column;
 		margin: 0 auto;
+		flex-direction: column;
+		/* margin: 0 auto; */
 	}
 
 	.title {
-		font-size: 2rem;
+		font-size: 1.5rem;
 		margin-bottom: 20px;
+		text-align: center;
 		font-weight: bold;
 		color: black;
 	}
@@ -100,9 +102,8 @@
 	.card-product {
 		padding: 20px;
 		border-radius: 20px;
-		margin: 5vh;
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-		border: solid 1px black;
+		border: solid 1px black;	
 	}
 
 	.card-product:hover {
@@ -114,17 +115,19 @@
 		font-weight: bold;
 		color: black;
 	}
+
 	.image {
-		width: 200px;
-		height: auto;
 		margin-top: 5vh;
 		object-fit: cover;
 		border-radius: 20px;
+		width: 280px;
+		height: 250px;
 	}
+
 	.product-button {
 		font-weight: bold;
 		text-align: right;
-		padding: 1rem;
+		padding: 0.3rem;
 		background-color: #fd6060;
 		border-radius: 10px;
 		color: white;
@@ -133,7 +136,6 @@
 	.list-container {
 		display: flex;
 		align-items: center;
-		width: 100%;
 		flex-direction: column;
 		margin-top: 5vh;
 	}
@@ -144,13 +146,12 @@
 
 	.button-container {
 		display: flex;
-		width: 100%;
 		justify-content: center;
 	}
 
 	.add {
 		padding: 10px;
-		width: 200px;
+		width: 100%;
 		background-color: #fd6060;
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 		border-radius: 20px;
@@ -177,5 +178,27 @@
 
 	ul {
 		list-style-type: none;
+	}
+
+	@media (max-width: 376px) {
+		
+		.container {
+			width: 100%;
+		}
+
+		.card-product {
+			width: 100%;
+		}
+
+		.image {
+			width: 180px;
+			height: 150px;
+		}
+
+		.product-button {
+			width: 100%;
+		}
+
+		
 	}
 </style>

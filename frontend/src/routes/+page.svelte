@@ -25,7 +25,7 @@
 		</p>
 		<h1>Gérer votre business ?!</h1>
 		<div class="buttons">
-			<div>
+			<div class="button-top">
 				<ButtonsFunc
 					label="Stats"
 					customColor="#00C2FF"
@@ -40,8 +40,8 @@
 					icone="fa-solid fa-boxes-packing"
 					href="/products"
 				/>
-			</div>
-			<div>
+			</div>	
+			<div class="button-bottom">
 				<ButtonsFunc label="Commands" customColor="#FFDF8C" icone="fa-solid fa-clipboard-check" />
 				<ButtonsFunc label="Clients" customColor="#F8FD00" icone="fa-solid fa-users" />
 			</div>
@@ -65,7 +65,7 @@
 	.home {
 		display: flex;
 		flex-wrap: wrap;
-		
+		margin: 0;
 	}
 
 	.filter-grayscale {
@@ -74,7 +74,6 @@
 
 	h1 {
 		display: flex;
-		font-size: 1.5rem;
 		justify-content: center;
 	}
 
@@ -111,7 +110,13 @@
 		font-weight: bold;
 		text-align: center;
 	}
-
+	.button-top {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin-top: 5vh;
+		width: 100%;
+	}
 	.buttons {
 		display: flex;
 		flex-wrap: wrap;
@@ -132,10 +137,7 @@
 		height: 15px;
 	}
 
-	@media (max-width: 576px) {
-		.title {
-			font-size: 2rem;
-		}
+	@media (max-width: 376px) {
 
 		.b {
 			font-size: 50px;

@@ -45,7 +45,8 @@ style: |
 &nbsp;
 
 &nbsp;
-
+<!--
+My name is Stephane Morel -->
 ---
 
 # Stéphane Morel

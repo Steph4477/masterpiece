@@ -18,6 +18,6 @@ export class ProductDto {
     @IsNotEmpty({ message: 'Le prix du produit est obligatoire' })
     price: number;
 
-    merchantId: any;
+    //merchantId: any;
 
 }

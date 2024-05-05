@@ -18,14 +18,22 @@
 		}
 	}
 </script>
-
+<div class="container">
+	
 <div class="button">
 	<button on:click={deleteProduct} class="button-delete">
 		<i class="fa-solid fa-trash"></i>
 	</button>
 </div>
+</div>
 
 <style>
+	.container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 1rem;
+	}
 	.button {
 		display: flex;
 		justify-content: center;
@@ -45,4 +53,5 @@
 	.button-delete:hover {
 		box-shadow: none;
 	}
+	
 </style>

@@ -50,12 +50,8 @@
 	}
 
 	h1 {
-		font-size: 2em;
 		font-weight: bold;
 	}
 
-	p,
-	span {
-		font-size: 1.5em;
-	}
+	
 </style>

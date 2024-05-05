@@ -36,8 +36,8 @@
 			goto('/forms/login');
 		} catch (error) {
 			showErrors = true;
-			errorMessages.push('Un compte avec le même SIRET ou email existe déjà.');
-			return errorMessages;
+			const message:any = (error as any).cause;
+			errorMessages.push(message);
 		}
 	};
 
