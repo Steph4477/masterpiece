@@ -17,12 +17,10 @@ export class ProductService {
     async createProductByMerchantId(id: number, product: ProductDto){
         // Find the merchant by ID
         const merchant = await this.merchantRepository.findOne({ where: { id: id } });
-        
         // If the merchant does not exist, throw an error
         if (!merchant) {
             throw new NotFoundException(`Merchant with ID ${id} not found`);
         }
-    
         const newProduct = new Product();
         newProduct.reference = product.reference;
         newProduct.image = product.image;
@@ -31,23 +29,25 @@ export class ProductService {
         newProduct.stock = product.stock;
         newProduct.price = product.price;
         newProduct.merchant = merchant
-    
         return await this.productRepository.save(newProduct);
+    }
+
+    async findProductByReference(reference: string) {
+        return await this.productRepository.findOne({ where: { reference } });
     }
     
     async getProductsByMerchantId(id: number){
         // Find the merchant by ID
         const merchant = await this.merchantRepository.find({ where: { id : id } });
-        
         // If the merchant does not exist, throw an error
         if (!merchant) {
             throw new NotFoundException(`Merchant with ID ${id} not found`);
         }
-    
         // Find and return the products associated with the merchant
         const products = await this.productRepository.find({ where: { merchant: merchant } });
         return products;
     }
+
     
     async getProduct(id: number) {
         return await this.productRepository.findOne({ where: { id: id } });

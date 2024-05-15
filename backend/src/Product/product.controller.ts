@@ -1,4 +1,4 @@
-import { Controller, Post, Body, HttpCode, Req, Get, Delete, Put, Param, Patch, Query } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, Req, Get, Delete, Put, Param, HttpException } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
 
@@ -9,9 +9,21 @@ export class ProductController {
     @Post('/merchant_id/:id')
     @HttpCode(201)
     async createProductByMerchantId(@Param('id') id: number, @Body() product: ProductDto) {
+        // Check if the product reference already exists
+        const existingProduct = await this.productService.findProductByReference(product.reference);
+        if (existingProduct) {
+            throw new HttpException('Product reference already exists', 400);
+        }
+    
+        // Check if mandatory fields are missing
+        if (!product.name || !product.price || !product.stock || !product.description) {
+            throw new HttpException('Some mandatory fields are missing', 400);
+        }
+    
+        // Create the product
         return await this.productService.createProductByMerchantId(id, product);
-    }
-   
+    }    
+
     @Get('/merchant_id/:id')
     @HttpCode(200)
     async getProductsByMerchantId(@Param('id') id: number){

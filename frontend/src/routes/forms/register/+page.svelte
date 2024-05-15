@@ -211,7 +211,7 @@
 	}
 
 	.invalid {
-		border: 1px solid red;
+		border: 3px solid red;
 	}
 
 	.form-container {

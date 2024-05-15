@@ -15,8 +15,8 @@ async function bootstrap() {
 
   app.enableCors({
     //origin: 'http://192.168.1.113:8080', //network simplon
-    origin: 'http://192.168.0.45:8080', //network perso
-    //origin: 'http://localhost:8080',
+    //origin: 'http://192.168.0.45:8080', //network perso
+    origin: 'http://localhost:8080',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });

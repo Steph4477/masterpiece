@@ -1,11 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,Table, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Merchant } from '../Merchant/merchant.entity';
+import { BaseEntityWithId } from '../BaseEntity/base.entity';
 
 @Entity('products')
-export class Product {
-    @PrimaryGeneratedColumn()
-    id: number; 
-
+export class Product extends BaseEntityWithId {
     @Column()
     reference: string;
 
@@ -27,5 +25,9 @@ export class Product {
     @ManyToOne(() => Merchant, merchant => merchant)
     @JoinColumn({ name: 'merchant_id' })
     merchant: Merchant;
+}
 
-}   
+
+
+
+

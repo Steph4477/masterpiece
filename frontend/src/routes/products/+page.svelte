@@ -147,6 +147,7 @@
 	.button-container {
 		display: flex;
 		justify-content: center;
+		margin-bottom: 5vh;
 	}
 
 	.add {
