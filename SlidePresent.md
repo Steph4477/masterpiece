@@ -144,7 +144,7 @@ Et plus particulièrement de la conception du front
 -->
 ---
 
-![bg](https://i.imgur.com/x4N34od.jpg) 
+![bg](https://i.imgur.com/MUiJv7B.jpg) 
 <!-- 13 
 J'ai procédé à la définition des zones de mes différents écrans. Ici, je vous montre un zoning, l'application est assez simple, mais l'important c'est de situer sur un écran, le type d'information qu'on a dans chacune des zones, l'en-tête, la navigation, etc.
 
@@ -174,7 +174,7 @@ Pour atteindre le formulaire de création d'article qui est le fil rouge de ma p
 
 ---
 
-![bg](https://i.imgur.com/AvbYh6N.jpg) 
+![bg](https://i.imgur.com/56zsnPe.jpg) 
 <!-- 16 
 Je vous présente la charte graphique où j'ai défini la palette de couleurs et la police que j'ai utilisée.
 
@@ -225,7 +225,7 @@ En introduction de cette slide, on a fait le choix d'un type de base de données
 -->
 ---
 
-![bg](https://i.imgur.com/5h5zYLu.jpg) 
+![bg](https://i.imgur.com/FiNpKPu.jpg) 
 <!-- 21 
 Et enfin le modèle physique de données. Il s'agit d'un script SQL qui met en place la base de données.
 Il s'agit de la transposition en code, en instruction SQL, du modèle logique de données et donc qui permet comme son nom l'indique d'aller créer physiquement le schéma de la base de données sur le disque dur dans un système physique. 
@@ -294,7 +294,7 @@ J'ai mis en place et suivi un principe d'architecture. Donc là, je vais présen
 -->
 ---
 
-![bg](https://i.imgur.com/vQik4Ga.jpg)
+![bg](https://i.imgur.com/3dylDE7.jpg)
 <!-- 27 
 
 !!! .... !!!
@@ -332,7 +332,7 @@ Je vais passer à la partie implémentation après avoir conçu les 3 couches de
 <!-- 30 -->
 ---
 
-![bg](https://i.imgur.com/YnRD8fs.jpg) 
+![bg](https://i.imgur.com/2xvN9ve.jpg) 
 
 <!-- 31 
 Parler du router
@@ -340,17 +340,17 @@ Parler du router
 -->
 ---
 
-![bg](https://i.imgur.com/7EQApPQ.jpg)
+![bg](https://i.imgur.com/xlGExB6.jpg)
 <!-- 32  
 app.html
 -->
 ---
 
-![bg](https://i.imgur.com/jFdlSDa.jpg) 
+![bg](https://i.imgur.com/ObAGwqa.jpg) 
 <!-- 33 -->
 ---
 
-![bg](https://i.imgur.com/LZtn9mv.jpg) 
+![bg](https://i.imgur.com/gXgnhlq.jpg) 
 <!-- 34 
 réactivité
 UX
@@ -358,29 +358,29 @@ UX
 -->
 ---
 
-![bg](https://i.imgur.com/ovndXm2.jpg) 
+![bg](https://i.imgur.com/3nNd8BU.jpg) 
 <!-- 35 
 validation du formulaire avec des regex sinon message d'erreurs
 -->
 ---
 
-![bg](https://i.imgur.com/RVZCil3.jpg) 
+![bg](https://i.imgur.com/ExY0iu2.jpg) 
 <!-- 36 
 couleur rouge
 validation des regex
 -->
 ---
 
-![bg](https://i.imgur.com/kKa69wY.jpg) 
+![bg](https://i.imgur.com/dma0Bnk.jpg) 
 <!-- 37 
 aria-label
 test accessibilité
 -->
 ---
 
-![bg](https://i.imgur.com/zovJJgG.jpg) 
+![bg](https://i.imgur.com/Ax01duC.jpg) 
 <!-- 38 
-fonction fetch de base pour factoriser mon code pour les autres fetch
+fonction fetch de base pour factoriser mon code pour les autres fetch, variable d'environement
 
 -->
 ---
@@ -389,7 +389,7 @@ fonction fetch de base pour factoriser mon code pour les autres fetch
 <!-- 39 -->
 ---
 
-![bg](https://i.imgur.com/e1mGg4P.jpg) 
+![bg](https://i.imgur.com/UvyLLeA.jpg) 
 <!-- 40 
 on retrouve notre Base entity
 chaque entity et dans un dossier
@@ -397,8 +397,11 @@ un dossier Auth pour un soucis de lisibilité et de factorisation de mon code
 
 -->
 ---
+![bg](https://i.imgur.com/AntDzoM.jpg)
 
-![bg](https://i.imgur.com/g8LqSPb.jpg)
+---
+
+![bg](https://i.imgur.com/EnRpmEB.jpg)
 <!-- 41 
 Renvoie des statuts HTTP vus dans le diagramme de séquence.
 Ne passe pas le contrôleur si les entrées ne sont pas validées.
@@ -409,7 +412,7 @@ d'appliquer la validation sur les inputs. La prochaine étape, c'est d'appeler l
  -->
 ---
 
-![bg](https://i.imgur.com/Yhy4gTZ.jpg) 
+![bg](https://i.imgur.com/2RCovav.jpg) 
 <!-- 42 
 Le DTO en exemple pour la création d'un article,
 on retrouve les champs de saisie qu'on avait dans le front
@@ -418,7 +421,7 @@ avec les mêmes règles de validation sur champ obligatoire et la longueur.
 -->
 ---
 
-![bg](https://i.imgur.com/muyEn6q.jpg) 
+![bg](https://i.imgur.com/Kp4TDGs.jpg) 
 <!-- 43 
 La prochaine étape, c'est d'appeler la couche services qui elle, va concrètement implémenter la logique métier de cette fonctionnalité de création d'article
 qui appelle la méthode save du repository de NestJS qui va sauvegarder l'article en BDD.
@@ -426,7 +429,7 @@ qui appelle la méthode save du repository de NestJS qui va sauvegarder l'articl
 -->
 ---
 
-![bg](https://i.imgur.com/7pGaJsL.jpg)
+![bg](https://i.imgur.com/KHnRrS9.jpg)
 <!-- 44  
 Base entity.
 Relation entre les entities.
@@ -436,13 +439,17 @@ Donc en sauvegardant les données dans le service avec la méthode save, l'ORM f
 donc l'ORM est configuré et s'appuie sur le mapping.
 
 -->
+
+---
+![bg](https://i.imgur.com/qY7vTcY.jpg)
+
 ---
 
 ![bg](https://i.imgur.com/IYDTveQ.jpg) 
 <!-- 45 -->
 ---
 
-![bg](https://i.imgur.com/xRSUg1o.jpg) 
+![bg](https://i.imgur.com/jj9amj1.jpg) 
 <!-- 46 
 J'ai mis en place un jeu de données avec lesquels j'ai fait des tests m'évitant de remplir 50 fois les mêmes formulaires.
 -->
@@ -467,6 +474,14 @@ Là c'est le cas où tout se passe bien.
 <!-- 50 -->
 ---
 
+![bg](https://i.imgur.com/tyVAm71.jpg)
+<!-- 51 -->
+---
+
+![bg](https://i.imgur.com/3cdgXQX.jpg)
+<!-- 52 -->
+---
+
 ![bg](https://i.imgur.com/gVLe9PR.jpg)
 <!-- 51 
 J'ai enfin testé mon application sur différents navigateurs pour voir la compatibilité de mon application.
@@ -479,6 +494,6 @@ J'ai enfin testé mon application sur différents navigateurs pour voir la compa
 
 ![bg](https://i.imgur.com/YxuYV23.jpg) 
 <!-- 53 -->
----
+
 
 
