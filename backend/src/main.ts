@@ -15,7 +15,7 @@ async function bootstrap() {
  
 }
 
-const app = bootstrap();
+bootstrap();
 
 
 
