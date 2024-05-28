@@ -294,7 +294,7 @@ J'ai mis en place et suivi un principe d'architecture. Donc là, je vais présen
 -->
 ---
 
-![bg](https://i.imgur.com/3dylDE7.jpg)
+![bg](https://i.imgur.com/JXlLjUW.jpg)
 <!-- 27 
 
 !!! .... !!!
@@ -441,8 +441,8 @@ donc l'ORM est configuré et s'appuie sur le mapping.
 -->
 
 ---
-![bg](https://i.imgur.com/qY7vTcY.jpg)
-
+![bg](https://i.imgur.com/yXRnmKb.jpg)
+<!-- 44_5-->
 ---
 
 ![bg](https://i.imgur.com/IYDTveQ.jpg) 
