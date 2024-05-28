@@ -9,11 +9,7 @@ function getToken(): string {
 }
 
 export async function fetchData(endpoint: string, method: string, body?: any) {
-    //const URL = import.meta.env.URL_NETWORK;
     const URL = import.meta.env.VITE_SERVER_URL; 
-   // const URL ='http://192.168.1.113:3000' //network simplon
-   //const URL ='http://192.168.0.45:3000' //network perso
-   console.log(URL)
     const response = await fetch(`${URL}${endpoint}`, {
         method: method,
         headers: {
