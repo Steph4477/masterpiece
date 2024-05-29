@@ -29,11 +29,6 @@ console.log({
       autoLoadEntities: true,
       logging: false,
       ssl: true,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false
-        }
-      }
     }),
   ],
   controllers: [AppController],
