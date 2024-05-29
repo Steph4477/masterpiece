@@ -26,9 +26,14 @@ console.log({
       password: process.env.DB_PASSWORD,
       entities: [__dirname + '/**/*.entity.ts'],
       synchronize: false,
-      ssl: true,
       autoLoadEntities: true,
       logging: false,
+      ssl: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false
+        }
+      }
     }),
   ],
   controllers: [AppController],

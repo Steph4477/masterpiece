@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Merchant } from '../Merchant/merchant.entity';
 import { JwtModule } from '@nestjs/jwt';
-import { MerchantService } from 'src/Merchant/merchant.service';
+import { MerchantService } from '../Merchant/merchant.service';
 
 @Module({
   imports: [
