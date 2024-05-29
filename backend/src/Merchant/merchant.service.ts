@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Merchant } from './merchant.entity';
 import { MerchantDto } from './dto/merchant.dto';
-import { AuthDto } from 'src/Auth/dto/auth.dto';
+import { AuthDto } from '../Auth/dto/auth.dto';
 import { MerchantHash } from '../Auth/auth.hash';
 import { JwtService } from '@nestjs/jwt';
 

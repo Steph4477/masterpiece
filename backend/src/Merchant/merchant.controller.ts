@@ -1,7 +1,7 @@
 import { Controller, Post, Body, HttpCode, BadRequestException } from '@nestjs/common';
 import { MerchantService } from './merchant.service';
 import { MerchantDto } from './dto/merchant.dto';
-import { AuthDto } from 'src/Auth/dto/auth.dto';
+import { AuthDto } from '../Auth/dto/auth.dto';
 
 @Controller()
 export class MerchantController {
