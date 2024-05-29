@@ -26,7 +26,7 @@ console.log({
       password: process.env.DB_PASSWORD,
       entities: [__dirname + '/**/*.entity.ts'],
       synchronize: false,
-      //ssl: true,
+      ssl: true,
       autoLoadEntities: true,
       logging: false,
     }),
