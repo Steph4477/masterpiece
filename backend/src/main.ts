@@ -15,7 +15,7 @@ async function bootstrap() {
   return app;
 }
 
-module.exports = bootstrap();
+export default bootstrap();
 
 
 
