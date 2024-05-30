@@ -30,7 +30,7 @@ console.log({
       synchronize: false,
       autoLoadEntities: true,
       logging: false,
-      //ssl: true,
+      ssl: true,
     }),
   ],
   controllers: [AppController],
