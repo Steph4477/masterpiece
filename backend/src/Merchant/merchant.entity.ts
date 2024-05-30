@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { BaseEntityWithId } from '../BaseEntity/base.entity';
 
 @Entity('merchants')
 export class Merchant  {
