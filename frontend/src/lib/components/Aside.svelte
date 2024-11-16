@@ -33,8 +33,8 @@
 	.aside {
 		display: flex;
 		flex-direction: column;
+		font-size: 30px;	
 		position: fixed;
-		margin-left: -5vh;
 	}
 
 	i {

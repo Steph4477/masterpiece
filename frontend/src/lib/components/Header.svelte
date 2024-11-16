@@ -24,23 +24,21 @@
 <style>
 	header {
         display: flex;
-        justify-content: space-between;
 		position: fixed;
-        top: 20px;
-		margin-left: -5vh;
-		width: 100%;
+		width: 100%; 	
     }
 
 	.search {
 		display: flex;
 		align-items: center;
+		width: 100%;	
 	}
 
 	.input {
 		padding: 0.5rem;
 		border: gray 1px solid;
 		border-radius: 0.5rem;
-		width: 420px;
+		width: 100%;
 	}
 
 	.fa-user,
@@ -48,8 +46,9 @@
 		cursor: pointer;
 		border: none;
 		background-color: transparent;
-		font-size: 20px;
+		font-size: 25px;
 		text-align: center;
+		margin-right: 2vh;
 	}
 
 	.register {
@@ -59,7 +58,7 @@
 	}
 	
 	p {
-		margin: 0;
+		margin-right: 5vh;
 	}
 	@media (max-width: 568px) {
 		header {

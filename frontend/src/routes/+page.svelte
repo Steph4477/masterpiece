@@ -11,8 +11,11 @@
 	});
 </script>
 
-<Header />
+
 <div class="main">
+	<div class="header-container">
+		<Header />
+	</div>
 	<div class="aside-container">
 		<Aside />
 	</div>
@@ -43,7 +46,13 @@
 			</div>	
 			<div class="button-bottom">
 				<ButtonsFunc label="Commands" customColor="#FFDF8C" icone="fa-solid fa-clipboard-check" />
-				<ButtonsFunc label="Clients" customColor="#F8FD00" icone="fa-solid fa-users" />
+				<ButtonsFunc 
+					label="Clients" 
+					customColor="#F8FD00" 
+					icone="fa-solid fa-users" 
+					color="black"
+					href="/customers"
+				/>
 			</div>
 			<div class="login">
 				<a href="/forms/login"><p>Déjà un compte ?</p></a>
@@ -53,19 +62,22 @@
 </div>
 
 <style>
-	.main {
-		display: flex;
+	.aside-container {
+		margin-top: 500px;
+		position:fixed;
+		left: 4vh;	
 	}
 
-	.aside-container {
-		margin-top: 350px;
-		
+	.header-container {
+		position:fixed;
+		left: 5vh;
+		width: 95%;
 	}
 
 	.home {
 		display: flex;
 		flex-wrap: wrap;
-		margin: 0;
+		margin-top: 5vh;
 	}
 
 	.filter-grayscale {

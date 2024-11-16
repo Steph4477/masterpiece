@@ -6,19 +6,9 @@ import { MerchantModule } from './Merchant/merchant.module';
 import { AuthModule } from './Auth/auth.module';
 import { ProductModule } from './Product/product.module';
 
-console.log({
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT),
-  database: process.env.DB_DATABASE,
-  username: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-})
-
 @Module({
   imports: [
-    MerchantModule,
-    AuthModule,
-    ProductModule,
+    MerchantModule,AuthModule,ProductModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -30,7 +20,7 @@ console.log({
       synchronize: false,
       autoLoadEntities: true,
       logging: false,
-      ssl: true,
+      //ssl: true,
     }),
   ],
   controllers: [AppController],

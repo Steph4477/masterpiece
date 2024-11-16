@@ -47,3 +47,7 @@ export async function updateProduct(productId: string, body: any) {
     return fetchData(`/product/${productId}`, 'PUT', body);
 }
 
+export async function fetchAllCustomers() {
+    const customerId = jwtDecode(getToken()).sub;
+    return fetchData(`/customer/customer_id/${customerId}`, 'GET');
+}

@@ -148,7 +148,7 @@
 
 	.eye {
 		position: absolute;
-		right: 41%;
+		right: 44%;
 		border: none;
 		cursor: pointer;
 		background: none;

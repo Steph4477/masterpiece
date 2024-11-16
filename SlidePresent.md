@@ -24,7 +24,7 @@ style: |
 
 ---
 
-![bg](https://i.imgur.com/jVEqRAk.jpg) 
+![bg](https://i.imgur.com/dzcBNJL.jpg) 
 <!-- 1
 Hello everyone, Stéphane Morel, I introduce myself as a student of the promotion, designer and application developer.
 
@@ -37,7 +37,7 @@ For the context of my masterpiece project: I have had a first professional life 
 
 ---
 
-![bg](https://i.imgur.com/v0IDlvO.jpg) 
+![bg](https://i.imgur.com/0tWHuoR.jpg) 
 <!-- 2
 Dans le sommaire, vous pouvez voir que je vais vous conduire de l'expression des besoins à une démonstration en passant par la succession de toutes les étapes de conception d'un projet informatique.
 Pour terminer avec une conclusion, évidemment.
@@ -67,17 +67,11 @@ Un petit peu de contexte.
 ![bg](https://i.imgur.com/fJhMF41.jpg) 
 <!-- 5
 Je suis d'abord parti par une étude des utilisateurs cibles. Les 2 principaux, en tout cas, commerçants et clients. Donc là je me suis appuyé sur la technique des personas. Je vous montre un premier persona qui idéalise un commerçant avec ses attentes et surtout ses besoins pour gérer sa boutique efficacement et accroître la satisfaction de ses clients.
--->
-
----
-
-![bg](https://i.imgur.com/vEfKSxR.jpg) 
-<!-- 6 
 Ensuite un persona qui représente un client parce qu'on n'a pas de commerce sans client ! Qui lui a d'autres besoins et frustrations en recherche de matériels et d'innovation constante qui ne peut se permettre de manquer de quoi que ce soit. Parce qu'on le sait tous les clients sont très exigeants !
 
 L'idée des personas, c'est d'identifier de vrais besoins pour être certain qu'on conçoit et qu'on développe de vraies fonctionnalités et pas des fonctionnalités qui ne correspondraient pas aux attentes de leurs utilisateurs. Je vais tenter de répondre à chaque frustration de mes utilisateurs cibles.
 
-
+Vous le trouverez dans mon dossier projet.
 -->
 
 ---
@@ -91,7 +85,7 @@ J'aurais besoin que ...
 
 ---
 
-![bg](https://i.imgur.com/58pH0Mb.jpg) 
+![bg](https://i.imgur.com/0xhy0FC.jpg) 
 <!-- 8 
 Avant de démarrer le projet donc là sur cette slide, je vous présente une partie des objectifs que je me suis fixés.
 
@@ -336,6 +330,7 @@ Je vais passer à la partie implémentation après avoir conçu les 3 couches de
 
 <!-- 31 
 Parler du router
+Implementé sous forme de hook si vous connaissez react dans svelte ça s'appelle des signaux le code svelte en compilet pour le routeur mais aussi pour la réactivité entre autre nous le verront plus tard dans le code cette logique et ensuite transpiler en js pour les navigateurs
 
 -->
 ---
@@ -343,11 +338,29 @@ Parler du router
 ![bg](https://i.imgur.com/xlGExB6.jpg)
 <!-- 32  
 app.html
+Le fichier app.html de SvelteKit permet de définir le point d’entrée du rendu du DOM où toutes les
+pages vont être montées. Il sert à définir l'infrastructure de mon application, en centralisant les
+configurations essentielles telles que les bibliothèques d’icônes, les polices d’écriture et les
+styles globaux. Cela garantit une cohérence visuelle et fonctionnelle à travers toutes les pages de
+l’application. ( La page ne se rafraichie plus).
 -->
 ---
 
 ![bg](https://i.imgur.com/ObAGwqa.jpg) 
-<!-- 33 -->
+<!-- 33 
+Le code Sveltekit est transpilé vers du javascript pour que le navigateur puisse le lire.
+SvelteKit est configuré pour utiliser Vite comme outil de bundling ce qui améliore les temps de
+chargement et la performance globale de l'application. Vite est un outil de développement rapide
+qui offre un temps de démarrage quasi instantané et des mises à jour (HMR) ultra-rapides.
+Grâce à Vite, les modifications apportées aux fichiers sont reflétées immédiatement dans le
+navigateur sans nécessiter un rechargement complet de la page. Cela accélère considérablement
+le cycle de développement.
+
+27
+La combinaison de SvelteKit et Vite permet de bénéficier des points forts de chaque outil.
+SvelteKit fournit une structure de projet optimisée pour Svelte, tandis que Vite assure un
+développement rapide et fluide.
+-->
 ---
 
 ![bg](https://i.imgur.com/gXgnhlq.jpg) 
@@ -398,7 +411,9 @@ un dossier Auth pour un soucis de lisibilité et de factorisation de mon code
 -->
 ---
 ![bg](https://i.imgur.com/AntDzoM.jpg)
+<!-- 40_5 
 
+-->
 ---
 
 ![bg](https://i.imgur.com/EnRpmEB.jpg)
@@ -441,8 +456,10 @@ donc l'ORM est configuré et s'appuie sur le mapping.
 -->
 
 ---
-![bg](https://i.imgur.com/yXRnmKb.jpg)
-<!-- 44_5-->
+![bg](https://i.imgur.com/mWzooBh.jpg)
+<!-- 44_5
+
+-->
 ---
 
 ![bg](https://i.imgur.com/IYDTveQ.jpg) 
@@ -485,14 +502,37 @@ Là c'est le cas où tout se passe bien.
 ![bg](https://i.imgur.com/gVLe9PR.jpg)
 <!-- 51 
 J'ai enfin testé mon application sur différents navigateurs pour voir la compatibilité de mon application.
- -->
+-->
+---
+
+![bg](https://i.imgur.com/IZiuEz8.jpg)
+<!-- 51_1
+
+-->
+
+---
+![bg](https://i.imgur.com/UAMuXXY.jpg)
+<!-- 51_2
+
+-->
+
+---
+![bg](https://i.imgur.com/otZY60n.jpg)
+<!-- 51_3
+
+-->
+---
+![bg](https://i.imgur.com/Sd1xrMt.jpg)
+<!-- 51_4
+
+-->
 ---
 
 ![bg](https://i.imgur.com/RLjXiBe.jpg) 
 <!-- 52 -->
 ---
 
-![bg](https://i.imgur.com/YxuYV23.jpg) 
+![bg](https://i.imgur.com/FPE85mt.jpg) 
 <!-- 53 -->
 
 

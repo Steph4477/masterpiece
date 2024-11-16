@@ -89,7 +89,6 @@
 	.title {
 		font-size: 1.5rem;
 		margin-bottom: 20px;
-		text-align: center;
 		font-weight: bold;
 		color: black;
 	}
@@ -117,7 +116,9 @@
 	}
 
 	.image {
-		margin-top: 5vh;
+		display: flex;
+		align-items: center;
+		margin: 2vh;
 		object-fit: cover;
 		border-radius: 20px;
 		width: 280px;
