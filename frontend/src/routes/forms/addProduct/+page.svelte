@@ -173,7 +173,7 @@
 
 	.aside-container {
 		margin-left: 10px;
-		margin-top: 500px;
+		margin-top: 400px;
 	}
 
 	.form-container {

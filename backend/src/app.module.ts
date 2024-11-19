@@ -5,10 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MerchantModule } from './Merchant/merchant.module';
 import { AuthModule } from './Auth/auth.module';
 import { ProductModule } from './Product/product.module';
+import { CustomerModule } from './Customer/customer.module';
 
 @Module({
   imports: [
-    MerchantModule,AuthModule,ProductModule,
+    MerchantModule,AuthModule,ProductModule,CustomerModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -17,10 +18,13 @@ import { ProductModule } from './Product/product.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       entities: [__dirname + '/**/*.entity.ts'],
-      synchronize: false,
+      synchronize: true,
+      //synchronize:false,
       autoLoadEntities: true,
-      logging: false,
+      //logging: false,
+      logging: true,
       //ssl: true,
+      ssl: false,
     }),
   ],
   controllers: [AppController],

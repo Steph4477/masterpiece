@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
 	import Aside from '$lib/components/Aside.svelte';
-	import { fetchDataWithMerchantId } from '$lib/utils';
+	import { fetchCustomerWithMerchantId } from '$lib/utils';
 	import { goto } from '$app/navigation';
 
 	// Form data object
@@ -74,8 +74,9 @@
 
 		try {
 			// Convert total to number before sending to the server
-			const data = await fetchDataWithMerchantId({
+			const data = await fetchCustomerWithMerchantId({
 				...formData,
+				orders:Number(formData.orders),
 				total: Number(formData.total),
 				average: Number(formData.average)
 			});
@@ -136,7 +137,7 @@
 				bind:value={formData.orders}
 				class={selectedClass(ordersPattern, formData.orders)}	
 			/>
-			<label for="average">Panier moyen</label>
+			<label for="average">Panier moyen :</label>
 			<input
 				type="number"
 				id="average"
@@ -163,16 +164,13 @@
 					{/each}
 				</div>
 			{/if}
-			<button type="submit" aria-label="Ajouter le produit">Ajouter le client</button>
+			<button type="submit" aria-label="Ajouter le client">Ajouter le client</button>
 			<a href="/customers" class="return">Retour</a>
 		</form>
 	</div>
 </div>
 
 <style>
-	.main {
-		display: flex;
-	}
 
 	.header-container {
 		position:fixed;
@@ -181,25 +179,26 @@
 	}
 
 	.aside-container {
-		margin-top: 500px;
+		margin-top: 400px;
 		position:fixed;
 		left: 4vh;	
 	}
 
 	.form-container {
 		display: flex;
-		margin: 0 auto;
 		flex-wrap: wrap;
 		margin-top: 5vh;
 	}
 
-	label {
-		display: block;
+	form {
+		width: 400px;
 		margin-bottom: 2vh;
+	}
+
+	label {
 		font-weight: bold;
 	}
 
-	
 	.error {
 		color: red;
 		margin-top: 5px;
@@ -247,14 +246,11 @@
 		font-size: 16px;
 	}
 
-	a {
-		color: white;
-	}
-
 	button:hover,
 	.return:hover {
 		box-shadow: none;
 	}
+	
 	div {
 		display: flex;
 		justify-content: space-around;

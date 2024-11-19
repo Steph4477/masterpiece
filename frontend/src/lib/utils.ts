@@ -48,6 +48,11 @@ export async function updateProduct(productId: string, body: any) {
 }
 
 export async function fetchAllCustomers() {
-    const customerId = jwtDecode(getToken()).sub;
-    return fetchData(`/customer/customer_id/${customerId}`, 'GET');
+    const merchantId = jwtDecode(getToken()).sub;
+    return fetchData(`/customer/merchant_id/${merchantId}`, 'GET');
+}
+
+export async function fetchCustomerWithMerchantId(body: any) {
+    const merchantId = jwtDecode(getToken()).sub;
+    return fetchData(`/customer/merchant_id/${merchantId}`, 'POST', body);
 }

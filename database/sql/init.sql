@@ -21,24 +21,46 @@ CREATE TABLE products (
     CONSTRAINT products_merchant_fk FOREIGN KEY (merchant_id) REFERENCES merchants(id)
 );
 
--- -- Supprimer les données existantes
--- DELETE FROM merchants;
--- DELETE FROM products;
+CREATE TABLE customers (
+    id SERIAL,
+    reference CHAR(8) NOT NULL,
+    image VARCHAR,
+    name VARCHAR(100) NOT NULL,
+    orders INT NOT NULL DEFAULT 0,
+    average INT NOT NULL DEFAULT 0,
+    total INT NOT NULL DEFAULT 0,
+    merchant_id INT NOT NULL,
+    CONSTRAINT customers_pk PRIMARY KEY (id),
+    CONSTRAINT customers_reference UNIQUE (reference),
+    CONSTRAINT customers_merchant_fk FOREIGN KEY (merchant_id) REFERENCES merchants(id)
+);
 
--- -- Insérer les marchands avec des nouveaux mots de passe cohérents hachés de 161 caractères
--- INSERT INTO merchants (siret, email, "password") VALUES 
---     ('11111234567890', 'morelstephane@neuf.fr', 'b89b406a0d685e0f752f79e9e5305614:ecdbd4c0f7946fc738497bd7f1e53619869fa3abfbd2c29e64b6d393130eb1cf98e1e1d74d5700c8d5f1e572b75732e5c31b09902b5e31031e15f18b6af12b74'),
---     ('23456789012345', 'jane.smith@example.com', '1e696131565a8d2f553643559bb3a2e6:2497e8de940934e4b73ff9d824d2a59ffc34f0b0a341dc234aae7ad1f40838c2726398a50b652bcb20228e8276d8203477ff460ee4d440e49b5ce0e55d67641f');
+-- Supprimer les données existantes
+DELETE FROM merchants;
+DELETE FROM products;
+DELETE FROM customers;
 
--- -- Insérer les produits avec l'ID du marchand
--- INSERT INTO products (reference, name, description, merchant_id) VALUES
---     ('CD123456', 'Livre - Le Petit Prince', 'Un conte philosophique écrit par Antoine de Saint-Exupéry', 1),
---     ('CD234567', 'Téléphone portable - iPhone 13', 'Dernier modèle de téléphone portable Apple avec des fonctionnalités avancées', 2),
---     ('CD345678', 'Robe été', 'Robe légère et fluide parfaite pour les chaudes journées estivales', 1),
---     ('CD456789', 'Ordinateur portable - Lenovo ThinkPad', 'Ordinateur portable puissant et fiable pour un usage professionnel', 1),
---     ('CD567890', 'Chaussures de course - Nike Air Zoom Pegasus', 'Chaussures de course légères et amorties pour une course confortable', 1),
---     ('CD678901', 'Roman - Harry Potter à école des sorciers', 'Premier livre de la série Harry Potter écrit par J.K. Rowling', 1),
---     ('CD789012', 'Téléviseur - Samsung 4K UHD', 'Téléviseur haute définition avec une qualité image exceptionnelle', 1),
---     ('CD890123', 'Jeans - Levis 501', 'Jeans emblématiques de Levis avec un ajustement classique et confortable', 1),
---     ('CD901234', 'Fruits de saison - Pommes Granny Smith', 'Délicieuses pommes croquantes et juteuses pour une collation saine', 1),
---     ('CD012345', 'Montre - Rolex Submariner', 'Montre de plongée de luxe avec un design emblématique et des caractéristiques exceptionnelles', 2);
+-- Insérer les marchands avec des nouveaux mots de passe cohérents hachés de 161 caractères
+INSERT INTO merchants (siret, email, "password") VALUES 
+    ('11111111111111', 'test@example.com', 'd10cf6b3b57788f7b410d363c128eb0d:b8d940b41b58d39fa04bd14ee46b927606bc8fc465413295b1845be7ddf26cba81dc2d9cd6e0b277872c730ea8749675a64c27a285d80118c549a7d4d1a74e73');
+
+-- Insérer les produits avec l'ID du marchand
+INSERT INTO products (reference, name, description, stock, price, merchant_id) VALUES
+    ('CD123456', 'Livre - Le Petit Prince', 'Un conte philosophique écrit par Antoine de Saint-Exupéry', 1, 1, 1),
+    ('CD234567', 'Téléphone portable - iPhone 13', 'Dernier modèle de téléphone portable Apple avec des fonctionnalités avancées', 1, 1, 1),
+    ('CD345678', 'Robe été', 'Robe légère et fluide parfaite pour les chaudes journées estivales', 1, 1, 1),
+    ('CD456789', 'Ordinateur portable - Lenovo ThinkPad', 'Ordinateur portable puissant et fiable pour un usage professionnel', 1, 1, 1),
+    ('CD567890', 'Chaussures de course - Nike Air Zoom Pegasus', 'Chaussures de course légères et amorties pour une course confortable', 1, 1, 1),
+    ('CD678901', 'Roman - Harry Potter à école des sorciers', 'Premier livre de la série Harry Potter écrit par J.K. Rowling', 1, 1, 1),
+    ('CD789012', 'Téléviseur - Samsung 4K UHD', 'Téléviseur haute définition avec une qualité image exceptionnelle', 1, 1, 1),
+    ('CD890123', 'Jeans - Levis 501', 'Jeans emblématiques de Levis avec un ajustement classique et confortable', 1, 1, 1),
+    ('CD901234', 'Fruits de saison - Pommes Granny Smith', 'Délicieuses pommes croquantes et juteuses pour une collation saine', 1, 1, 1),
+    ('CD012345', 'Montre - Rolex Submariner', 'Montre de plongée de luxe avec un design emblématique et des caractéristiques exceptionnelles', 1, 1, 1);
+
+-- Insérer des customers avec l'ID du marchand 1 ou 2
+INSERT INTO customers (reference, name, orders, average, total, merchant_id) VALUES
+('CUST001', 'Alice Smith', 10, 50.25, 502.50, 1),
+('CUST002', 'Bob Johnson', 5, 100.00, 500.00, 1),
+('CUST003', 'Charlie Brown', 8, 75.00, 600.00, 1),
+('CUST004', 'Diana Prince', 12, 45.83, 550.00, 1),
+('CUST005', 'Eve Davis', 7, 85.71, 600.00, 1);

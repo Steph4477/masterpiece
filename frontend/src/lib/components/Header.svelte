@@ -16,7 +16,6 @@
         <input type="text" placeholder="Rechercher" class="input" />
         <a href="/forms/register" class="register">
             <button class="fa-solid fa-user" style="color: {isLoggedIn ? 'green' : 'red'}"></button>
-			<p>S'inscrire</p>
         </a>
     </div>
 </header>
@@ -38,7 +37,8 @@
 		padding: 0.5rem;
 		border: gray 1px solid;
 		border-radius: 0.5rem;
-		width: 100%;
+		width: 80%;
+		margin-right: 2vh;
 	}
 
 	.fa-user,

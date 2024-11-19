@@ -56,9 +56,9 @@
 							<div class="card-customer">
 								<a href="/customers/{customer.id}" class="customerId">
 									<span class="click">Cliquez pour Modifier</span>
+									<p>Numéro client : {customer.reference}</p>
 									<img src={customer.image} alt={customer.name} class="image" />
 									<h2 class="name">Prénom Nom :{customer.name}</h2>
-									<p>Numéro client : {customer.reference}</p>
 									<p> Nombre de commandes :{customer.orders}</p>
 									<div class="customer-button">
 										<p>Panier moyen : {customer.average + ' €'}</p>
@@ -78,7 +78,7 @@
 <style>
 
 	.aside-container {
-		margin-top: 500px;
+		margin-top: 400px;
 		position:fixed;
 		left: 4vh;	
 	}
@@ -88,8 +88,6 @@
 		left: 5vh;
 		width: 95%;
 	}
-
-	
 
 	.title {
 		display: flex;

@@ -63,7 +63,7 @@
 
 <style>
 	.aside-container {
-		margin-top: 500px;
+		margin-top: 400px;
 		position:fixed;
 		left: 4vh;	
 	}
