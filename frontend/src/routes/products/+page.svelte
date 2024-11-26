@@ -2,14 +2,14 @@
 	import { onMount } from 'svelte';
 	import Header from '$lib/components/Header.svelte';
 	import Aside from '$lib/components/Aside.svelte';
-	import ButtonDelete from '$lib/components/ButtonDelete.svelte';
+	import ButtonDeleteProduct from '$lib/components/ButtonDeleteProduct.svelte';
 	import { fetchAllProducts } from '$lib/utils';
 
 	let products: any = [];
 	let error: string | null = null;
 
 	onMount(async () => {
-		 loadProducts();
+		loadProducts();
 	});
 
 	async function loadProducts() {
@@ -23,7 +23,6 @@
 		} catch (err) {
 			error = (err as Error).message;
 			console.error('Erreur lors de la récupération des produits :', error);
-		
 		}
 	}
 
@@ -31,42 +30,52 @@
 	function handleProductDeleted() {
 		loadProducts();
 	}
-	
 </script>
 
-<Header />
 <div class="main">
+	<div class="header-container">
+		<Header />
+	</div>
 	<div class="aside-container">
 		<Aside />
 	</div>
 	<div class="container">
-		<div class="button-container">
-			<a href="/forms/addProduct" class="add">ajouter un produit</a>
-		</div>
 		<div class="list-container">
 			<h1 class="title">Liste des produits</h1>
+			<div class="button-container">
+				<a href="/forms/addProduct" class="add">ajouter un produit</a>
+			</div>
 			{#if error}
 				<p>{error}</p>
 			{/if}
 			<ul>
 				{#each products as product}
 					<li>
-						<div class="button-container">
-							<div class="card-product">
+						<div class="card">
+							<div class="modify">
 								<a href="/products/{product.id}" class="productId">
 									<span class="click">Cliquez pour Modifier</span>
-									<img src={product.image} alt={product.name} class="image" />
-									<h2 class="name">{product.name}</h2>
-									<p>Référence : {product.reference}</p>
-									<p>Description : {product.description}</p>
-									<div class="product-button">
-										<p>Stock : {product.stock}</p>
-										<p>Prix : {product.price + ' €'}</p>
-									</div>
 								</a>
 							</div>
-							<ButtonDelete id={product.id} on:productDeleted={handleProductDeleted} />
+							<div class="container">
+								<div class="identity">
+									<h3 class="name">{product.name}</h3>
+									<img src={product.image} alt={product.name} class="image" />
+									<p>Description : {product.description}</p>
+								</div>
+								<div class="detail">
+									<p>Référence : {product.reference}</p>
+									<div class="stock">Stock :{product.stock}</div>
+									<div class="price">Prix :{product.price + ' €'}</div>
+									<div class="nbrvente">Nombre de vente :</div>
+									<div class="prixha">Prix d'achat :</div>
+									<div class="privte">Prix de vente :</div>
+									<div class="marge">Marge :</div>
+									<div class="ca">CA totale :</div>
+								</div>
+							</div>
 						</div>
+						<ButtonDeleteProduct id={product.id} on:productDeleted={handleProductDeleted} />
 					</li>
 				{/each}
 			</ul>
@@ -75,132 +84,115 @@
 </div>
 
 <style>
-	.main {
-		display: flex;
-	}
-	
-	.container {
-		display: flex;
-		margin: 0 auto;
-		flex-direction: column;
-		/* margin: 0 auto; */
-	}
-
-	.title {
-		font-size: 1.5rem;
-		margin-bottom: 20px;
-		font-weight: bold;
-		color: black;
-	}
-
 	.aside-container {
-		margin-left: 10px;
-		margin-top: 500px;
+		margin-top: 400px;
+		position: fixed;
+		left: 4vh;
 	}
 
-	.card-product {
-		padding: 20px;
-		border-radius: 20px;
+	.header-container {
+		position: fixed;
+		width: 95%;
+	}
+	.card {
+		display: flex;
+		flex-wrap: wrap;
+		border: solid black 1px;
+		border-radius:20px;
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-		border: solid 1px black;	
+		padding: 2vh;
+		margin: 50px;
 	}
-
-	.card-product:hover {
+	.card:hover {
 		box-shadow: none;
 	}
 
-	.productId {
-		font-size: 1.5rem;
+	.modify{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: larger;
+	}
+
+	.title {
+		display: flex;
+		justify-content: center;
+		font-size: xx-large;
 		font-weight: bold;
 		color: black;
-	}
-
-	.image {
-		display: flex;
-		align-items: center;
-		margin: 2vh;
-		object-fit: cover;
-		border-radius: 20px;
-		width: 280px;
-		height: 250px;
-	}
-
-	.product-button {
-		font-weight: bold;
-		text-align: right;
-		padding: 0.3rem;
-		background-color: #fd6060;
-		border-radius: 10px;
-		color: white;
-	}
-
-	.list-container {
-		display: flex;
-		align-items: center;
-		flex-direction: column;
 		margin-top: 5vh;
+		width: 100%;
 	}
-
-	.name {
-		font-weight: bold;
-	}
-
 	.button-container {
 		display: flex;
 		justify-content: center;
 		margin-bottom: 5vh;
+		width: 100%;
+		margin-top: 20vh;
 	}
-
 	.add {
 		padding: 10px;
-		width: 100%;
+		width: 30%;
+		font-size: large;
+		font-weight: bold;
 		background-color: #fd6060;
+		color: white;
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-		border-radius: 20px;
 		border: none;
-		border-radius: 4px;
+		border-radius: 15px;
 		cursor: pointer;
-		margin-top: 5vh;
 		text-align: center;
-		margin-top: 10vh;
+		margin-top: 5vh;
 	}
-
+	.add:hover {
+		box-shadow: none;
+	}
 	.click {
 		color: #fd6060;
 		text-decoration: underline;
 	}
 
-	a {
-		color: white;
+	.container{
+		display: flex;
+		width: 100%;
+		justify-content: space-around;
 	}
-
-	.add:hover {
-		box-shadow: none;
+	.name{
+		width: 100%;
+		
+	}
+	.identity{
+		display: flex;
+		flex-direction: column;
+		width: 40%;
+	}
+	.image{
+		height: 200px;
+		object-fit: cover;
+		background-color: white;
+		padding: 10px;
+		border-radius: 5px;
+	}
+	.detail{
+		display: flex;
+		margin-top: 20px;
+		flex-direction: column;
+		justify-content: space-around;
+		padding: 0px 50px 5px 10px;
+		border-radius: 20px;
+		background-color: #fd6060;
+		font-style: italic;
+		color: white;
+		font-weight: bold;
 	}
 
 	ul {
+		display: flex;
+		flex-wrap: wrap;
 		list-style-type: none;
+
 	}
-
-	@media (max-width: 376px) {
-		
-		.container {
-			width: 100%;
-		}
-
-		.card-product {
-			width: 100%;
-		}
-
-		.image {
-			width: 180px;
-			height: 150px;
-		}
-
-		.product-button {
-			width: 100%;
-		}
-
-		
-	}
+	
 </style>

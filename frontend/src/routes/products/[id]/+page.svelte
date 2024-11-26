@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { fetchById, updateProduct } from '$lib/utils';
+	import { fetchByProductId, updateProduct } from '$lib/utils';
 	import Header from '$lib/components/Header.svelte';
 	import Aside from '$lib/components/Aside.svelte';
 
@@ -10,7 +10,7 @@
 
 	onMount(async () => {
 		const { params } = $page;
-		product = await fetchById(params.id);
+		product = await fetchByProductId(params.id);
 	});
 
 	async function handleProductUpdate(event: any) {
@@ -25,7 +25,7 @@
 		};
 		try {
 			await updateProduct(product.id, updatedProduct);
-			product = await fetchById(product.id); // reload the product
+			product = await fetchByProductId(product.id); // reload the product
 		} catch (err) {
 			error = (err as any).message;
 		}

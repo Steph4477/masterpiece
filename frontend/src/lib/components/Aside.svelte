@@ -52,4 +52,9 @@
 	.fa-sliders {
 		transform: rotate(90deg);
 	}
+	.fa-door-open {
+		font-size: 70%;
+		
+		
+	}
 </style>

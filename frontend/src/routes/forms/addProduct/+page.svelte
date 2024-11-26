@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
 	import Aside from '$lib/components/Aside.svelte';
-	import { fetchDataWithMerchantId } from '$lib/utils';
+	import { fetchProduct } from '$lib/utils';
 	import { goto } from '$app/navigation';
 
 	// Form data object
@@ -35,7 +35,7 @@
 
 	// Regex patterns for validation as strings
 	const referencePattern = '^[a-zA-Z0-9]{8}$';
-	const namePattern = '^[a-zA-ZÀ-ÿ]{1,100}$';
+	const namePattern = '^[a-zA-ZÀ-ÿ\\s]{1,100}$';
 	const descriptionPattern = '^[a-zA-ZÀ-ÿ0-9 ]{1,500}$';
 	const stockPattern = '^[0-9]{1,6}$';
 	const pricePattern = '^[0-9]{1,6}$';
@@ -74,7 +74,7 @@
 
 		try {
 			// Convert price to number before sending to the server
-			const data = await fetchDataWithMerchantId({
+			const data = await fetchProduct({
 				...formData,
 				price: Number(formData.price),
 				stock: Number(formData.stock)

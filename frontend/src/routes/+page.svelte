@@ -19,7 +19,7 @@
 	<div class="aside-container">
 		<Aside />
 	</div>
-	<div class="home" class:filter-grayscale={!isLoggedIn}>
+	<div class="container" class:filter-grayscale={!isLoggedIn}>
 		<p class="title">
 			<span class="b">B</span>
 			<span class="p">P</span>
@@ -73,8 +73,8 @@
 		left: 5vh;
 		width: 95%;
 	}
-
-	.home {
+	
+	.container {
 		display: flex;
 		flex-wrap: wrap;
 		margin-top: 5vh;
@@ -90,9 +90,7 @@
 	}
 
 	.title {
-		font-size: 4rem;
 		margin-top: 5vh;
-		margin-bottom: 5vh;
 		width: 100%;
 	}
 
@@ -104,7 +102,6 @@
 	.p {
 		font-size: 60px;
 		color: #fd6060;
-		height: 20px;
 	}
 
 	.i {
@@ -149,23 +146,4 @@
 		height: 15px;
 	}
 
-	@media (max-width: 376px) {
-
-		.b {
-			font-size: 50px;
-		}
-
-		.p {
-			font-size: 50px;
-		}
-
-		.i {
-			font-size: 50px;
-		}
-
-		.m {
-			font-size: 50px;
-		}
-
-	}
 </style>
