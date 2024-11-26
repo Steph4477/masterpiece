@@ -2,14 +2,14 @@
 	import { onMount } from 'svelte';
 	import Header from '$lib/components/Header.svelte';
 	import Aside from '$lib/components/Aside.svelte';
-	import ButtonDelete from '$lib/components/ButtonDelete.svelte';
+	import ButtonDeleteCustomer from '$lib/components/ButtonDeleteCustomer.svelte';
 	import { fetchAllCustomers } from '$lib/utils';
 
 	let customers: any = [];
 	let error: string | null = null;
 
 	onMount(async () => {
-		 loadcustomers();
+		loadcustomers();
 	});
 
 	async function loadcustomers() {
@@ -23,7 +23,6 @@
 		} catch (err) {
 			error = (err as Error).message;
 			console.error('Erreur lors de la récupération des clients :', error);
-		
 		}
 	}
 
@@ -31,8 +30,8 @@
 	function handlecustomerDeleted() {
 		loadcustomers();
 	}
-	
 </script>
+
 <div class="main">
 	<div class="header-container">
 		<Header />
@@ -42,7 +41,7 @@
 	</div>
 	<div class="container">
 		<div class="list-container">
-			<div class="buttoncont">
+			<div class="button-container">
 				<a href="/forms/addCustomer" class="add">Créer un compte client ?</a>
 			</div>
 			<h1 class="title">Liste des clients</h1>
@@ -53,20 +52,20 @@
 				{#each customers as customer}
 					<li>
 						<div class="button-container">
-							<div class="card-customer">
+							<div class="card">
 								<a href="/customers/{customer.id}" class="customerId">
 									<span class="click">Cliquez pour Modifier</span>
 									<p>Numéro client : {customer.reference}</p>
 									<img src={customer.image} alt={customer.name} class="image" />
-									<h2 class="name">Prénom Nom :{customer.name}</h2>
-									<p> Nombre de commandes :{customer.orders}</p>
-									<div class="customer-button">
-										<p>Panier moyen : {customer.average + ' €'}</p>
-										<p>Achat totale : {customer.total + ' €'}</p>
+									<h1 class="name">{customer.name}</h1>
+									<p>Nombre de commandes :{customer.orders}</p>
+									<div class="button">
+										<div class="average">Panier moyen : {customer.average + '€'}</div>
+										<div class="total">Achat totale : {customer.total + '€'}</div>
 									</div>
 								</a>
 							</div>
-							<ButtonDelete id={customer.id} on:customerDeleted={handlecustomerDeleted} />
+							<ButtonDeleteCustomer id={customer.id} on:customerDeleted={handlecustomerDeleted} />
 						</div>
 					</li>
 				{/each}
@@ -76,17 +75,19 @@
 </div>
 
 <style>
-
 	.aside-container {
 		margin-top: 400px;
-		position:fixed;
-		left: 4vh;	
+		position: fixed;
+		left: 4vh;
 	}
 
 	.header-container {
-		position:fixed;
-		left: 5vh;
+		position: fixed;
 		width: 95%;
+	}
+
+	.container {
+		width: 100%;
 	}
 
 	.title {
@@ -94,28 +95,22 @@
 		justify-content: center;
 		font-size: 1.5rem;
 		font-weight: bold;
-		color: black;
-		margin-top: 10vh;
-		width: 100%;
+		color: black;	
 	}
 
-	.buttoncont {
-		width: 100%;
-		margin-top: 20vh;
-	}
-	.card-customer {
+	.card {
 		padding: 20px;
+		width: 80%;
 		border-radius: 20px;
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-		border: solid 1px black;	
+		border: solid 1px black;
 	}
 
-	.card-customer:hover {
+	.card:hover {
 		box-shadow: none;
 	}
 
 	.customerId {
-		font-size: 1.5rem;
 		font-weight: bold;
 		color: black;
 	}
@@ -126,23 +121,13 @@
 		border-radius: 20px;
 		width: 280px;
 		height: 250px;
-	}
-
-	.customer-button {
-		font-weight: bold;
-		text-align: right;
-		padding: 0.3rem;
-		background-color: #F8FD00;
-		border-radius: 10px;
-		color: white;
+		color: transparent;
 	}
 
 	.list-container {
 		display: flex;
-		
-		
 		flex-direction: column;
-		margin:5vh auto;
+		margin: 5vh auto;
 	}
 
 	.name {
@@ -158,7 +143,9 @@
 	.add {
 		padding: 10px;
 		width: 100%;
-		background-color: #F8FD00;
+		font-size: large;
+		font-weight: bold;
+		background-color: #f8fd00;
 		color: black;
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 		border-radius: 20px;
@@ -170,20 +157,59 @@
 	}
 
 	.click {
-		color: #F8FD00;
+		color: #fd6060;
 		text-decoration: underline;
 	}
-
-	
 
 	.add:hover {
 		box-shadow: none;
 	}
+
 	div {
 		display: flex;
 		justify-content: space-around;
 		text-align: center;
 	}
-	
 
+	.button {
+		font-weight: bold;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.average {
+		color: black;
+		width: 100%;
+		font-size: 20px;
+	}
+
+	.total {
+		color: black;
+		font-size: 20px;
+	}
+
+	.customerId {
+		background-color: #f6f7d7;
+		padding: 2vh;
+		border-radius: 15px;
+	}
+	
+	@media (max-width: 376px) {
+		.container {
+			width: 100%;
+		}
+
+		.card {
+			width: 100%;
+		}
+
+		.image {
+			width: 180px;
+			height: 150px;
+		}
+
+		.button {
+			width: 100%;
+		}
+	}
 </style>

@@ -49,17 +49,18 @@
 		font-size: 25px;
 		text-align: center;
 		margin-right: 2vh;
+		-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 	}
-
+	.fa-house {
+		font-size: 140%;
+		left: 6.5vh;
+	}
 	.register {
 		display: flex;
 		flex-direction: column;
 		height: 20px;
 	}
 	
-	p {
-		margin-right: 5vh;
-	}
 	@media (max-width: 568px) {
 		header {
 			width: 100%;

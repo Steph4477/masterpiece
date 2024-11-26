@@ -25,7 +25,9 @@ export async function fetchData(endpoint: string, method: string, body?: any) {
     }
 }
 
-export async function fetchDataWithMerchantId(body: any) {
+// All fetch product
+
+export async function fetchProduct(body: any) {
         const merchantId = jwtDecode(getToken()).sub;
         return fetchData(`/product/merchant_id/${merchantId}`, 'POST', body);
 }
@@ -39,7 +41,7 @@ export async function fetchDeleteProduct(productId: string) {
     return fetchData(`/product/${productId}`, 'DELETE');
 }
 
-export async function fetchById(productId: string) {
+export async function fetchByProductId(productId: string) {
     return fetchData(`/product/${productId}`, 'GET');
 }
 
@@ -47,12 +49,29 @@ export async function updateProduct(productId: string, body: any) {
     return fetchData(`/product/${productId}`, 'PUT', body);
 }
 
+// All fetch customer
+
+export async function fetchCustomer(body: any) {
+    const merchantId = jwtDecode(getToken()).sub;
+    return fetchData(`/customer/merchant_id/${merchantId}`, 'POST', body);
+}
+
 export async function fetchAllCustomers() {
     const merchantId = jwtDecode(getToken()).sub;
     return fetchData(`/customer/merchant_id/${merchantId}`, 'GET');
 }
 
-export async function fetchCustomerWithMerchantId(body: any) {
-    const merchantId = jwtDecode(getToken()).sub;
-    return fetchData(`/customer/merchant_id/${merchantId}`, 'POST', body);
+export async function fetchDeleteCustomer(customerId: string) {
+    return fetchData(`/customer/${customerId}`, 'DELETE');
 }
+
+export async function fetchByCustomerId(customerId: string) {
+    return fetchData(`/customer/${customerId}`, 'GET');
+}
+
+export async function updateCustomer(customerId: string, body: any) {
+    return fetchData(`/customer/${customerId}`, 'PUT', body);
+}
+
+
+

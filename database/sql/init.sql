@@ -1,3 +1,14 @@
+-- Supprimer les données existantes dans les tables
+DELETE FROM products;
+DELETE FROM customers;
+DELETE FROM merchants;
+
+-- Supprimer si tables éxistantes
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS merchants;
+
+-- Recréer les tables 
 CREATE TABLE merchants (
     id SERIAL,
     siret CHAR(14) NOT NULL,
@@ -10,7 +21,7 @@ CREATE TABLE merchants (
 CREATE TABLE products (
     id SERIAL,
     reference CHAR(8) NOT NULL,
-    image VARCHAR,
+    image VARCHAR NULL,
     name VARCHAR(100) NOT NULL,
     description VARCHAR(500) NOT NULL,
     price INT NOT NULL DEFAULT 0,
@@ -24,7 +35,7 @@ CREATE TABLE products (
 CREATE TABLE customers (
     id SERIAL,
     reference CHAR(8) NOT NULL,
-    image VARCHAR,
+    image VARCHAR NULL,
     name VARCHAR(100) NOT NULL,
     orders INT NOT NULL DEFAULT 0,
     average INT NOT NULL DEFAULT 0,
@@ -35,10 +46,10 @@ CREATE TABLE customers (
     CONSTRAINT customers_merchant_fk FOREIGN KEY (merchant_id) REFERENCES merchants(id)
 );
 
--- Supprimer les données existantes
-DELETE FROM merchants;
+-- Supprimer les données existantes dans les tables
 DELETE FROM products;
 DELETE FROM customers;
+DELETE FROM merchants;
 
 -- Insérer les marchands avec des nouveaux mots de passe cohérents hachés de 161 caractères
 INSERT INTO merchants (siret, email, "password") VALUES 
