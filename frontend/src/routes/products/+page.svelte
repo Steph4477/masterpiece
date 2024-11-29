@@ -41,44 +41,43 @@
 	</div>
 	<div class="container">
 		<div class="list-container">
-			<h1 class="title">Liste des produits</h1>
 			<div class="button-container">
 				<a href="/forms/addProduct" class="add">ajouter un produit</a>
 			</div>
 			{#if error}
 				<p>{error}</p>
 			{/if}
-			<ul>
+			<div class="home">
 				{#each products as product}
-					<li>
-						<div class="card">
-							<div class="modify">
-								<a href="/products/{product.id}" class="productId">
-									<span class="click">Cliquez pour Modifier</span>
-								</a>
+					<div class="card">
+						<div class="modify">
+							<a href="/products/{product.id}" class="productId">
+								<span class="click">Cliquez pour Modifier</span>
+							</a>
+						</div>
+						<div class="container">
+							<div class="identity">
+								<h3 class="name">{product.name}</h3>
+								<img src={product.image} alt={product.name} class="image" />
+								<p>Description : {product.description}</p>
 							</div>
-							<div class="container">
-								<div class="identity">
-									<h3 class="name">{product.name}</h3>
-									<img src={product.image} alt={product.name} class="image" />
-									<p>Description : {product.description}</p>
-								</div>
-								<div class="detail">
-									<p>Référence : {product.reference}</p>
-									<div class="stock">Stock :{product.stock}</div>
-									<div class="price">Prix :{product.price + ' €'}</div>
-									<div class="nbrvente">Nombre de vente :</div>
-									<div class="prixha">Prix d'achat :</div>
-									<div class="privte">Prix de vente :</div>
-									<div class="marge">Marge :</div>
-									<div class="ca">CA totale :</div>
-								</div>
+							<div class="detail">
+								<p>Référence : {product.reference}</p>
+								<div class="stock">Stock :{product.stock}</div>
+								<div class="salesCount">Nombre de vente :</div>
+								<div class="purchasePrice">Prix d'achat :</div>
+								<div class="sellingPrice">Prix de vente :</div>
+								<div class="margin">Marge :</div>
+								<div class="salesRevenue">CA totale :</div>
 							</div>
 						</div>
-						<ButtonDeleteProduct id={product.id} on:productDeleted={handleProductDeleted} />
-					</li>
+						<div class="delete">
+							<ButtonDeleteProduct id={product.id} on:productDeleted={handleProductDeleted} />
+							<div>supprimer</div>
+						</div>
+					</div>
 				{/each}
-			</ul>
+			</div>
 		</div>
 	</div>
 </div>
@@ -87,27 +86,43 @@
 	.aside-container {
 		margin-top: 400px;
 		position: fixed;
-		left: 4vh;
 	}
 
 	.header-container {
 		position: fixed;
-		width: 95%;
 	}
+
+	.list-container {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.home {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
 	.card {
 		display: flex;
 		flex-wrap: wrap;
-		border: solid black 1px;
-		border-radius:20px;
+		/* border: solid black 1px; */
+		background-color: azure;
+		border-radius: 20px;
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 		padding: 2vh;
-		margin: 50px;
+		margin-bottom: 5vh;
+		width: 35%;
+		align-items: center;
 	}
+
 	.card:hover {
 		box-shadow: none;
 	}
 
-	.modify{
+	.modify {
 		width: 100%;
 		display: flex;
 		justify-content: center;
@@ -125,6 +140,7 @@
 		margin-top: 5vh;
 		width: 100%;
 	}
+
 	.button-container {
 		display: flex;
 		justify-content: center;
@@ -132,6 +148,7 @@
 		width: 100%;
 		margin-top: 20vh;
 	}
+
 	.add {
 		padding: 10px;
 		width: 30%;
@@ -146,36 +163,38 @@
 		text-align: center;
 		margin-top: 5vh;
 	}
+
 	.add:hover {
 		box-shadow: none;
 	}
+
 	.click {
 		color: #fd6060;
 		text-decoration: underline;
 	}
 
-	.container{
+	.container {
 		display: flex;
 		width: 100%;
 		justify-content: space-around;
+		margin-left: 5vh;
 	}
-	.name{
-		width: 100%;
-		
-	}
-	.identity{
+
+	.identity {
 		display: flex;
 		flex-direction: column;
 		width: 40%;
 	}
-	.image{
+
+	.image {
 		height: 200px;
 		object-fit: cover;
 		background-color: white;
 		padding: 10px;
 		border-radius: 5px;
 	}
-	.detail{
+
+	.detail {
 		display: flex;
 		margin-top: 20px;
 		flex-direction: column;
@@ -188,11 +207,13 @@
 		font-weight: bold;
 	}
 
-	ul {
+	.delete {
+		width: 50%;
+		height: 30px;
 		display: flex;
-		flex-wrap: wrap;
-		list-style-type: none;
-
+		align-items: center;
+		font-size: 18px;
+		font-weight: bold;
+		color: #fd6060;
 	}
-	
 </style>

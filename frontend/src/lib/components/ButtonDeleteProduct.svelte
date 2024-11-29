@@ -48,6 +48,7 @@
 		border-radius: 50%;
 		padding: 0.5rem;
 		cursor: pointer;
+		font-size: 20px;
 	}
 
 	.button-delete:hover {
