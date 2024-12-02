@@ -58,7 +58,7 @@
 						<div class="container">
 							<div class="identity">
 								<h3 class="name">{product.name}</h3>
-								<img src={product.image} alt={product.name} class="image" />
+								<img src={product.image} alt={'Image ' + product.name} class="image" />
 								<p>Description : {product.description}</p>
 							</div>
 							<div class="detail">
@@ -108,13 +108,12 @@
 	.card {
 		display: flex;
 		flex-wrap: wrap;
-		/* border: solid black 1px; */
 		background-color: azure;
 		border-radius: 20px;
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 		padding: 2vh;
 		margin-bottom: 5vh;
-		width: 35%;
+		width: 47%;
 		align-items: center;
 	}
 
@@ -129,16 +128,6 @@
 		text-decoration: none;
 		font-weight: bold;
 		font-size: larger;
-	}
-
-	.title {
-		display: flex;
-		justify-content: center;
-		font-size: xx-large;
-		font-weight: bold;
-		color: black;
-		margin-top: 5vh;
-		width: 100%;
 	}
 
 	.button-container {
